@@ -1,0 +1,34 @@
+<div id="footer" class="footer">
+    <div class="links">
+        <php>$links=sp_getlinks();</php>
+        <foreach name="links" item="vo">
+            <a href="{$vo.link_url}" target="{$vo.link_target}">{$vo.link_name}</a>
+        </foreach>
+    </div>
+    <div class="footer-content">
+        <div class="footer-container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <img class="bottom-logo" src="http://uniqueway-document.b0.upaiyun.com/images/bottom_logo.png" width="" alt="海外旅行定制专家 - 无二之旅">
+                </div>
+                <div class="col-sm-7">
+                    <div class="text-container">
+                        <p>
+                            Copyright © 2015 jason. 保留所有权利   <a href="">京ICP备xxxxxx</a>
+                        </p>
+                        <p>
+                            xxxxx传播有限公司
+                        </p>
+                        <p>
+                            地址：xxxxxxxx
+                        </p>
+                        <p>*本网站部分图片来自网络，若作者看到，请尽快与无二之旅联系</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="backtotop"><i class="fa fa-arrow-circle-up"></i></div>
+{$site_tongji}
