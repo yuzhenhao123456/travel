@@ -15,9 +15,9 @@ class GuestbookController extends AppframeController{
 	}
 	
 	function addmsg(){
-		if(!sp_check_verify_code()){
+		/*if(!sp_check_verify_code()){
 			$this->error("验证码错误！");
-		}
+		}*/
 		
 		if (IS_POST) {
 			if ($this->guestbook_model->create()) {

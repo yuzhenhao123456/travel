@@ -466,7 +466,7 @@ a img {
 }
 
 .main-banner.contact-banner .contact-form form #phone {
-    width: 284px;
+    width: 424px;
     border-radius: 3px
 }
 
@@ -8496,7 +8496,7 @@ tbody.collapse.in {
 }
 
 .dropdown-menu > li > a {
-    display: block;
+    display: inline-block;
     padding: 3px 20px;
     clear: both;
     font-weight: 400;

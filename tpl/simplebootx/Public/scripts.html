@@ -72,4 +72,70 @@ var GV = {
 		
 	});
 	</script>
+<script>
+	$(Document).on('click','#login-btn',function(){
+		$('#middle-reg-dialog').hide();
+		$('#login-dialog').show();
+	});
+	$(Document).on('click','a.reg-btn',function(){
+		$('#login-dialog').hide();
+		$('#middle-reg-dialog').show();
+	});
+	$(Document).on('click','#reg-btn',function(){
+		$('#login-dialog').hide();
+		$('#middle-reg-dialog').show();
+	});
+
+	$(Document).on('click','.close',function(e){
+		$(e.target).parents('.dialog').hide();
+	});
+
+	$(Document).on('click','#login_form .login-btn',function(e){
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: $("#login_form").attr('action'),
+			data:$('#login_form').serialize(),// 你的formid
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success: function(data) {
+				if(data.status==1)
+				{
+					$('#middle-reg-dialog').hide();
+					alert(data.info);
+					location.reload();
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
+
+	$(Document).on('click','#reg_form .login-btn',function(e){
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: $("#reg_form").attr('action'),
+			data:$('#reg_form').serialize(),// 你的formid
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success: function(data) {
+				if(data.status==1)
+				{
+					$('#middle-reg-dialog').hide();
+					$('#finish-all-dialog').show();
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
+
+
+
+</script>
 

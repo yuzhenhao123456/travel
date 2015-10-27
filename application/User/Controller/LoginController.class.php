@@ -132,15 +132,15 @@ hello;
     //登录验证
     function dologin(){
 
-    	if(!sp_check_verify_code()){
+    	/*if(!sp_check_verify_code()){
     		$this->error("验证码错误！");
-    	}
+    	}*/
     	
     	$users_model=M("Users");
     	$rules = array(
     			//array(验证字段,验证规则,错误提示,验证条件,附加规则,验证时间)
-    			array('terms', 'require', '您未同意服务条款！', 1 ),
-    			array('username', 'require', '用户名或者邮箱不能为空！', 1 ),
+    			//array('terms', 'require', '您未同意服务条款！', 1 ),
+    			array('username', 'require', '用户名或者手机号不能为空！', 1 ),
     			array('password','require','密码不能为空！',1),
     	
     	);
@@ -150,14 +150,15 @@ hello;
     	
     	extract($_POST);
     	
-    	if(strpos($username,"@")>0){//邮箱登陆
-    		$where['user_email']=$username;
+    	if(is_numeric($username)){//手机登陆
+    		$where['mobile']=$username;
     	}else{
     		$where['user_login']=$username;
     	}
+		$where['user_type']=2;
     	$users_model=M('Users');
     	$result = $users_model->where($where)->find();
-    	$ucenter_syn=C("UCENTER_ENABLED");
+    	/*$ucenter_syn=C("UCENTER_ENABLED");
     		
     	$ucenter_old_user_login=false;
     	
@@ -233,7 +234,7 @@ hello;
     		}
     		$ucenter_login_ok=true;
     		echo uc_user_synlogin($uc_uid);
-    	}
+    	}*/
     	//exit();
     	if($result != null)
     	{
@@ -250,9 +251,9 @@ hello;
     			$_SESSION['login_http_referer']="";
     			$ucenter_old_user_login_msg="";
     				
-    			if($ucenter_old_user_login){
+    			//if($ucenter_old_user_login){
     				//$ucenter_old_user_login_msg="老用户请在跳转后，再次登陆";
-    			}
+    			//}
     				
     			$this->success("登录验证成功！", $redirect);
     		}else{

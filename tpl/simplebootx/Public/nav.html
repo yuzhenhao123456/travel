@@ -70,10 +70,10 @@
                         <a href="/trip">定制旅行</a>
                     </li>
                     <li class="destination parent-item hidden-xs dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" >目的地</a>
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">目的地</a>
                         <ul class="dropdown-menu">
-                            <li><a href="/destination_explore" title="随便看看" >随便看看</a></li>
-                            <li><a href="/destination" title="精选目的地" >精选目的地</a></li>
+                            <li><a href="/destination_explore" title="随便看看">随便看看</a></li>
+                            <li><a href="/destination" title="精选目的地">精选目的地</a></li>
                         </ul>
                     </li>
 
@@ -95,9 +95,7 @@
                     <!-- <li class="hide-li">
                       <a href="/wish_map">我的心愿地图</a>
                     </li> -->
-                    <li class="hide-li">
-                        <a href="/users/sign_in">登录</a>
-                    </li>
+
                 </ul>
                 <div class="contact-area hidden-sm">
                     <a href="/contact_us">
@@ -109,10 +107,22 @@
                             400 890 3040
                         </p>
                     </a></div>
-
-                <div class="login-control">
-                    <a id="login-btn" href="javascript:void(0)">登录</a>|<a id="reg-btn" href="javascript:void(0)">注册</a>
-                </div>
+                <if condition="!sp_is_user_login()">
+                    <div class="login-control">
+                        <a id="login-btn" href="javascript:void(0);">登录</a>|<a id="reg-btn" href="javascript:void(0);">注册</a>
+                    </div>
+                    <else/>
+                    <div class="user-info dropdown">
+                        <a class="user-name dropdown-toggle" href="javascript:;"  data-toggle="dropdown">{:sp_get_current_user()['user_nicename']}</a>
+                            <ul class="list dropdown-menu">
+                                <li>
+                                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_logout-eff495bc5e5492d4de51865723b64248.png"
+                                         alt="Icon logout">
+                                    <a href="/user/index/logout">退出</a>
+                                </li>
+                            </ul>
+                    </div>
+                </if>
                 <div class="wish-container">
                     <div class="wish-map-num hidden-sm" style="display: none;">
                         <span class="like-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_like_on.png"
