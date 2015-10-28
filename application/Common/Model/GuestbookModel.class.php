@@ -6,9 +6,9 @@ class GuestbookModel extends CommonModel{
 	protected $_validate = array(
 			//array(验证字段,验证规则,错误提示,验证条件,附加规则,验证时间)
 			array('full_name', 'require', '姓名不能为空！', 1, 'regex', CommonModel:: MODEL_BOTH ),
-			array('email', 'require', '邮箱不能为空！', 1, 'regex', CommonModel:: MODEL_BOTH ),
-			array('msg', 'require', '留言不能为空！', 1, 'regex', CommonModel:: MODEL_BOTH ),
-			array('email','email','邮箱格式不正确！',0,'',CommonModel:: MODEL_BOTH ),
+			array('mobile', 'require', '手机不能为空！', 1, 'regex', CommonModel:: MODEL_BOTH ),
+			array('title', 'require', '目的地不能为空！', 1, 'regex', CommonModel:: MODEL_BOTH ),
+			array('mobile','number','手机格式不正确！',0,'',CommonModel:: MODEL_BOTH ),
 	);
 	
 	protected $_auto = array (

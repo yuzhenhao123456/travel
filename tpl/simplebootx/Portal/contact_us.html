@@ -11,23 +11,21 @@
             <div class="banner-image" style="background-image: url('http://uniqueway.b0.upaiyun.com/contact_us_banner.jpg!w1500');"></div>
             <div class="container">
                 <div class="contact-form">
-                    <form action="/plans" method="POST" id="planForm" data-remote="true">
+                    <form action="/api/guestbook/addmsg" method="POST" id="planForm" data-remote="true">
                         <div class="row">
-                            <input id="name" type="text" name="plan[user_attributes][name]" placeholder="姓名">
-                            <input id="old_destination" type="text" name="plan[old_destination]" placeholder="海外目的地">
-                            <input id="travel_days" type="text" name="plan[travel_days]" placeholder="天数">
+                            <input id="name" type="text" name="full_name" placeholder="姓名">
+                            <input id="old_destination" type="text" name="title" placeholder="海外目的地">
+                            <input id="travel_days" type="text" name="day" placeholder="天数">
                         </div>
 
                         <div class="row">
-                            <input id="phone" type="tel" name="plan[user_attributes][phone]" placeholder="手机" autocomplete="off">
+                            <input id="phone" type="tel" name="mobile" placeholder="手机" autocomplete="off">
                             <!--<input type="text" id="verify_code" name="verify_code" placeholder="验证码">
                             <button id="send_verify_code" class="disabled" disabled="disabled">获取验证码</button>-->
                         </div>
-
                         <div class="row submit">
                             <button type="submit" id="submit" class="ga-hook" data-ga-title="contact-us-submit">开始我的定制</button>
                         </div>
-
                     </form>
                 </div>
             </div>
