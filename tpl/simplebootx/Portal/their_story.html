@@ -20,23 +20,73 @@
         </div>
 
         <php>
-            $lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",10);
+            $lists = sp_sql_posts_paged("cid:1;order:post_date DESC;",10);
         </php>
-        <volist name="lists['posts']" id="vo">
+            <volist name="lists['posts']" id="vo">
             <php>
                 $smeta=json_decode($vo['smeta'], true);
             </php>
             <div class="story-sub-banner">
                 <div class="container banner">
-                    <a href="/stories/{$vo.tid}">
-                        <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.post_title}">
-                    </a>    </div>
+                    <a href="/stories/{$vo.tid}" style="max-height:500px;overflow: hidden;vertical-align: middle;display: block;">
+                        <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" width="1000" alt="{$vo.post_title}"  ></a>
+                </div>
                 <div class="content-text">
-                    <p>$vo['post_excerpt']</p>
+                    <php>
+                        $excerpts = explode("\n",$vo['post_excerpt']);
+                    </php>
+                    <volist name="excerpts" id="excerpt">
+                        <p>{$excerpt}</p>
+                    </volist>
+                    <p>旅行总花费：{$vo.post_source}RMB/人</p>
                     <a class="default-btn" href="/stories/{$vo.tid}">感受他的温度</a>
                 </div>
             </div>
         </volist>
+        <ul class="their-story-item-list container clearfix">
+            <div class="row">
+                <php>
+                    $lists = sp_sql_posts_paged("cid:3;order:post_date DESC;",9);
+                </php>
+                <volist name="lists['posts']" id="vo">
+                    <php>
+                        $smeta=json_decode($vo['smeta'], true);
+                        $photos=$smeta['photo'];
+                        $icon='';
+                        foreach($photos as $photo)
+                        {
+                        if($photo['alt']=='icon')
+                        {
+                        $icon = $photo;
+                        }
+                        }
+                        if($icon=='')
+                        {
+                        $icon=$photos[0];
+                        }
+                    </php>
+                <li class="first col-xs-12 col-sm-6 col-md-4">
+                    <div class="cover">
+                        <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="Newzealand">
+                        <div class="dest_icon">
+                            <img src="{:sp_get_asset_upload_path($icon['url'])}" alt="{$icon['alt']}">
+                            <p>{$vo.post_title}</p>
+                        </div>
+                        <div class="story_info">
+                            <img src="__TMPL__Public/images/days.png" alt="Days"> <span>{$vo.day}天</span>
+                            <img class="p_num" src="__TMPL__Public/images/p_num.png" alt="P num"> <span>{$vo.people_num}人</span>
+                        </div>
+                        <img class="cover-bg" src="{:sp_get_asset_upload_path($photo['url'])}" alt="{$photo['alt']}">
+                        <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+                    <div class="desc">
+                        <h5>定制旅行总花费：{$vo.post_source}元/人</h5>
+                        <p>{$vo['post_excerpt']}</p>
+                    </div>
+                </li>
+                </volist>
+
+            </div>
+        </ul>
         <div class="container">
             <div class="booking-block" id="booking-block">
                 <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block">定制你的旅行 &gt;</a>

@@ -22,109 +22,36 @@
             </div>
         </div>
         <div class="container">
+            <volist name="top_makers" id="vo">
+                <php>
+                    $smeta=json_decode($vo['smeta'], true);
+                </php>
             <div class="travel-tailor-item">
                 <div class="cover">
-                    <a href="/stories/2">
-                        <img src="http://uniqueway.b0.upaiyun.com/TravelTailor/caiyun.jpg" alt="Caiyun">
+                    <a href="/stories/{$vo.story_id}">
+                        <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.user_nicename}">
                     </a>
                 </div>
 
-                <div class="like-counter" data-id="1">
+                <div class="like-counter" data-id="{$vo.id}">
                     <div class="name">
-                        定制师-蔡韵
+                        定制师-{$vo.user_nicename}
                     </div>
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/like-icon-cdb461361562e84580836c53d87eebb7.png"
+                    <img src="__TMPL__Public/images/like-icon.png"
                          alt="Like icon">
-                    <span>4375</span>
+                    <span>{$vo.get_like}</span>
                 </div>
 
                 <div class="desc">
-                    <h5>让行走，丰盛你的生命和灵魂</h5>
+                    <h5>{$vo.title}</h5>
 
                     <p class="bio">
-                        东帝汶总统帮我倒了一杯茶，问了我一个问题，热带雨林深处的巫医对我说了她自己的秘密,
-                        土库曼斯坦的那个边警狠狠的告诉我，下次不要再来这个国家，我在伊朗弄丢了朋友送的那个黑袍子，还有人要把他的古堡送我, 你问我去过那儿，准备好十天十夜来听我讲...
+                        {$vo.word}
                     </p>
-                    <a class="default-btn" href="/stories/2">了解他的故事</a>
+                    <a class="default-btn" href="/stories/{$vo.story_id}">了解他的故事</a>
                 </div>
             </div>
-            <div class="travel-tailor-item">
-                <div class="cover">
-                    <a href="/stories/3">
-                        <img src="http://uniqueway.b0.upaiyun.com/TravelTailor/leitao.jpg" alt="Leitao">
-                    </a>
-                </div>
-
-                <div class="like-counter" data-id="2">
-                    <div class="name">
-                        定制师-雷涛
-                    </div>
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/like-icon-cdb461361562e84580836c53d87eebb7.png"
-                         alt="Like icon">
-                    <span>2747</span>
-                </div>
-
-                <div class="desc">
-                    <h5>欧洲方言控</h5>
-
-                    <p class="bio">
-                        不管是德语、法语、意大利语、马扎尔语，还是西班牙语、冰岛语、波兰语，或者是才学的希腊语和挪威语，每到一个国家小住，不和当地人用当地话聊几句可怎么行...
-                    </p>
-                    <a class="default-btn" href="/stories/3">了解他的故事</a>
-                </div>
-            </div>
-            <div class="travel-tailor-item">
-                <div class="cover">
-                    <a href="/stories/1">
-                        <img src="http://uniqueway.b0.upaiyun.com/TravelTailor/liboyuan.jpg" alt="Liboyuan">
-                    </a>
-                </div>
-
-                <div class="like-counter" data-id="3">
-                    <div class="name">
-                        定制师-李博渊
-                    </div>
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/like-icon-cdb461361562e84580836c53d87eebb7.png"
-                         alt="Like icon">
-                    <span>5532</span>
-                </div>
-
-                <div class="desc">
-                    <h5>暖男的旅行箱</h5>
-
-                    <p class="bio">
-                        每趟旅行都在帮妈妈完成一个又一个旅行心愿，<br>
-                        她说要去加拿大看枫叶，我说跟我走吧！她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！<br>
-                        她说要去拉普兰德看北极光，我说，那就跟着我走吧...
-                    </p>
-                    <a class="default-btn" href="/stories/1">了解他的故事</a>
-                </div>
-            </div>
-            <div class="travel-tailor-item">
-                <div class="cover">
-                    <a href="/stories/4">
-                        <img src="http://uniqueway.b0.upaiyun.com/TravelTailor/wangsida.jpg" alt="Wangsida">
-                    </a>
-                </div>
-
-                <div class="like-counter" data-id="4">
-                    <div class="name">
-                        定制师-王思达
-                    </div>
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/like-icon-cdb461361562e84580836c53d87eebb7.png"
-                         alt="Like icon">
-                    <span>4531</span>
-                </div>
-
-                <div class="desc">
-                    <h5>边走边吃，边走边爱</h5>
-
-                    <p class="bio">
-                        和她认识那么多年，每天却都像第一次见面的瞬间，那时候她就说，要吃遍全世界的美味，你们总在问爱情保鲜的秘诀是什么？带她上路吧，答案就在旅途中。
-                    </p>
-                    <a class="default-btn" href="/stories/4">了解他的故事</a>
-                </div>
-            </div>
+            </volist>
         </div>
 
         <div class="container travel-tailor-container clearfix">

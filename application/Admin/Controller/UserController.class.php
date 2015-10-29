@@ -41,6 +41,25 @@ class UserController extends AdminbaseController{
 		if(IS_POST){
 			if(!empty($_POST['role_id']) && is_array($_POST['role_id'])){
 				$role_ids=$_POST['role_id'];
+				if(in_array(2,$role_ids))
+				{
+					if(!$_POST['user_nicename'])
+					{
+						$this->error("姓名不能为空！");
+					}
+					if(!$_POST['title']||!$_POST['word'])
+					{
+						$this->error("当角色为定制师时，标语和解说不能为空！");
+					}
+					if($_POST['is_top'])
+					{
+						if(!$_POST['story_id'])
+						{
+							$this->error("当置顶定制师时，故事ID不能为空或者0！");
+						}
+
+					}
+				}
 				unset($_POST['role_id']);
 				if ($this->users_model->create()) {
 					$result=$this->users_model->add();
@@ -84,6 +103,25 @@ class UserController extends AdminbaseController{
 					unset($_POST['user_pass']);
 				}
 				$role_ids=$_POST['role_id'];
+				if(in_array(2,$role_ids))
+				{
+					if(!$_POST['user_nicename'])
+					{
+						$this->error("姓名不能为空！");
+					}
+					if(!$_POST['title']||!$_POST['word'])
+					{
+						$this->error("当角色为定制师时，标语和解说不能为空！");
+					}
+					if($_POST['is_top'])
+					{
+						if(!$_POST['story_id'])
+						{
+							$this->error("当置顶定制师时，故事ID不能为空或者0！");
+						}
+
+					}
+				}
 				unset($_POST['role_id']);
 				if ($this->users_model->create()) {
 					$result=$this->users_model->save();
