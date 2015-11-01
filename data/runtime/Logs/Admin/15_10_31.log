@@ -1,0 +1,59 @@
+[ 2015-10-31T20:38:21+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'Bella' AND `id` <> '5' LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2015-10-31T20:38:27+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'Bella' AND `id` <> '5' LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2015-10-31T20:41:31+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0150s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = 'liboyuan@qq.com' AND `id` <> '5' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `y_users` SET `user_login`='Bella',`user_pass`='ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e',`user_email`='liboyuan@qq.com',`user_nicename`='李博渊',`sex`='1',`mobile`='13581111123',`avatar`='/data/upload/5632589f652ca.png',`title`='暖男的旅行箱',`word`='每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！
+她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！
+她说要去拉普兰德看北极光，我说，那就跟着我走吧...',`is_top`='1',`story_id`='3',`travel_maker`='1' WHERE `id` = '5' [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_role_user` [ RunTime:0.0050s ]
+SQL: DELETE FROM `y_role_user` WHERE `user_id` = 5 [ RunTime:0.0000s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('2','5') [ RunTime:0.0000s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('1','5') [ RunTime:0.0010s ]
+
+[ 2015-10-31T20:42:28+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'liboyuan' AND `id` <> '5' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = 'liboyuan@qq.com' AND `id` <> '5' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `y_users` SET `user_login`='liboyuan',`user_pass`='ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e',`user_email`='liboyuan@qq.com',`user_nicename`='李博渊',`sex`='1',`mobile`='13581111123',`avatar`='/data/upload/5632589f652ca.png',`title`='暖男的旅行箱',`word`='每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！
+她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！
+她说要去拉普兰德看北极光，我说，那就跟着我走吧...',`is_top`='1',`story_id`='3',`travel_maker`='1' WHERE `id` = '5' [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_role_user` [ RunTime:0.0040s ]
+SQL: DELETE FROM `y_role_user` WHERE `user_id` = 5 [ RunTime:0.0010s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('2','5') [ RunTime:0.0010s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('1','5') [ RunTime:0.0000s ]
+

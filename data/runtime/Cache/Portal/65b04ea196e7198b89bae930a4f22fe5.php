@@ -48,8 +48,8 @@ var GV = {
 <body class="J_scroll_fixed">
 	<div class="wrap J_check_wrap">
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="javascript:;">所有文章</a></li>
-			<li><a href="<?php echo U('AdminPost/add',array('term'=>empty($term['term_id'])?'':$term['term_id']));?>" target="_self">添加文章</a></li>
+			<li class="active"><a href="javascript:;">所有故事</a></li>
+			<li><a href="<?php echo U('AdminPost/add',array('term'=>empty($term['term_id'])?'':$term['term_id']));?>" target="_self">添加故事</a></li>
 		</ul>
 		<form class="well form-search" method="post" action="<?php echo U('AdminPost/index');?>">
 			<div class="search_type cc mb10">
@@ -61,7 +61,7 @@ var GV = {
 						时间：
 						<input type="text" name="start_time" class="J_date" value="<?php echo ((isset($formget["start_time"]) && ($formget["start_time"] !== ""))?($formget["start_time"]):''); ?>" style="width: 80px;" autocomplete="off">-
 						<input type="text" class="J_date" name="end_time" value="<?php echo ($formget["end_time"]); ?>" style="width: 80px;" autocomplete="off"> &nbsp; &nbsp;
-						关键字： 
+						目的地：
 						<input type="text" name="keyword" style="width: 200px;" value="<?php echo ($formget["keyword"]); ?>" placeholder="请输入关键字...">
 						<input type="submit" class="btn btn-primary" value="搜索" />
 					</span>
@@ -84,13 +84,13 @@ var GV = {
 				<thead>
 					<tr>
 						<th width="15"><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></th>
-						<th width="50">排序</th>
+						<th width="30">ID</th>
+						<th width="50">评论量</th>
 						<th>标题</th>
 						<th>栏目</th>
 						<th width="50">点击量</th>
-						<th width="50">评论量</th>
-						<th width="50">关键字</th>
-						<th width="50">来源</th>
+						<th width="50">目的地</th>
+						<th width="60">人均花费</th>
 						<th width="50">摘要</th>
 						<th width="50">缩略图</th>
 						<th width="80">发布人</th>
@@ -102,13 +102,13 @@ var GV = {
 				<?php $status=array("1"=>"已审核","0"=>"未审核"); $top_status=array("1"=>"已置顶","0"=>"未置顶"); $recommend_status=array("1"=>"已推荐","0"=>"未推荐"); ?>
 				<?php if(is_array($posts)): foreach($posts as $key=>$vo): ?><tr>
 					<td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="ids[]" value="<?php echo ($vo["tid"]); ?>" title="ID:<?php echo ($vo["tid"]); ?>"></td>
+					<td><?php echo ($vo["tid"]); ?></td>
 					<td><input name="listorders[<?php echo ($vo["tid"]); ?>]" class="input input-order" type="text" size="5" value="<?php echo ($vo["listorder"]); ?>" title="ID:<?php echo ($vo["tid"]); ?>"></td>
 					<td><a href="<?php echo U('portal/article/index',array('id'=>$vo['tid']));?>" target="_blank"> <span><?php echo ($vo["post_title"]); ?></span></a></td>
 					<td><?php echo ($terms[$vo['term_id']]); ?></td>
 					<td><?php echo ($vo["post_hits"]); ?></td>
-					<td><a href="javascript:open_iframe_dialog('<?php echo U('comment/commentadmin/index',array('post_id'=>$vo['id']));?>','评论列表')"><?php echo ($vo["comment_count"]); ?></a></td>
-					<td><?php echo ($excerpt_keywords = empty($vo['post_keywords'])?"":'已填写'); ?></td>
-					<td><?php echo ($excerpt_source = empty($vo['post_source'])?" ":'已填写'); ?></td>
+					<td><?php echo ($vo["post_keywords"]); ?></td>
+					<td><?php echo ($vo["post_source"]); ?></td>
 					<td><?php echo ($excerpt_excerpt = empty($vo['post_excerpt'])?" ":'已填写'); ?></td>
 					<td>
 						<?php $smeta=json_decode($vo['smeta'],true); ?>

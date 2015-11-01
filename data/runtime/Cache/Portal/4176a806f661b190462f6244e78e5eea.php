@@ -118,10 +118,10 @@
                         <a href="/trip">定制旅行</a>
                     </li>
                     <li class="destination parent-item hidden-xs dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" >目的地</a>
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">目的地</a>
                         <ul class="dropdown-menu">
-                            <li><a href="/destination_explore" title="随便看看" >随便看看</a></li>
-                            <li><a href="/destination" title="精选目的地" >精选目的地</a></li>
+                            <li><a href="/destination_explore" title="随便看看">随便看看</a></li>
+                            <li><a href="/destination" title="精选目的地">精选目的地</a></li>
                         </ul>
                     </li>
 
@@ -143,9 +143,7 @@
                     <!-- <li class="hide-li">
                       <a href="/wish_map">我的心愿地图</a>
                     </li> -->
-                    <li class="hide-li">
-                        <a href="/users/sign_in">登录</a>
-                    </li>
+
                 </ul>
                 <div class="contact-area hidden-sm">
                     <a href="/contact_us">
@@ -157,10 +155,20 @@
                             400 890 3040
                         </p>
                     </a></div>
-
-                <div class="login-control">
-                    <a id="login-btn" href="javascript:void(0)">登录</a>|<a id="reg-btn" href="javascript:void(0)">注册</a>
-                </div>
+                <?php if(!sp_is_user_login()): ?><div class="login-control">
+                        <a id="login-btn" href="javascript:void(0);">登录</a>|<a id="reg-btn" href="javascript:void(0);">注册</a>
+                    </div>
+                    <?php else: ?>
+                    <div class="user-info dropdown">
+                        <a class="user-name dropdown-toggle" href="javascript:;"  data-toggle="dropdown"><?php echo sp_get_current_user()['user_nicename'];?></a>
+                            <ul class="list dropdown-menu">
+                                <li>
+                                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_logout-eff495bc5e5492d4de51865723b64248.png"
+                                         alt="Icon logout">
+                                    <a href="/user/index/logout">退出</a>
+                                </li>
+                            </ul>
+                    </div><?php endif; ?>
                 <div class="wish-container">
                     <div class="wish-map-num hidden-sm" style="display: none;">
                         <span class="like-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_like_on.png"
@@ -182,23 +190,21 @@
             <div class="banner-image" style="background-image: url('http://uniqueway.b0.upaiyun.com/contact_us_banner.jpg!w1500');"></div>
             <div class="container">
                 <div class="contact-form">
-                    <form action="/plans" method="POST" id="planForm" data-remote="true">
+                    <form action="/api/guestbook/addmsg" method="POST" id="planForm" data-remote="true">
                         <div class="row">
-                            <input id="name" type="text" name="plan[user_attributes][name]" placeholder="姓名">
-                            <input id="old_destination" type="text" name="plan[old_destination]" placeholder="海外目的地">
-                            <input id="travel_days" type="text" name="plan[travel_days]" placeholder="天数">
+                            <input id="name" type="text" name="full_name" placeholder="姓名">
+                            <input id="old_destination" type="text" name="title" placeholder="海外目的地">
+                            <input id="travel_days" type="text" name="day" placeholder="天数">
                         </div>
 
                         <div class="row">
-                            <input id="phone" type="tel" name="plan[user_attributes][phone]" placeholder="手机" autocomplete="off">
-                            <input type="text" id="verify_code" name="verify_code" placeholder="验证码">
-                            <button id="send_verify_code" class="disabled" disabled="disabled">获取验证码</button>
+                            <input id="phone" type="tel" name="mobile" placeholder="手机" autocomplete="off">
+                            <!--<input type="text" id="verify_code" name="verify_code" placeholder="验证码">
+                            <button id="send_verify_code" class="disabled" disabled="disabled">获取验证码</button>-->
                         </div>
-
                         <div class="row submit">
                             <button type="submit" id="submit" class="ga-hook" data-ga-title="contact-us-submit">开始我的定制</button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -336,6 +342,94 @@
     </div>
 </div>
 <div id="backtotop"><i class="fa fa-arrow-circle-up"></i></div>
+<div id="login-dialog" class="dialog" style="display: none;">
+    <div class="bg"></div>
+    <div class="content">
+        <span class="close">×</span>
+        <div class="body">
+            <ul class="error-list"></ul>
+            <div class="title">
+                <span>使用手机登录</span>
+            </div>
+            <div class="form login clearfix">
+                <form class="login" action="/user/login/dologin" accept-charset="UTF-8" method="post" id="login_form">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input class="input-control phone" placeholder="用户名或者手机号" type="text" name="username" id="session_phone">
+                    <input class="input-control password" placeholder="密码" type="password" name="password" id="session_password">
+                    <input type="hidden" name="session[user_beens]" id="session_user_beens">
+                    <input type="hidden" name="session[user_likes]" id="session_user_likes">
+                    <div class="form-controls">
+                        <a class="login-btn" href="javascript:void(0)">登录</a>
+                        <a target="reg-dialog" class="reg-btn" href="javascript:void(0)">注册</a>
+                        <!--<a class="pull-left" href="/users/begin_password_reset">忘记密码?</a>-->
+                    </div>
+                </form>      </div>
+            <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+    </div>
+</div>
+<!--<div id="init-reg-dialog" class="dialog" style="display: none;">
+    <div class="bg"></div>
+    <div class="content">
+        <span class="close">×</span>
+        <ul class="error-list"></ul>
+        <div class="body">
+            <div class="title">
+                <span>使用手机注册</span>
+            </div>
+            <div class="form reg">
+                <input type="text" name="phone" value="" class="input-control phone" placeholder="手机号">
+                <div class="phone-captcha clearfix ">
+                    <input type="text" name="captcha" value="" class="input-control verify-code" placeholder="验证码">
+                    <a class="send_sms_code" href="javascript:void(0)">发送验证码</a>
+                </div>
+
+                <div class="form-controls">
+                    <a class="login-btn" href="javascript:;">立即注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div id="middle-reg-dialog" class="dialog" style="display: none;">
+    <div class="bg"></div>
+    <div class="content">
+        <span class="close">×</span>
+        <ul class="error-list"></ul>
+        <div class="body">
+            <div class="title">
+                <span>账号注册</span>
+            </div>
+            <div class="form reg">
+                <form class="reg" action="/user/register/doregister" accept-charset="UTF-8" method="post" id="reg_form">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input class="input-control name" placeholder="手机号" type="text" name="mobile" id="registrations_name">
+                    <input class="input-control name" placeholder="昵称" type="text" name="username" id="registrations_name">
+                    <input class="input-control password" placeholder="密码" type="password" name="password" id="registrations_password">
+                    <input class="input-control password_confirmation" placeholder="重复密码" type="password" name="repassword" id="registrations_password_confirmation">
+                    <div class="form-controls">
+                        <a class="login-btn finish-btn" href="javascript:;">完成</a>
+                    </div>
+                </form>      </div>
+        </div>
+    </div>
+</div>
+<div id="finish-all-dialog" class="dialog" style="display: none;">
+    <div class="bg"></div>
+    <div class="content">
+        <span class="close">×</span>
+        <span class="error-list"></span>
+        <div class="body">
+            <div class="title">
+                <span>注册成功</span>
+            </div>
+            <div class="form reg">
+                <img class="success-icon" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_success-7c28974ac8d630ec9312fb108991f691.png" alt="Icon success">
+                <p class="tips">恭喜你注册成功!</p>
+                <!-- <a target="login-dialog" class="link" href="/users/sign_in">登录</a> -->
+            </div>
+        </div>
+    </div>
+</div>
 <?php echo ($site_tongji); ?>
 
 
@@ -413,6 +507,72 @@ var GV = {
 		
 	});
 	</script>
+<script>
+	$(Document).on('click','#login-btn',function(){
+		$('#middle-reg-dialog').hide();
+		$('#login-dialog').show();
+	});
+	$(Document).on('click','a.reg-btn',function(){
+		$('#login-dialog').hide();
+		$('#middle-reg-dialog').show();
+	});
+	$(Document).on('click','#reg-btn',function(){
+		$('#login-dialog').hide();
+		$('#middle-reg-dialog').show();
+	});
+
+	$(Document).on('click','.close',function(e){
+		$(e.target).parents('.dialog').hide();
+	});
+
+	$(Document).on('click','#login_form .login-btn',function(e){
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: $("#login_form").attr('action'),
+			data:$('#login_form').serialize(),// 你的formid
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success: function(data) {
+				if(data.status==1)
+				{
+					$('#middle-reg-dialog').hide();
+					alert(data.info);
+					location.reload();
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
+
+	$(Document).on('click','#reg_form .login-btn',function(e){
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: $("#reg_form").attr('action'),
+			data:$('#reg_form').serialize(),// 你的formid
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success: function(data) {
+				if(data.status==1)
+				{
+					$('#middle-reg-dialog').hide();
+					$('#finish-all-dialog').show();
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
+
+
+
+</script>
 
 
 

@@ -1,0 +1,70 @@
+[ 2015-11-01T12:49:31+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:32:08+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:33:26+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004001s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:51:48+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003001s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:52:02+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006001s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:53:14+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:53:31+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:54:05+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T13:57:28+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+
+[ 2015-11-01T14:08:04+08:00 ] 127.0.0.1 /index.php?g=user&m=index&a=is_login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: url D:\xampp\htdocs\travel\application\Common\Controller\AppframeController.class.php 第 45 行.
+

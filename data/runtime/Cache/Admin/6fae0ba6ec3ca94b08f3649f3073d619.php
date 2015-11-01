@@ -32,7 +32,7 @@
 	</head>
 <body>
 	<div class="wrap">
-		<h1><a href="">ThinkCMF 后台管理中心</a></h1>
+		<h1><a href="">后台管理中心</a></h1>
 		<form method="post" name="login" action="<?php echo U('public/dologin');?>" autoComplete="off" class="J_ajaxForm">
 			<div class="login">
 				<ul>

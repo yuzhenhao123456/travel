@@ -29,17 +29,20 @@ class IndexController extends HomeBaseController {
     //旅行定制师
 	public function our_story() {
 		$where=array(
-			'a.is_top'=>1,
+			"a.is_top"=>1,
 			'a.user_type'=>1,
-			'a.user_status'=>1
+			'a.user_status'=>1,
+			'a.travel_maker'=>1
 		);
 		$top_makers=M('users')->field('a.*,b.smeta')->alias('a')->join(C('DB_PREFIX').'posts b on a.story_id=b.id','left')->where($where)->order('a.get_like DESC')->select();
+
 		$where1=array(
 			'is_top'=>0,
 			'user_type'=>1,
-			'user_status'=>1
+			'user_status'=>1,
+			'travel_maker'=>1
 		);
-		$makers=M('users')->where($where)->order('get_like DESC')->select();
+		$makers=M('users')->where($where1)->order('get_like DESC')->select();
 		$this->assign('top_makers',$top_makers);
 		$this->assign('makers', $makers);
 		$this->display(":our_story");
@@ -89,6 +92,14 @@ class IndexController extends HomeBaseController {
 		$this->display(":stories");
 	}
 
+	/**
+	 * Description: destination 精选目的地
+	 * Author: Jason
+	 */
+	function destination()
+	{
+		$this->display(":destination");
+	}
 }
 
 

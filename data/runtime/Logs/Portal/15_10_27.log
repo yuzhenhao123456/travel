@@ -20,3 +20,15 @@ SQL: SHOW COLUMNS FROM `y_terms` [ RunTime:0.0060s ]
 SQL: UPDATE `y_terms` SET `parent`='0',`name`='非案例故事',`description`='',`taxonomy`='article',`seo_title`='',`seo_keywords`='',`seo_description`='',`list_tpl`='list_masonry',`one_tpl`='article' WHERE `term_id` = '2' [ RunTime:0.0000s ]
 SQL: UPDATE `y_terms` SET `path`='0-2' WHERE ( term_id=2 ) [ RunTime:0.0000s ]
 
+[ 2015-10-27T20:43:00+08:00 ] 127.0.0.1 /users/login
+ERR: 无法加载控制器:Users
+
+[ 2015-10-27T20:43:14+08:00 ] 127.0.0.1 /users/login
+ERR: 无法加载控制器:Users
+
+[ 2015-10-27T20:43:31+08:00 ] 127.0.0.1 /users/login
+ERR: 无法加载控制器:Users
+
+[ 2015-10-27T21:40:33+08:00 ] 127.0.0.1 /wish_map?
+ERR: 无法加载控制器:Wish_map
+

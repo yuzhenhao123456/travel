@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-10-30 07:52:32
+Date: 2015-11-02 02:30:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,6 +31,32 @@ CREATE TABLE `y_ad` (
 -- ----------------------------
 -- Records of y_ad
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for y_area
+-- ----------------------------
+DROP TABLE IF EXISTS `y_area`;
+CREATE TABLE `y_area` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) DEFAULT NULL,
+  `name` varchar(60) DEFAULT NULL COMMENT '地区名称',
+  `day` varchar(60) DEFAULT NULL COMMENT '推荐天数',
+  `season` varchar(60) DEFAULT NULL COMMENT '推荐季节',
+  `cost` decimal(10,2) DEFAULT NULL COMMENT '人均花费',
+  `full_name` varchar(100) DEFAULT NULL COMMENT '英文名',
+  `icon` varchar(255) DEFAULT NULL COMMENT '图标地址',
+  `listorder` int(10) DEFAULT '0',
+  `path` varchar(20) DEFAULT NULL COMMENT '区域层级关系路径',
+  `lon` decimal(10,6) DEFAULT NULL COMMENT '经度',
+  `lat` decimal(10,6) DEFAULT NULL COMMENT '纬度',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of y_area
+-- ----------------------------
+INSERT INTO `y_area` VALUES ('1', '0', '欧洲', '7-90天', '一年四季', '28220.00', 'Europe', '', '0', '0-1', '19.699453', '51.745940');
+INSERT INTO `y_area` VALUES ('2', '1', '英国', '7-90天', '一年四季', '27600.00', 'English', '/data/upload/5636239dd95e4.jpg', '0', '0-1-2', '-2.000000', '54.841679');
 
 -- ----------------------------
 -- Table structure for y_asset
@@ -99,7 +125,7 @@ CREATE TABLE `y_auth_rule` (
   `condition` varchar(300) NOT NULL DEFAULT '' COMMENT '规则附加条件',
   PRIMARY KEY (`id`),
   KEY `module` (`module`,`status`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
+) ENGINE=MyISAM AUTO_INCREMENT=164 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
 
 -- ----------------------------
 -- Records of y_auth_rule
@@ -265,6 +291,8 @@ INSERT INTO `y_auth_rule` VALUES ('158', 'Admin', 'admin_url', 'admin/slide/ban'
 INSERT INTO `y_auth_rule` VALUES ('159', 'Admin', 'admin_url', 'admin/slide/cancelban', null, '启用幻灯片', '1', '');
 INSERT INTO `y_auth_rule` VALUES ('160', 'Admin', 'admin_url', 'admin/user/ban', null, '禁用管理员', '1', '');
 INSERT INTO `y_auth_rule` VALUES ('161', 'Admin', 'admin_url', 'admin/user/cancelban', null, '启用管理员', '1', '');
+INSERT INTO `y_auth_rule` VALUES ('162', 'Admin', 'admin_url', 'admin/area/index', null, '区域管理', '1', '');
+INSERT INTO `y_auth_rule` VALUES ('163', 'Admin', 'admin_url', 'admin/destination/index', null, '目的地管理', '1', '');
 
 -- ----------------------------
 -- Table structure for y_comments
@@ -319,6 +347,38 @@ CREATE TABLE `y_common_action_log` (
 -- ----------------------------
 INSERT INTO `y_common_action_log` VALUES ('1', '0', 'posts1', 'Portal-Article-index', '1', '1446122118', '127.0.0.1');
 INSERT INTO `y_common_action_log` VALUES ('2', '0', 'posts1', 'Portal-Index-stories', '3', '1446140256', '127.0.0.1');
+
+-- ----------------------------
+-- Table structure for y_destination
+-- ----------------------------
+DROP TABLE IF EXISTS `y_destination`;
+CREATE TABLE `y_destination` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `post_author` bigint(20) unsigned DEFAULT '0' COMMENT '发表者id',
+  `area_id` int(11) NOT NULL COMMENT '地区ID',
+  `city` varchar(60) DEFAULT NULL COMMENT '城市',
+  `date` datetime DEFAULT '2000-01-01 00:00:00' COMMENT 'post创建日期，永久不变，一般不显示给用户',
+  `title` text COMMENT 'post标题',
+  `excerpt` text COMMENT 'post摘要',
+  `status` int(2) DEFAULT '1' COMMENT 'post状态，1已审核，0未审核',
+  `modified` datetime DEFAULT '2000-01-01 00:00:00' COMMENT 'post更新时间，可在前台修改，显示给用户',
+  `smeta` text COMMENT 'post的扩展字段，保存相关扩展属性，如缩略图；格式为json',
+  `post_hits` int(11) DEFAULT '0' COMMENT 'post点击数，查看数',
+  `post_like` int(11) DEFAULT '0' COMMENT 'post赞数',
+  `listorder` int(11) DEFAULT '0',
+  `lon` decimal(10,6) DEFAULT NULL COMMENT '经度',
+  `lat` decimal(10,6) DEFAULT NULL COMMENT '纬度',
+  PRIMARY KEY (`id`),
+  KEY `type_status_date` (`status`,`date`,`id`),
+  KEY `post_author` (`post_author`),
+  KEY `post_date` (`date`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of y_destination
+-- ----------------------------
+INSERT INTO `y_destination` VALUES ('1', '1', '2', '伦敦', '2000-01-01 00:00:00', '伦敦真好玩', '是非得失', '1', '2000-01-01 00:00:00', 'null', '0', '0', '0', '0.000000', '0.000000');
+INSERT INTO `y_destination` VALUES ('2', '1', '1', '迪拜', '2015-11-02 02:10:04', '游览地球村，观看特别的演出，迪拜必到景点之一哦', '多年以来，地球村已经发展成为迪拜的知名景点之一，也是迪拜购物节的组成部分。每年冬天都有超过25个国家特色的音乐、舞蹈、艺术、手工艺品、戏剧、传统和美食在此得到展现。地球村还上演一系列精彩的演出，包括高空钢丝秀、灌篮表演、高空跳伞等等。地球村内有超过140家小吃饮食店铺，让人们在游玩的同时，也能大快朵颐。简而言之就是迪拜的庙会，去逛逛呗？', '1', '2000-01-01 00:00:00', '{\"photo\":[{\"url\":\"563655362fbc7.jpg\",\"alt\":\"icon\"},{\"url\":\"5636554dc01bc.jpg\",\"alt\":\"dfe53914-a01e-4c43-b9e0-4128fa602f02\"},{\"url\":\"5636556b2a5f5.jpg\",\"alt\":\"e3ab17f5-5b02-49d8-8010-dfaec1fddb21\"},{\"url\":\"56365578544de.jpg\",\"alt\":\"e3fd9061-0c8f-425a-a160-faefcfd4777d\"}]}', '0', '0', '0', '25.271139', '55.307485');
 
 -- ----------------------------
 -- Table structure for y_guestbook
@@ -387,7 +447,7 @@ CREATE TABLE `y_menu` (
   KEY `status` (`status`),
   KEY `parentid` (`parentid`),
   KEY `model` (`model`)
-) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=164 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_menu
@@ -553,6 +613,8 @@ INSERT INTO `y_menu` VALUES ('158', '54', 'Admin', 'Slide', 'ban', '', '1', '0',
 INSERT INTO `y_menu` VALUES ('159', '54', 'Admin', 'Slide', 'cancelban', '', '1', '0', '启用幻灯片', '', '', '0');
 INSERT INTO `y_menu` VALUES ('160', '149', 'Admin', 'User', 'ban', '', '1', '0', '禁用管理员', '', '', '0');
 INSERT INTO `y_menu` VALUES ('161', '149', 'Admin', 'User', 'cancelban', '', '1', '0', '启用管理员', '', '', '0');
+INSERT INTO `y_menu` VALUES ('162', '1', 'Admin', 'area', 'index', '', '1', '1', '区域管理', '', '', '0');
+INSERT INTO `y_menu` VALUES ('163', '1', 'Admin', 'destination', 'index', '', '1', '1', '目的地管理', '', '', '0');
 
 -- ----------------------------
 -- Table structure for y_nav
@@ -746,8 +808,8 @@ CREATE TABLE `y_role_user` (
 -- Records of y_role_user
 -- ----------------------------
 INSERT INTO `y_role_user` VALUES ('2', '4');
-INSERT INTO `y_role_user` VALUES ('2', '5');
 INSERT INTO `y_role_user` VALUES ('1', '5');
+INSERT INTO `y_role_user` VALUES ('2', '5');
 
 -- ----------------------------
 -- Table structure for y_route
@@ -895,11 +957,11 @@ CREATE TABLE `y_users` (
 -- ----------------------------
 -- Records of y_users
 -- ----------------------------
-INSERT INTO `y_users` VALUES ('1', 'admin', 'ff108b961a8421232f297a57a5a743894a0e4a801fc36f8e', 'admin', '260658065@qq.com', '', null, '0', null, null, '127.0.0.1', '2015-10-29 20:06:10', '2015-09-26 06:17:41', '', '1', '0', '1', null, null, null, '0', '0', '0', '0');
+INSERT INTO `y_users` VALUES ('1', 'admin', 'ff108b961a8421232f297a57a5a743894a0e4a801fc36f8e', 'admin', '260658065@qq.com', '', null, '0', '0000-00-00', '', '127.0.0.1', '2015-11-01 15:21:06', '2015-09-26 06:17:41', '', '1', '0', '1', null, null, null, '0', '0', '0', '0');
 INSERT INTO `y_users` VALUES ('2', 'jason', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:42:47', '2015-10-27 23:18:34', '', '1', '0', '2', '15858177440', null, null, '0', '0', '0', '0');
 INSERT INTO `y_users` VALUES ('3', 'jason123', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason123', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:26:44', '2015-10-27 23:26:44', '', '1', '0', '2', '15858177441', null, null, '0', '0', '0', '0');
-INSERT INTO `y_users` VALUES ('4', 'Bella', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', 'Bella', '2606580651@qq.com', '', '/data/upload/56325166219a6.jpg', '2', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '15858177440', '一只迷路的Bunny', '漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？', '0', '0', '0', '0');
-INSERT INTO `y_users` VALUES ('5', 'liboyuan', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', '李博渊', 'liboyuan@qq.com', '', '/data/upload/5632589f652ca.png', '1', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '13581111123', '暖男的旅行箱', '每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！\n她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！\n她说要去拉普兰德看北极光，我说，那就跟着我走吧...', '0', '3', '1', '0');
+INSERT INTO `y_users` VALUES ('4', 'Bella', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', 'Bella', '2606580651@qq.com', '', '/data/upload/56325166219a6.jpg', '2', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '15858177440', '一只迷路的Bunny', '漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？', '1', '0', '0', '2312');
+INSERT INTO `y_users` VALUES ('5', 'liboyuan', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', '李博渊', 'liboyuan@qq.com', '', '/data/upload/5632589f652ca.png', '1', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '13581111123', '暖男的旅行箱', '每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！\n她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！\n她说要去拉普兰德看北极光，我说，那就跟着我走吧...', '1', '3', '1', '3412');
 
 -- ----------------------------
 -- Table structure for y_user_favorites

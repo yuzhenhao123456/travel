@@ -41,8 +41,10 @@ class UserController extends AdminbaseController{
 		if(IS_POST){
 			if(!empty($_POST['role_id']) && is_array($_POST['role_id'])){
 				$role_ids=$_POST['role_id'];
+				$_POST['travel_maker']=0;
 				if(in_array(2,$role_ids))
 				{
+					$_POST['travel_maker']=1;
 					if(!$_POST['user_nicename'])
 					{
 						$this->error("姓名不能为空！");
@@ -103,8 +105,10 @@ class UserController extends AdminbaseController{
 					unset($_POST['user_pass']);
 				}
 				$role_ids=$_POST['role_id'];
+				$_POST['travel_maker']=0;
 				if(in_array(2,$role_ids))
 				{
+					$_POST['travel_maker']=1;
 					if(!$_POST['user_nicename'])
 					{
 						$this->error("姓名不能为空！");
