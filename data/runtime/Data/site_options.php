@@ -1,1 +1,0 @@
-a:10:{s:9:"site_name";s:12:"全球旅行";s:9:"site_host";s:24:"http://travel.jason.com/";s:9:"site_root";s:0:"";s:8:"site_icp";s:0:"";s:16:"site_admin_email";s:16:"260658065@qq.com";s:11:"site_tongji";s:0:"";s:14:"site_copyright";s:0:"";s:14:"site_seo_title";s:12:"全球旅行";s:17:"site_seo_keywords";s:0:"";s:20:"site_seo_description";s:51:"全球旅行为华人提供全球定制旅行方案";}
