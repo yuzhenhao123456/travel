@@ -54,6 +54,11 @@ class IndexController extends HomeBaseController {
 		$this->display(":stories");
 	}
 
+    function wish_map()
+    {
+        $this->display(":wish_map");
+    }
+
 }
 
 
