@@ -1,1 +1,4 @@
-﻿data/runtime/*
+data/runtime/*
+.*
+!.gitignore
+!.htaccess
