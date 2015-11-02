@@ -7,4 +7,6 @@
     'contact_us' => 'portal/index/contact_us',
     'stories/:id\d' => 'portal/index/stories',
     'destination' => 'portal/index/destination',
+    'destination_explore' => 'portal/index/destination_explore',
+    'wish_map' => 'portal/index/wish_map',
 );

@@ -1,0 +1,99 @@
+<tc_extend name="Public/layout"/>
+<block name="css">
+    <link href="__TMPL__Portal/css/travel.css" rel="stylesheet">
+    <style>
+
+    </style>
+</block>
+<block name="content">
+    <div class="row">
+        <div class="main-banner destination-banner">
+            <div class="map-container hidden-xs">
+                <div id="mapdiv" style="height: 199px; overflow: hidden; text-align: left;">
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="info-container" style="display: block;">
+                <div class="place-title">
+                    <h1 class="place-zh">阿拉斯加</h1>
+
+                    <h2 class="place-en">Alaska</h2>
+                </div>
+                <div class="place-info">
+                    <p>推荐天数：<span class="advice-date">7-15天</span><span class="divide">|</span>适宜季节：<span
+                            class="best-season">5月底-9月初</span><span class="divide">|</span>去这里的客户平均花费：<span
+                            class="estimated-cost">31620</span></p>
+                </div>
+            </div>
+            <div class="pois-container clearfix" style="padding: 0px 10px;">
+
+                <div class="poi-row clearfix" style="width: 1120px;">
+                    <div class="poi-item" data-poi-id="653" style="width: 326px; height: 244px; margin: 10px;">
+                        <div class="poi-img"><img
+                                src="http://uniqueway.b0.upaiyun.com/uploads/2014/12/7bfcb4e2-4949-41a2-9dd2-35da6691d6a1.jpg!h300"
+                                style="width: 326px; height: 244px;"></div>
+                        <div class="poi-name">游览卡特迈国家公园，7月看棕熊捕鱼的盛况，绝对令人难忘</div>
+                        <div class="poi-control-btn"><a href="javascript:;" data-id="653" class="control-btn like"><img
+                                src="http://uniqueway.b0.upaiyun.com/assets/icon_like.png"></a><a href="javascript:;"
+                                                                                                  data-id="653"
+                                                                                                  class="control-btn been "><img
+                                src="http://uniqueway.b0.upaiyun.com/assets/icon_been.png"></a></div>
+                    </div>
+                    <div class="poi-item" data-poi-id="674" style="width: 366px; height: 244px; margin: 10px;">
+                        <div class="poi-img"><img
+                                src="http://uniqueway.b0.upaiyun.com/uploads/2014/12/c1b41d7c-8c98-4511-94eb-cf5574e5a6b6.jpg!h300"
+                                style="width: 366px; height: 244px;"></div>
+                        <div class="poi-name">游览迪纳利国家公园，可以看到壮观的北美最高峰麦金利山</div>
+                        <div class="poi-control-btn"><a href="javascript:;" data-id="674" class="control-btn like"><img
+                                src="http://uniqueway.b0.upaiyun.com/assets/icon_like.png"></a><a href="javascript:;"
+                                                                                                  data-id="674"
+                                                                                                  class="control-btn been "><img
+                                src="http://uniqueway.b0.upaiyun.com/assets/icon_been.png"></a></div>
+                    </div>
+                    <div class="poi-item" data-poi-id="726" style="width: 368px; height: 244px; margin: 10px;">
+                        <div class="poi-img"><img
+                                src="http://uniqueway.b0.upaiyun.com/uploads/2014/12/c76b05c9-b2e7-4204-8128-c2346758fde1.jpg!h300"
+                                style="width: 368px; height: 244px;"></div>
+                        <div class="poi-name">在费尔班克斯看极光，亲眼见证终生难忘的景色</div>
+                        <div class="poi-control-btn"><a href="javascript:;" data-id="726" class="control-btn like"><img
+                                src="http://uniqueway.b0.upaiyun.com/assets/icon_like.png"></a><a href="javascript:;"
+                                                                                                  data-id="726"
+                                                                                                  class="control-btn been "><img
+                                src="http://uniqueway.b0.upaiyun.com/assets/icon_been.png"></a></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="more-pois-btn" data-skip="11" data-destination-id="3" style="display: block;">加载更多</div>
+        </div>
+
+
+
+        <div class="container">
+            <div class="booking-block" id="booking-block">
+                <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block">定制你的旅行 &gt;</a>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="scripts">
+    <script src="http://www.google.cn/maps/api/js?key=cnjjk&sensor=false">
+    </script>
+
+    <script>
+        function initialize()
+        {
+            var mapProp = {
+                center:new google.maps.LatLng(51.508742,-0.120850),
+                zoom:5,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            var map=new google.maps.Map(document.getElementById("mapdiv")
+                    ,mapProp);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</block>

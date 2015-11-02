@@ -100,6 +100,16 @@ class IndexController extends HomeBaseController {
 	{
 		$this->display(":destination");
 	}
+
+    function wish_map()
+    {
+        $this->display(":wish_map");
+    }
+
+    function destination_explore()
+    {
+        $this->display(":destination_explore");
+    }
 }
 
 
