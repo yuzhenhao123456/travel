@@ -135,6 +135,92 @@ var GV = {
 		});
 	});
 
+	$(Document).on('mouseover','.wish-container .wish-map-btn',function(e){
+		$('.wish-container .wish-map-num').show('fast');
+	});
+	$(Document).on('mouseout','.wish-container .wish-map-btn',function(e){
+		$('.wish-container .wish-map-num').hide('fast');
+	});
+
+	$(Document).on('click','.control-btn.been',function(e){
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: '/index/like_destination',
+			data:{id:$('.control-btn.been').attr('data-id'),type:1},
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success: function(data) {
+				if(data.status==1)
+				{
+					if(data.operation=='-')
+					{
+						$('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_been.png");
+						var been_num=$('.been-num span').text();
+						been_num--;
+						$('.been-num span').text(been_num);
+						var J_wish_num=$('span.J_wish_num').text();
+						J_wish_num--;
+						$('span.J_wish_num').text(J_wish_num);
+
+					}else{
+						$('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_been_on.png")
+						var been_num=$('.been-num span').text();
+						been_num++;
+						$('.been-num span').text(been_num);
+						var J_wish_num=$('span.J_wish_num').text();
+						J_wish_num++;
+						$('span.J_wish_num').text(J_wish_num);
+					}
+
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
+
+	$(Document).on('click','.control-btn.like',function(e){
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: '/index/like_destination',
+			data:{id:$('.control-btn.like').attr('data-id'),type:0},
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success: function(data) {
+				if(data.status==1)
+				{
+					if(data.operation=='-')
+					{
+						$('.control-btn.like').find('img').attr('src',"__TMPL__Public/images/icon_like.png");
+						var like_num=$('.like-num span').text();
+						like_num--;
+						$('.like-num span').text(like_num);
+						var J_wish_num=$('span.J_wish_num').text();
+						J_wish_num--;
+						$('span.J_wish_num').text(J_wish_num);
+
+					}else{
+						$('.control-btn.like').find('img').attr('src',"__TMPL__Public/images/icon_like_on.png")
+						var like_num=$('.like-num span').text();
+						like_num++;
+						$('.like-num span').text(like_num);
+						var J_wish_num=$('span.J_wish_num').text();
+						J_wish_num++;
+						$('span.J_wish_num').text(J_wish_num);
+					}
+
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
 
 
 </script>

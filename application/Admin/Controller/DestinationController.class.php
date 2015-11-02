@@ -247,16 +247,10 @@ class DestinationController extends AdminbaseController {
 	
 	function check(){
 		if(isset($_POST['ids']) && $_GET["check"]){
-			$data["post_status"]=1;
-			
-			$tids=join(",",$_POST['ids']);
-			$objectids=$this->term_relationships_model->field("object_id")->where("tid in ($tids)")->select();
-			$ids=array();
-			foreach ($objectids as $id){
-				$ids[]=$id["object_id"];
-			}
-			$ids=join(",", $ids);
-			if ( $this->posts_model->where("id in ($ids)")->save($data)!==false) {
+			$data["status"]=1;
+
+			$ids=join(",", $_POST['ids']);
+			if ( $this->destination_model->where("id in ($ids)")->save($data)!==false) {
 				$this->success("审核成功！");
 			} else {
 				$this->error("审核失败！");
@@ -264,91 +258,16 @@ class DestinationController extends AdminbaseController {
 		}
 		if(isset($_POST['ids']) && $_GET["uncheck"]){
 			
-			$data["post_status"]=0;
-			$tids=join(",",$_POST['ids']);
-			$objectids=$this->term_relationships_model->field("object_id")->where("tid in ($tids)")->select();
-			$ids=array();
-			foreach ($objectids as $id){
-				$ids[]=$id["object_id"];
-			}
-			$ids=join(",", $ids);
-			if ( $this->posts_model->where("id in ($ids)")->save($data)) {
+			$data["status"]=0;
+			$ids=join(",", $_POST['ids']);
+			if ( $this->destination_model->where("id in ($ids)")->save($data)) {
 				$this->success("取消审核成功！");
 			} else {
 				$this->error("取消审核失败！");
 			}
 		}
 	}
-	
-	function top(){
-		if(isset($_POST['ids']) && $_GET["top"]){
-			$data["istop"]=1;
-				
-			$tids=join(",",$_POST['ids']);
-			$objectids=$this->term_relationships_model->field("object_id")->where("tid in ($tids)")->select();
-			$ids=array();
-			foreach ($objectids as $id){
-				$ids[]=$id["object_id"];
-			}
-			$ids=join(",", $ids);
-			if ( $this->posts_model->where("id in ($ids)")->save($data)!==false) {
-				$this->success("置顶成功！");
-			} else {
-				$this->error("置顶失败！");
-			}
-		}
-		if(isset($_POST['ids']) && $_GET["untop"]){
-				
-			$data["istop"]=0;
-			$tids=join(",",$_POST['ids']);
-			$objectids=$this->term_relationships_model->field("object_id")->where("tid in ($tids)")->select();
-			$ids=array();
-			foreach ($objectids as $id){
-				$ids[]=$id["object_id"];
-			}
-			$ids=join(",", $ids);
-			if ( $this->posts_model->where("id in ($ids)")->save($data)) {
-				$this->success("取消置顶成功！");
-			} else {
-				$this->error("取消置顶失败！");
-			}
-		}
-	}
-	
-	function recommend(){
-		if(isset($_POST['ids']) && $_GET["recommend"]){
-			$data["recommended"]=1;
-	
-			$tids=join(",",$_POST['ids']);
-			$objectids=$this->term_relationships_model->field("object_id")->where("tid in ($tids)")->select();
-			$ids=array();
-			foreach ($objectids as $id){
-				$ids[]=$id["object_id"];
-			}
-			$ids=join(",", $ids);
-			if ( $this->posts_model->where("id in ($ids)")->save($data)!==false) {
-				$this->success("推荐成功！");
-			} else {
-				$this->error("推荐失败！");
-			}
-		}
-		if(isset($_POST['ids']) && $_GET["unrecommend"]){
-	
-			$data["recommended"]=0;
-			$tids=join(",",$_POST['ids']);
-			$objectids=$this->term_relationships_model->field("object_id")->where("tid in ($tids)")->select();
-			$ids=array();
-			foreach ($objectids as $id){
-				$ids[]=$id["object_id"];
-			}
-			$ids=join(",", $ids);
-			if ( $this->posts_model->where("id in ($ids)")->save($data)) {
-				$this->success("取消推荐成功！");
-			} else {
-				$this->error("取消推荐失败！");
-			}
-		}
-	}
+
 	
 	function move(){
 		if(IS_POST){
@@ -382,65 +301,6 @@ class DestinationController extends AdminbaseController {
 		}
 	}
 	
-	function recyclebin(){
-		$this->_lists(0);
-		$this->_getTree();
-		$this->display();
-	}
-	
-	function clean(){
-		if(isset($_POST['ids'])){
-			$ids = implode(",", $_POST['ids']);
-			$tids= implode(",", array_keys($_POST['ids']));
-			$data=array("post_status"=>"0");
-			$status=$this->term_relationships_model->where("tid in ($tids)")->delete();
-			if($status!==false){
-				foreach ($_POST['ids'] as $post_id){
-					$post_id=intval($post_id);
-					$count=$this->term_relationships_model->where(array("object_id"=>$post_id))->count();
-					if(empty($count)){
-						$status=$this->posts_model->where(array("id"=>$post_id))->delete();
-					}
-				}
-				
-			}
-			
-			if ($status!==false) {
-				$this->success("删除成功！");
-			} else {
-				$this->error("删除失败！");
-			}
-		}else{
-			if(isset($_GET['id'])){
-				$id = intval(I("get.id"));
-				$tid = intval(I("get.tid"));
-				$status=$this->term_relationships_model->where("tid = $tid")->delete();
-				if($status!==false){
-					$count=$this->term_relationships_model->where(array("object_id"=>$id))->count();
-					if(empty($count)){
-						$status=$this->posts_model->where("id=$id")->delete();
-					}
-					
-				}
-				if ($status!==false) {
-					$this->success("删除成功！");
-				} else {
-					$this->error("删除失败！");
-				}
-			}
-		}
-	}
-	
-	function restore(){
-		if(isset($_GET['id'])){
-			$id = intval(I("get.id"));
-			$data=array("tid"=>$id,"status"=>"1");
-			if ($this->term_relationships_model->save($data)) {
-				$this->success("还原成功！");
-			} else {
-				$this->error("还原失败！");
-			}
-		}
-	}
+
 	
 }

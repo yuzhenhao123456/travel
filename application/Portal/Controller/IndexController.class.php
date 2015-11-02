@@ -108,8 +108,91 @@ class IndexController extends HomeBaseController {
 
     function destination_explore()
     {
+		$ids=M("destination")->where(array('status'=>1))->getField('id',true);
+		$key=array_rand($ids);
+		$data=M("destination")->where('id='.$ids[$key])->find();
+		$nation=M("area")->where('id='.$data['area_id'])->find();
+		$smeta=json_decode($data['smeta'],true);
+		$this->assign("data",$data);
+		$this->assign("nation",$nation);
+		$this->assign("photos",$smeta['photo']);
         $this->display(":destination_explore");
     }
+
+	function like_destination($id='',$type='0')
+	{
+		if(!$id)
+		{
+			$this->error("参数错误");
+		}
+		$user=sp_get_current_userid();
+		if(!$user)
+		{
+			$this->error("请先登录");
+		}
+		$where['user']=$user;
+		$where['dest_id']=$id;
+		$info=M('destination_log')->where($where)->find();
+		if($info)
+		{
+			if($type==0)
+			{
+				if($info['is_like'])
+				{
+					$operation='-';
+					$info['is_like']=0;
+					M('destination_log')->save($info);
+					M('users')->where('id='.$user)->setDec('like_num');
+					$_SESSION['user']['like_num']--;
+				}else{
+					$operation='+';
+					$info['is_like']=1;
+					M('destination_log')->save($info);
+					M('users')->where('id='.$user)->setInc('like_num');
+					$_SESSION['user']['like_num']++;
+
+				}
+			}else{
+				if($info['is_been'])
+				{
+					$operation='-';
+					$info['is_been']=0;
+					M('destination_log')->save($info);
+					M('users')->where('id='.$user)->setDec('been_num');
+					$_SESSION['user']['been_num']--;
+				}else{
+					$operation='+';
+					$info['is_been']=1;
+					M('destination_log')->save($info);
+					M('users')->where('id='.$user)->setInc('been_num');
+					$_SESSION['user']['been_num']++;
+				}
+			}
+			$this->ajaxReturn(array('status'=>1,'operation'=>$operation,'type'=>$type));
+
+		}else{
+			if($type==0)
+			{
+				$data=$where;
+				$data['is_like']=1;
+				$operation='+';
+				M('destination_log')->add($data);
+				M('users')->where('id='.$user)->setInc('like_num');
+				$_SESSION['user']['like_num']++;
+			}else{
+				$data=$where;
+				$data['is_been']=1;
+				$operation='+';
+				M('destination_log')->add($data);
+				M('users')->where('id='.$user)->setInc('been_num');
+				$_SESSION['user']['been_num']++;
+			}
+			$this->ajaxReturn(array('status'=>1,'operation'=>$operation,'type'=>$type));
+
+		}
+
+
+	}
 }
 
 

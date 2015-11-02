@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-11-02 02:30:02
+Date: 2015-11-03 01:08:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,7 +50,7 @@ CREATE TABLE `y_area` (
   `lon` decimal(10,6) DEFAULT NULL COMMENT '经度',
   `lat` decimal(10,6) DEFAULT NULL COMMENT '纬度',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_area
@@ -377,8 +377,27 @@ CREATE TABLE `y_destination` (
 -- ----------------------------
 -- Records of y_destination
 -- ----------------------------
-INSERT INTO `y_destination` VALUES ('1', '1', '2', '伦敦', '2000-01-01 00:00:00', '伦敦真好玩', '是非得失', '1', '2000-01-01 00:00:00', 'null', '0', '0', '0', '0.000000', '0.000000');
 INSERT INTO `y_destination` VALUES ('2', '1', '1', '迪拜', '2015-11-02 02:10:04', '游览地球村，观看特别的演出，迪拜必到景点之一哦', '多年以来，地球村已经发展成为迪拜的知名景点之一，也是迪拜购物节的组成部分。每年冬天都有超过25个国家特色的音乐、舞蹈、艺术、手工艺品、戏剧、传统和美食在此得到展现。地球村还上演一系列精彩的演出，包括高空钢丝秀、灌篮表演、高空跳伞等等。地球村内有超过140家小吃饮食店铺，让人们在游玩的同时，也能大快朵颐。简而言之就是迪拜的庙会，去逛逛呗？', '1', '2000-01-01 00:00:00', '{\"photo\":[{\"url\":\"563655362fbc7.jpg\",\"alt\":\"icon\"},{\"url\":\"5636554dc01bc.jpg\",\"alt\":\"dfe53914-a01e-4c43-b9e0-4128fa602f02\"},{\"url\":\"5636556b2a5f5.jpg\",\"alt\":\"e3ab17f5-5b02-49d8-8010-dfaec1fddb21\"},{\"url\":\"56365578544de.jpg\",\"alt\":\"e3fd9061-0c8f-425a-a160-faefcfd4777d\"}]}', '0', '0', '0', '25.271139', '55.307485');
+
+-- ----------------------------
+-- Table structure for y_destination_log
+-- ----------------------------
+DROP TABLE IF EXISTS `y_destination_log`;
+CREATE TABLE `y_destination_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` bigint(20) DEFAULT '0' COMMENT '用户id',
+  `dest_id` int(11) DEFAULT '0' COMMENT '目的地id',
+  `is_like` tinyint(1) DEFAULT '0' COMMENT '是否想去',
+  `is_been` tinyint(1) DEFAULT '0' COMMENT '是否去过',
+  PRIMARY KEY (`id`),
+  KEY `user_object_action` (`user`,`dest_id`,`is_like`),
+  KEY `user_object_action_ip` (`user`,`dest_id`,`is_like`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of y_destination_log
+-- ----------------------------
+INSERT INTO `y_destination_log` VALUES ('1', '2', '2', '1', '1');
 
 -- ----------------------------
 -- Table structure for y_guestbook
@@ -948,6 +967,8 @@ CREATE TABLE `y_users` (
   `story_id` int(11) DEFAULT '0' COMMENT '关联的故事ID',
   `is_top` tinyint(1) DEFAULT '0' COMMENT '是否置顶',
   `get_like` int(11) DEFAULT '0' COMMENT '获赞',
+  `like_num` int(11) DEFAULT '0' COMMENT '喜欢的目的地数量',
+  `been_num` int(11) DEFAULT '0' COMMENT '去过的目的地数量',
   PRIMARY KEY (`id`),
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`),
@@ -957,11 +978,11 @@ CREATE TABLE `y_users` (
 -- ----------------------------
 -- Records of y_users
 -- ----------------------------
-INSERT INTO `y_users` VALUES ('1', 'admin', 'ff108b961a8421232f297a57a5a743894a0e4a801fc36f8e', 'admin', '260658065@qq.com', '', null, '0', '0000-00-00', '', '127.0.0.1', '2015-11-01 15:21:06', '2015-09-26 06:17:41', '', '1', '0', '1', null, null, null, '0', '0', '0', '0');
-INSERT INTO `y_users` VALUES ('2', 'jason', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:42:47', '2015-10-27 23:18:34', '', '1', '0', '2', '15858177440', null, null, '0', '0', '0', '0');
-INSERT INTO `y_users` VALUES ('3', 'jason123', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason123', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:26:44', '2015-10-27 23:26:44', '', '1', '0', '2', '15858177441', null, null, '0', '0', '0', '0');
-INSERT INTO `y_users` VALUES ('4', 'Bella', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', 'Bella', '2606580651@qq.com', '', '/data/upload/56325166219a6.jpg', '2', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '15858177440', '一只迷路的Bunny', '漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？', '1', '0', '0', '2312');
-INSERT INTO `y_users` VALUES ('5', 'liboyuan', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', '李博渊', 'liboyuan@qq.com', '', '/data/upload/5632589f652ca.png', '1', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '13581111123', '暖男的旅行箱', '每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！\n她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！\n她说要去拉普兰德看北极光，我说，那就跟着我走吧...', '1', '3', '1', '3412');
+INSERT INTO `y_users` VALUES ('1', 'admin', 'ff108b961a8421232f297a57a5a743894a0e4a801fc36f8e', 'admin', '260658065@qq.com', '', null, '0', '0000-00-00', '', '127.0.0.1', '2015-11-01 15:21:06', '2015-09-26 06:17:41', '', '1', '0', '1', null, null, null, '0', '0', '0', '0', '0', '0');
+INSERT INTO `y_users` VALUES ('2', 'jason', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason', '', '', null, '0', null, null, '127.0.0.1', '2015-11-02 23:46:51', '2015-10-27 23:18:34', '', '1', '0', '2', '15858177440', null, null, '0', '0', '0', '0', '1', '1');
+INSERT INTO `y_users` VALUES ('3', 'jason123', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason123', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:26:44', '2015-10-27 23:26:44', '', '1', '0', '2', '15858177441', null, null, '0', '0', '0', '0', '0', '0');
+INSERT INTO `y_users` VALUES ('4', 'Bella', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', 'Bella', '2606580651@qq.com', '', '/data/upload/56325166219a6.jpg', '2', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '15858177440', '一只迷路的Bunny', '漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？', '1', '0', '0', '2312', '0', '0');
+INSERT INTO `y_users` VALUES ('5', 'liboyuan', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', '李博渊', 'liboyuan@qq.com', '', '/data/upload/5632589f652ca.png', '1', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '13581111123', '暖男的旅行箱', '每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！\n她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！\n她说要去拉普兰德看北极光，我说，那就跟着我走吧...', '1', '3', '1', '3412', '0', '0');
 
 -- ----------------------------
 -- Table structure for y_user_favorites

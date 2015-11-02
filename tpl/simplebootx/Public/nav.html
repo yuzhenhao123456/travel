@@ -76,11 +76,6 @@
                             <li><a href="/destination" title="精选目的地">精选目的地</a></li>
                         </ul>
                     </li>
-
-                    <li class="visible-xs ">
-                        <a href="/destination">目的地</a>
-                    </li>
-
                     <li class="">
                         <a href="/our_story">旅行定制师</a>
                     </li>
@@ -107,13 +102,14 @@
                             400 890 3040
                         </p>
                     </a></div>
+                <php>$user=sp_get_current_user()</php>
                 <if condition="!sp_is_user_login()">
                     <div class="login-control">
                         <a id="login-btn" href="javascript:void(0);">登录</a>|<a id="reg-btn" href="javascript:void(0);">注册</a>
                     </div>
                     <else/>
                     <div class="user-info dropdown">
-                        <a class="user-name dropdown-toggle" href="javascript:;"  data-toggle="dropdown">{:sp_get_current_user()['user_nicename']}</a>
+                        <a class="user-name dropdown-toggle" href="javascript:;"  data-toggle="dropdown">{$user['user_nicename']}</a>
                             <ul class="list dropdown-menu">
                                 <li>
                                     <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_logout-eff495bc5e5492d4de51865723b64248.png"
@@ -123,15 +119,16 @@
                             </ul>
                     </div>
                 </if>
+
                 <div class="wish-container">
                     <div class="wish-map-num hidden-sm" style="display: none;">
                         <span class="like-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_like_on.png"
-                                                    alt=""><span>0</span></span>
+                                                    alt=""><span>{$user['like_num']}</span></span>
                         <span class="been-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_been_on.png"
-                                                    alt=""><span>0</span></span>
+                                                    alt=""><span>{$user['been_num']}</span></span>
                     </div>
                     <a class="wish-map-btn" href="/wish_map?">
-                        我的心愿地图(<span class="J_wish_num">0</span>)
+                        我的心愿地图(<span class="J_wish_num">{:$user['like_num']+$user['been_num']}</span>)
                     </a></div>
             </div>
         </div>
