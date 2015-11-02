@@ -1,0 +1,270 @@
+[ 2015-10-30T00:20:22+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Rbac&a=roleedit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0050s ]
+SQL: UPDATE `y_role` SET `name`='旅行定制师',`remark`='旅行定制师',`status`='1',`update_time`='1446135622' WHERE `id` = 2 [ RunTime:0.0010s ]
+
+[ 2015-10-30T00:44:26+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=index&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T00:54:25+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'jason' LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2015-10-30T00:54:37+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'Bella' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = '260658065@qq.com' LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2015-10-30T00:54:48+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'Bella' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = '2606580651@qq.com' LIMIT 1   [ RunTime:0.0000s ]
+SQL: INSERT INTO `y_users` (`user_login`,`user_pass`,`user_email`,`user_nicename`,`sex`,`mobile`,`avatar`,`title`,`word`) VALUES ('Bella','ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e','2606580651@qq.com','Bella','2','15858177440','','一只迷路的Bunny','漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？') [ RunTime:0.0160s ]
+SQL: SHOW COLUMNS FROM `y_role_user` [ RunTime:0.0050s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('2','4') [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:03:37+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.004000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007001s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'Bella' AND `id` <> '4' LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = '2606580651@qq.com' AND `id` <> '4' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `y_users` SET `user_login`='Bella',`user_pass`='ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e',`user_email`='2606580651@qq.com',`user_nicename`='Bella',`sex`='2',`mobile`='15858177440',`avatar`='/data/upload/56325166219a6.jpg',`title`='一只迷路的Bunny',`word`='漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？',`story_id`='0' WHERE `id` = '4' [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_role_user` [ RunTime:0.0030s ]
+SQL: DELETE FROM `y_role_user` WHERE `user_id` = 4 [ RunTime:0.0120s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('2','4') [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:18:18+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'Bella' AND `id` <> '4' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = '2606580651@qq.com' AND `id` <> '4' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `y_users` SET `user_login`='Bella',`user_pass`='ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e',`user_email`='2606580651@qq.com',`user_nicename`='Bella',`sex`='2',`mobile`='15858177440',`avatar`='/data/upload/56325166219a6.jpg',`title`='一只迷路的Bunny',`word`='漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？',`is_top`='1',`story_id`='0' WHERE `id` = '4' [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_role_user` [ RunTime:0.0040s ]
+SQL: DELETE FROM `y_role_user` WHERE `user_id` = 4 [ RunTime:0.0010s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('2','4') [ RunTime:0.0000s ]
+
+[ 2015-10-30T01:18:32+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'Bella' AND `id` <> '4' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = '2606580651@qq.com' AND `id` <> '4' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `y_users` SET `user_login`='Bella',`user_pass`='ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e',`user_email`='2606580651@qq.com',`user_nicename`='Bella',`sex`='2',`mobile`='15858177440',`avatar`='/data/upload/56325166219a6.jpg',`title`='一只迷路的Bunny',`word`='漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？',`is_top`='0',`story_id`='0' WHERE `id` = '4' [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `y_role_user` [ RunTime:0.0040s ]
+SQL: DELETE FROM `y_role_user` WHERE `user_id` = 4 [ RunTime:0.0010s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('2','4') [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:29:02+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0040s ]
+
+[ 2015-10-30T01:29:12+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0040s ]
+
+[ 2015-10-30T01:29:25+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0040s ]
+
+[ 2015-10-30T01:36:12+08:00 ] 127.0.0.1 /index.php?g=Admin&m=User&a=add_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `y_role` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE `user_login` = 'liboyuan' LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT * FROM `y_users` WHERE `user_email` = 'liboyuan@qq.com' LIMIT 1   [ RunTime:0.0010s ]
+SQL: INSERT INTO `y_users` (`user_login`,`user_pass`,`user_email`,`user_nicename`,`sex`,`mobile`,`avatar`,`title`,`word`,`is_top`,`story_id`) VALUES ('liboyuan','ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e','liboyuan@qq.com','李博渊','1','13581111123','/data/upload/5632589f652ca.png','暖男的旅行箱','每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！
+她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！
+她说要去拉普兰德看北极光，我说，那就跟着我走吧...','1','3') [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `y_role_user` [ RunTime:0.0050s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('2','5') [ RunTime:0.0010s ]
+SQL: INSERT INTO `y_role_user` (`role_id`,`user_id`) VALUES ('1','5') [ RunTime:0.0000s ]
+
+[ 2015-10-30T01:36:49+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=index&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:36:52+08:00 ] 127.0.0.1 /index.php?g=Admin&m=menu&a=add
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:51:12+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=index&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:51:19+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=86&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:51:24+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_menu` [ RunTime:0.0050s ]
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+SQL: SHOW COLUMNS FROM `y_auth_rule` [ RunTime:0.0050s ]
+SQL: SELECT `id` FROM `y_menu` WHERE `app` = 'Admin' AND `model` = 'Navcat' AND `action` = 'default1' LIMIT 1   [ RunTime:0.0570s ]
+SQL: UPDATE `y_menu` SET `parentid`='85',`name`='前台菜单',`app`='Admin',`model`='Navcat',`action`='default1',`data`='',`icon`='',`remark`='',`status`='0',`type`='1' WHERE `id` = 86 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `y_auth_rule` WHERE `name` = 'admin/navcat/default1' LIMIT 1   [ RunTime:0.0080s ]
+SQL: UPDATE `y_auth_rule` SET `name`='admin/navcat/default1',`module`='Admin',`type`='admin_url',`title`='前台菜单' WHERE `name` = 'admin/navcat/default1' [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:51:24+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=86&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:51:27+08:00 ] 127.0.0.1 /index.php?g=Admin&m=menu&a=index
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:51:48+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=137
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:51:58+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_menu` [ RunTime:0.0040s ]
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+SQL: SHOW COLUMNS FROM `y_auth_rule` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `y_menu` WHERE `app` = 'User' AND `model` = 'Oauthadmin' AND `action` = 'index' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `y_menu` SET `parentid`='133',`name`='第三方用户',`app`='User',`model`='Oauthadmin',`action`='index',`data`='',`icon`='leaf',`remark`='',`status`='0',`type`='1' WHERE `id` = 137 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `y_auth_rule` WHERE `name` = 'user/oauthadmin/index' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `y_auth_rule` SET `name`='user/oauthadmin/index',`module`='User',`type`='admin_url',`title`='第三方用户' WHERE `name` = 'user/oauthadmin/index' [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:51:58+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=137
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:52:00+08:00 ] 127.0.0.1 /index.php?g=Admin&m=menu&a=index
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:53:16+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=4
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:53:20+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `y_menu` [ RunTime:0.0050s ]
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+SQL: SHOW COLUMNS FROM `y_auth_rule` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `y_menu` WHERE `app` = 'Comment' AND `model` = 'Commentadmin' AND `action` = 'index' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `y_menu` SET `parentid`='1',`name`='评论管理',`app`='Comment',`model`='Commentadmin',`action`='index',`data`='',`icon`='',`remark`='',`status`='0',`type`='1' WHERE `id` = 4 [ RunTime:0.0010s ]
+SQL: SELECT * FROM `y_auth_rule` WHERE `name` = 'comment/commentadmin/index' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `y_auth_rule` SET `name`='comment/commentadmin/index',`module`='Comment',`type`='admin_url',`title`='评论管理' WHERE `name` = 'comment/commentadmin/index' [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:53:20+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=4
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:53:54+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=25
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:53:58+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `y_menu` [ RunTime:0.0040s ]
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+SQL: SHOW COLUMNS FROM `y_auth_rule` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `y_menu` WHERE `app` = 'Portal' AND `model` = 'AdminPage' AND `action` = 'index' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `y_menu` SET `parentid`='1',`name`='页面管理',`app`='Portal',`model`='AdminPage',`action`='index',`data`='',`icon`='',`remark`='',`status`='0',`type`='1' WHERE `id` = 25 [ RunTime:0.0000s ]
+SQL: SELECT * FROM `y_auth_rule` WHERE `name` = 'portal/adminpage/index' LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `y_auth_rule` SET `name`='portal/adminpage/index',`module`='Portal',`type`='admin_url',`title`='页面管理' WHERE `name` = 'portal/adminpage/index' [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:53:58+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=25
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:55:22+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=index&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:55:32+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=36&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+
+[ 2015-10-30T01:55:35+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit_post
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+SQL: SHOW COLUMNS FROM `y_users` [ RunTime:0.0630s ]
+SQL: SELECT * FROM `y_users` WHERE ( id=1 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `y_menu` [ RunTime:0.0050s ]
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+SQL: SHOW COLUMNS FROM `y_auth_rule` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `y_menu` WHERE `app` = 'Portal' AND `model` = 'AdminPage' AND `action` = 'recyclebin' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `y_menu` SET `parentid`='32',`name`='页面回收',`app`='Portal',`model`='AdminPage',`action`='recyclebin',`data`='',`icon`='',`remark`='',`status`='0',`type`='1' WHERE `id` = 36 [ RunTime:0.0000s ]
+SQL: SELECT * FROM `y_auth_rule` WHERE `name` = 'portal/adminpage/recyclebin' LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `y_auth_rule` SET `name`='portal/adminpage/recyclebin',`module`='Portal',`type`='admin_url',`title`='页面回收' WHERE `name` = 'portal/adminpage/recyclebin' [ RunTime:0.0010s ]
+
+[ 2015-10-30T01:55:35+08:00 ] 127.0.0.1 /index.php?g=Admin&m=Menu&a=edit&id=36&menuid=100
+NOTIC: D方法实例化没找到模型类Common\Model\AuthRuleModel
+

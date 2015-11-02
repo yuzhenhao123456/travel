@@ -23,7 +23,7 @@ class GuestbookController extends AppframeController{
 			if ($this->guestbook_model->create()) {
 				$result=$this->guestbook_model->add();
 				if ($result!==false) {
-					$this->success("留言成功！");
+					$this->success("留言成功！我们会尽快与您联系！");
 				} else {
 					$this->error("留言失败！");
 				}

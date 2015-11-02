@@ -87,13 +87,21 @@
               </td>
             </tr>
             <tr>
-              <th width="80">关键词</th>
-              <td><input type='text' name='post[post_keywords]' id='keywords' value='' style='width:400px'   class='input' placeholder='请输入关键字'> 多关键词之间用空格或者英文逗号隔开</td>
+              <th width="80">目的地</th>
+              <td><input type='text' name='post[post_keywords]' id='keywords' value='' style='width:400px'   class='input' placeholder='请输入目的地'> 多目的地之间用空格或者英文逗号隔开</td>
             </tr>
             <tr>
-              <th width="80">文章来源</th>
-              <td><input type='text' name='post[post_source]' id='source' value='' style='width:400px'   class='input' placeholder='请输入文章来源'></td>
+              <th width="80">人均花费</th>
+              <td><input type='text' name='post[post_source]' id='source' value='' style='width:200px'   class='input' placeholder='请输入人均花费'>元/人</td>
             </tr>
+		  <tr>
+			  <th width="80">游玩时间</th>
+			  <td><input type='text' name='post[day]' id='day' value='7' style='width:200px'   class='input' placeholder='请输入游玩天数'>天</td>
+		  </tr>
+		  <tr>
+			  <th width="80">游玩人数</th>
+			  <td><input type='text' name='post[people_num]' id='people_num' value='1' style='width:200px'   class='input' placeholder='请输入游玩人数'>人</td>
+		  </tr>
             <tr>
               <th width="80">摘要 </th>
               <td><textarea name='post[post_excerpt]' id='description'  required style='width:98%;height:50px;' placeholder='请填写摘要'></textarea><span class="must_red">*</span></td>
@@ -110,12 +118,13 @@
                 <script type="text/javascript"  src="__ROOT__/statics/js/ueditor/ueditor.all.min.js"></script>
 				</td>
             </tr>
-            
+
             <tr>
               <th width="80">相册图集 </th>
               <td>
 				<fieldset class="blue pad-10">
 		        <legend>图片列表</legend>
+					<p>注:名称为icon的图片作为地点案例的图标</p>
 		        <ul id="photos" class="picList unstyled"></ul>
 				</fieldset>
 				<a href="javascript:;" style="margin: 5px 0;" onclick="javascript:flashupload('albums_images', '图片上传','photos',change_images,'10,gif|jpg|jpeg|png|bmp,0','','','')" class="btn">选择图片 </a>

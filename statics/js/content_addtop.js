@@ -81,6 +81,10 @@ function change_images(uploadid, returnid) {
     $.each(contents, function(i, n) {
         var ids = parseInt(Math.random() * 10000 + 10 * i);
         var filename = filenames[i].substr(0, filenames[i].indexOf('.'));
+        if(str=='')
+        {
+            filename='icon';
+        }
         str += "<li id='image" + ids + "'><input title='双击查看' type='text' name='" + returnid + "_url[]' value='" + n + "' style='width:310px;' ondblclick='image_priview(this.value);' class='input'> <input type='text' name='" + returnid + "_alt[]' value='" + filename + "' style='width:160px;' class='input' onfocus=\"if(this.value == this.defaultValue) this.value = ''\" onblur=\"if(this.value.replace(' ','') == '') this.value = this.defaultValue;\"> <a href=\"javascript:remove_div('image" + ids + "')\">移除</a> </li>";
     });
 

@@ -28,6 +28,24 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label">姓名:</label>
+						<div class="controls">
+							<input type="text" class="input" name="user_nicename" value="{$user_nicename}">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">性别:</label>
+						<div class="controls">
+							<input type="radio" class="input" name="sex" value="1" <if condition="$sex eq 1" >checked</if> />男 <input type="radio" class="input" name="sex" value="2" <if condition="$sex eq 2" >checked</if> />女
+                        </div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">手机:</label>
+						<div class="controls">
+							<input type="text" class="input" name="mobile" value="{$mobile}">
+						</div>
+					</div>
+					<div class="control-group">
 						<label class="control-label">角色:</label>
 						<div class="controls">
 							<foreach name="roles" item="vo">
@@ -36,6 +54,49 @@
 								<input value="{$vo.id}" type="checkbox" name="role_id[]" {$role_id_checked}>{$vo.name}
 							</label>
 							</foreach>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">头像:</label>
+						<div class="controls">
+							<div  style="text-align: left;"><input type='hidden' name='avatar' id='thumb' value="{$avatar|default=''}">
+								<a href='javascript:void(0);' onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+
+									<if condition="empty($avatar)">
+										<img src="__ROOT__/statics/images/icon/upload-pic.png" id='thumb_preview' width='135' height='113' style='cursor:hand' />
+										<else/>
+										<img src="{:sp_get_asset_upload_path($avatar)}" id='thumb_preview' width='135' height='113' style='cursor:hand' />
+									</if>
+
+								</a>
+								<!-- <input type="button" class="btn" onclick="crop_cut_thumb($('#thumb').val());return false;" value="裁减图片">  -->
+								<input type="button"  class="btn" onclick="$('#thumb_preview').attr('src','__ROOT__/statics/images/icon/upload-pic.png');$('#thumb').val('');return false;" value="取消图片">
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">定制师的标语:</label>
+						<div class="controls">
+							<input type="text" class="input" name="title" value="{$title}">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">定制师的解说:</label>
+						<div class="controls">
+							<textarea name='word' id='description' class="input" required style='height:60px;' placeholder='请填写定制师的个性解说'>{$word}</textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">是否置顶:</label>
+						<div class="controls">
+							<label class="radio"><input type="radio" name="is_top" value="1" {:$is_top==1?"checked":""}><span>置顶</span></label>
+							<label class="radio"><input type="radio" name="is_top" value="0" {:$is_top==0?"checked":""}><span>未置顶</span></label>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">定制师的故事ID:</label>
+						<div class="controls">
+							<input type="text" class="input" name="story_id" value="{$story_id}">
 						</div>
 					</div>
 				</fieldset>
@@ -48,5 +109,6 @@
 		</div>
 	</div>
 	<script src="__ROOT__/statics/js/common.js"></script>
+	<script type="text/javascript" src="__ROOT__/statics/js/content_addtop.js"></script>
 </body>
 </html>

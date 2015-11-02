@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-10-28 00:31:06
+Date: 2015-11-02 02:30:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,6 +31,32 @@ CREATE TABLE `y_ad` (
 -- ----------------------------
 -- Records of y_ad
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for y_area
+-- ----------------------------
+DROP TABLE IF EXISTS `y_area`;
+CREATE TABLE `y_area` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) DEFAULT NULL,
+  `name` varchar(60) DEFAULT NULL COMMENT '地区名称',
+  `day` varchar(60) DEFAULT NULL COMMENT '推荐天数',
+  `season` varchar(60) DEFAULT NULL COMMENT '推荐季节',
+  `cost` decimal(10,2) DEFAULT NULL COMMENT '人均花费',
+  `full_name` varchar(100) DEFAULT NULL COMMENT '英文名',
+  `icon` varchar(255) DEFAULT NULL COMMENT '图标地址',
+  `listorder` int(10) DEFAULT '0',
+  `path` varchar(20) DEFAULT NULL COMMENT '区域层级关系路径',
+  `lon` decimal(10,6) DEFAULT NULL COMMENT '经度',
+  `lat` decimal(10,6) DEFAULT NULL COMMENT '纬度',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of y_area
+-- ----------------------------
+INSERT INTO `y_area` VALUES ('1', '0', '欧洲', '7-90天', '一年四季', '28220.00', 'Europe', '', '0', '0-1', '19.699453', '51.745940');
+INSERT INTO `y_area` VALUES ('2', '1', '英国', '7-90天', '一年四季', '27600.00', 'English', '/data/upload/5636239dd95e4.jpg', '0', '0-1-2', '-2.000000', '54.841679');
 
 -- ----------------------------
 -- Table structure for y_asset
@@ -69,6 +95,20 @@ CREATE TABLE `y_auth_access` (
 -- ----------------------------
 -- Records of y_auth_access
 -- ----------------------------
+INSERT INTO `y_auth_access` VALUES ('2', 'admin/content/default', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'api/guestbookadmin/index', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'api/guestbookadmin/delete', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/index', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/listorders', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/top', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/recommend', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/move', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/check', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/delete', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/edit', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/edit_post', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/add', 'admin_url');
+INSERT INTO `y_auth_access` VALUES ('2', 'portal/adminpost/add_post', 'admin_url');
 
 -- ----------------------------
 -- Table structure for y_auth_rule
@@ -85,7 +125,7 @@ CREATE TABLE `y_auth_rule` (
   `condition` varchar(300) NOT NULL DEFAULT '' COMMENT '规则附加条件',
   PRIMARY KEY (`id`),
   KEY `module` (`module`,`status`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
+) ENGINE=MyISAM AUTO_INCREMENT=164 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
 
 -- ----------------------------
 -- Records of y_auth_rule
@@ -251,6 +291,8 @@ INSERT INTO `y_auth_rule` VALUES ('158', 'Admin', 'admin_url', 'admin/slide/ban'
 INSERT INTO `y_auth_rule` VALUES ('159', 'Admin', 'admin_url', 'admin/slide/cancelban', null, '启用幻灯片', '1', '');
 INSERT INTO `y_auth_rule` VALUES ('160', 'Admin', 'admin_url', 'admin/user/ban', null, '禁用管理员', '1', '');
 INSERT INTO `y_auth_rule` VALUES ('161', 'Admin', 'admin_url', 'admin/user/cancelban', null, '启用管理员', '1', '');
+INSERT INTO `y_auth_rule` VALUES ('162', 'Admin', 'admin_url', 'admin/area/index', null, '区域管理', '1', '');
+INSERT INTO `y_auth_rule` VALUES ('163', 'Admin', 'admin_url', 'admin/destination/index', null, '目的地管理', '1', '');
 
 -- ----------------------------
 -- Table structure for y_comments
@@ -298,11 +340,45 @@ CREATE TABLE `y_common_action_log` (
   PRIMARY KEY (`id`),
   KEY `user_object_action` (`user`,`object`,`action`),
   KEY `user_object_action_ip` (`user`,`object`,`action`,`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_common_action_log
 -- ----------------------------
+INSERT INTO `y_common_action_log` VALUES ('1', '0', 'posts1', 'Portal-Article-index', '1', '1446122118', '127.0.0.1');
+INSERT INTO `y_common_action_log` VALUES ('2', '0', 'posts1', 'Portal-Index-stories', '3', '1446140256', '127.0.0.1');
+
+-- ----------------------------
+-- Table structure for y_destination
+-- ----------------------------
+DROP TABLE IF EXISTS `y_destination`;
+CREATE TABLE `y_destination` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `post_author` bigint(20) unsigned DEFAULT '0' COMMENT '发表者id',
+  `area_id` int(11) NOT NULL COMMENT '地区ID',
+  `city` varchar(60) DEFAULT NULL COMMENT '城市',
+  `date` datetime DEFAULT '2000-01-01 00:00:00' COMMENT 'post创建日期，永久不变，一般不显示给用户',
+  `title` text COMMENT 'post标题',
+  `excerpt` text COMMENT 'post摘要',
+  `status` int(2) DEFAULT '1' COMMENT 'post状态，1已审核，0未审核',
+  `modified` datetime DEFAULT '2000-01-01 00:00:00' COMMENT 'post更新时间，可在前台修改，显示给用户',
+  `smeta` text COMMENT 'post的扩展字段，保存相关扩展属性，如缩略图；格式为json',
+  `post_hits` int(11) DEFAULT '0' COMMENT 'post点击数，查看数',
+  `post_like` int(11) DEFAULT '0' COMMENT 'post赞数',
+  `listorder` int(11) DEFAULT '0',
+  `lon` decimal(10,6) DEFAULT NULL COMMENT '经度',
+  `lat` decimal(10,6) DEFAULT NULL COMMENT '纬度',
+  PRIMARY KEY (`id`),
+  KEY `type_status_date` (`status`,`date`,`id`),
+  KEY `post_author` (`post_author`),
+  KEY `post_date` (`date`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of y_destination
+-- ----------------------------
+INSERT INTO `y_destination` VALUES ('1', '1', '2', '伦敦', '2000-01-01 00:00:00', '伦敦真好玩', '是非得失', '1', '2000-01-01 00:00:00', 'null', '0', '0', '0', '0.000000', '0.000000');
+INSERT INTO `y_destination` VALUES ('2', '1', '1', '迪拜', '2015-11-02 02:10:04', '游览地球村，观看特别的演出，迪拜必到景点之一哦', '多年以来，地球村已经发展成为迪拜的知名景点之一，也是迪拜购物节的组成部分。每年冬天都有超过25个国家特色的音乐、舞蹈、艺术、手工艺品、戏剧、传统和美食在此得到展现。地球村还上演一系列精彩的演出，包括高空钢丝秀、灌篮表演、高空跳伞等等。地球村内有超过140家小吃饮食店铺，让人们在游玩的同时，也能大快朵颐。简而言之就是迪拜的庙会，去逛逛呗？', '1', '2000-01-01 00:00:00', '{\"photo\":[{\"url\":\"563655362fbc7.jpg\",\"alt\":\"icon\"},{\"url\":\"5636554dc01bc.jpg\",\"alt\":\"dfe53914-a01e-4c43-b9e0-4128fa602f02\"},{\"url\":\"5636556b2a5f5.jpg\",\"alt\":\"e3ab17f5-5b02-49d8-8010-dfaec1fddb21\"},{\"url\":\"56365578544de.jpg\",\"alt\":\"e3fd9061-0c8f-425a-a160-faefcfd4777d\"}]}', '0', '0', '0', '25.271139', '55.307485');
 
 -- ----------------------------
 -- Table structure for y_guestbook
@@ -319,12 +395,13 @@ CREATE TABLE `y_guestbook` (
   `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
   `day` int(5) DEFAULT '0' COMMENT '天数',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_guestbook
 -- ----------------------------
-INSERT INTO `y_guestbook` VALUES ('1', '俞震浩', '', null, '', '0000-00-00 00:00:00', '1', '15858177440', '0');
+INSERT INTO `y_guestbook` VALUES ('1', '俞震浩', '', '法国、巴黎', '', '2015-10-28 21:06:24', '1', '15858177440', '0');
+INSERT INTO `y_guestbook` VALUES ('2', 'jason', '', '英国', '', '2015-10-28 22:04:35', '1', '15858177440', '8');
 
 -- ----------------------------
 -- Table structure for y_links
@@ -370,7 +447,7 @@ CREATE TABLE `y_menu` (
   KEY `status` (`status`),
   KEY `parentid` (`parentid`),
   KEY `model` (`model`)
-) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=164 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_menu
@@ -378,7 +455,7 @@ CREATE TABLE `y_menu` (
 INSERT INTO `y_menu` VALUES ('1', '0', 'Admin', 'Content', 'default', '', '0', '1', '内容管理', 'th', '', '30');
 INSERT INTO `y_menu` VALUES ('2', '1', 'Api', 'Guestbookadmin', 'index', '', '1', '1', '所有留言', '', '', '0');
 INSERT INTO `y_menu` VALUES ('3', '2', 'Api', 'Guestbookadmin', 'delete', '', '1', '0', '删除网站留言', '', '', '0');
-INSERT INTO `y_menu` VALUES ('4', '1', 'Comment', 'Commentadmin', 'index', '', '1', '1', '评论管理', '', '', '0');
+INSERT INTO `y_menu` VALUES ('4', '1', 'Comment', 'Commentadmin', 'index', '', '1', '0', '评论管理', '', '', '0');
 INSERT INTO `y_menu` VALUES ('5', '4', 'Comment', 'Commentadmin', 'delete', '', '1', '0', '删除评论', '', '', '0');
 INSERT INTO `y_menu` VALUES ('6', '4', 'Comment', 'Commentadmin', 'check', '', '1', '0', '评论审核', '', '', '0');
 INSERT INTO `y_menu` VALUES ('7', '1', 'Portal', 'AdminPost', 'index', '', '1', '1', '文章管理', '', '', '1');
@@ -399,7 +476,7 @@ INSERT INTO `y_menu` VALUES ('21', '18', 'Portal', 'AdminTerm', 'edit', '', '1',
 INSERT INTO `y_menu` VALUES ('22', '21', 'Portal', 'AdminTerm', 'edit_post', '', '1', '0', '提交编辑', '', '', '0');
 INSERT INTO `y_menu` VALUES ('23', '18', 'Portal', 'AdminTerm', 'add', '', '1', '0', '添加分类', '', '', '1000');
 INSERT INTO `y_menu` VALUES ('24', '23', 'Portal', 'AdminTerm', 'add_post', '', '1', '0', '提交添加', '', '', '0');
-INSERT INTO `y_menu` VALUES ('25', '1', 'Portal', 'AdminPage', 'index', '', '1', '1', '页面管理', '', '', '3');
+INSERT INTO `y_menu` VALUES ('25', '1', 'Portal', 'AdminPage', 'index', '', '1', '0', '页面管理', '', '', '3');
 INSERT INTO `y_menu` VALUES ('26', '25', 'Portal', 'AdminPage', 'listorders', '', '1', '0', '页面排序', '', '', '0');
 INSERT INTO `y_menu` VALUES ('27', '25', 'Portal', 'AdminPage', 'delete', '', '1', '0', '删除页面', '', '', '1000');
 INSERT INTO `y_menu` VALUES ('28', '25', 'Portal', 'AdminPage', 'edit', '', '1', '0', '编辑页面', '', '', '1000');
@@ -410,7 +487,7 @@ INSERT INTO `y_menu` VALUES ('32', '1', 'Admin', 'Recycle', 'default', '', '1', 
 INSERT INTO `y_menu` VALUES ('33', '32', 'Portal', 'AdminPost', 'recyclebin', '', '1', '1', '文章回收', '', '', '0');
 INSERT INTO `y_menu` VALUES ('34', '33', 'Portal', 'AdminPost', 'restore', '', '1', '0', '文章还原', '', '', '1000');
 INSERT INTO `y_menu` VALUES ('35', '33', 'Portal', 'AdminPost', 'clean', '', '1', '0', '彻底删除', '', '', '1000');
-INSERT INTO `y_menu` VALUES ('36', '32', 'Portal', 'AdminPage', 'recyclebin', '', '1', '1', '页面回收', '', '', '1');
+INSERT INTO `y_menu` VALUES ('36', '32', 'Portal', 'AdminPage', 'recyclebin', '', '1', '0', '页面回收', '', '', '1');
 INSERT INTO `y_menu` VALUES ('37', '36', 'Portal', 'AdminPage', 'clean', '', '1', '0', '彻底删除', '', '', '1000');
 INSERT INTO `y_menu` VALUES ('38', '36', 'Portal', 'AdminPage', 'restore', '', '1', '0', '页面还原', '', '', '1000');
 INSERT INTO `y_menu` VALUES ('39', '0', 'Admin', 'Extension', 'default', '', '0', '1', '扩展工具', 'cloud', '', '40');
@@ -460,7 +537,7 @@ INSERT INTO `y_menu` VALUES ('82', '81', 'Admin', 'Link', 'add_post', '', '1', '
 INSERT INTO `y_menu` VALUES ('83', '39', 'Api', 'Oauthadmin', 'setting', '', '1', '1', '第三方登陆', 'leaf', '', '4');
 INSERT INTO `y_menu` VALUES ('84', '83', 'Api', 'Oauthadmin', 'setting_post', '', '1', '0', '提交设置', '', '', '0');
 INSERT INTO `y_menu` VALUES ('85', '0', 'Admin', 'Menu', 'default', '', '1', '1', '菜单管理', 'list', '', '20');
-INSERT INTO `y_menu` VALUES ('86', '85', 'Admin', 'Navcat', 'default1', '', '1', '1', '前台菜单', '', '', '0');
+INSERT INTO `y_menu` VALUES ('86', '85', 'Admin', 'Navcat', 'default1', '', '1', '0', '前台菜单', '', '', '0');
 INSERT INTO `y_menu` VALUES ('87', '86', 'Admin', 'Nav', 'index', '', '1', '1', '菜单管理', '', '', '0');
 INSERT INTO `y_menu` VALUES ('88', '87', 'Admin', 'Nav', 'listorders', '', '1', '0', '前台导航排序', '', '', '0');
 INSERT INTO `y_menu` VALUES ('89', '87', 'Admin', 'Nav', 'delete', '', '1', '0', '删除菜单', '', '', '1000');
@@ -511,7 +588,7 @@ INSERT INTO `y_menu` VALUES ('133', '132', 'User', 'Indexadmin', 'default1', '',
 INSERT INTO `y_menu` VALUES ('134', '133', 'User', 'Indexadmin', 'index', '', '1', '1', '本站用户', 'leaf', '', '0');
 INSERT INTO `y_menu` VALUES ('135', '134', 'User', 'Indexadmin', 'ban', '', '1', '0', '拉黑会员', '', '', '0');
 INSERT INTO `y_menu` VALUES ('136', '134', 'User', 'Indexadmin', 'cancelban', '', '1', '0', '启用会员', '', '', '0');
-INSERT INTO `y_menu` VALUES ('137', '133', 'User', 'Oauthadmin', 'index', '', '1', '1', '第三方用户', 'leaf', '', '0');
+INSERT INTO `y_menu` VALUES ('137', '133', 'User', 'Oauthadmin', 'index', '', '1', '0', '第三方用户', 'leaf', '', '0');
 INSERT INTO `y_menu` VALUES ('138', '137', 'User', 'Oauthadmin', 'delete', '', '1', '0', '第三方用户解绑', '', '', '0');
 INSERT INTO `y_menu` VALUES ('139', '132', 'User', 'Indexadmin', 'default3', '', '1', '1', '管理组', '', '', '0');
 INSERT INTO `y_menu` VALUES ('140', '139', 'Admin', 'Rbac', 'index', '', '1', '1', '角色管理', '', '', '0');
@@ -536,6 +613,8 @@ INSERT INTO `y_menu` VALUES ('158', '54', 'Admin', 'Slide', 'ban', '', '1', '0',
 INSERT INTO `y_menu` VALUES ('159', '54', 'Admin', 'Slide', 'cancelban', '', '1', '0', '启用幻灯片', '', '', '0');
 INSERT INTO `y_menu` VALUES ('160', '149', 'Admin', 'User', 'ban', '', '1', '0', '禁用管理员', '', '', '0');
 INSERT INTO `y_menu` VALUES ('161', '149', 'Admin', 'User', 'cancelban', '', '1', '0', '启用管理员', '', '', '0');
+INSERT INTO `y_menu` VALUES ('162', '1', 'Admin', 'area', 'index', '', '1', '1', '区域管理', '', '', '0');
+INSERT INTO `y_menu` VALUES ('163', '1', 'Admin', 'destination', 'index', '', '1', '1', '目的地管理', '', '', '0');
 
 -- ----------------------------
 -- Table structure for y_nav
@@ -656,7 +735,7 @@ CREATE TABLE `y_posts` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_author` bigint(20) unsigned DEFAULT '0' COMMENT '发表者id',
   `post_keywords` varchar(150) NOT NULL COMMENT 'seo keywords',
-  `post_source` varchar(150) DEFAULT NULL COMMENT '转载文章的来源',
+  `post_source` varchar(150) DEFAULT NULL COMMENT '人均花费',
   `post_date` datetime DEFAULT '2000-01-01 00:00:00' COMMENT 'post创建日期，永久不变，一般不显示给用户',
   `post_content` longtext COMMENT 'post内容',
   `post_title` text COMMENT 'post标题',
@@ -674,16 +753,21 @@ CREATE TABLE `y_posts` (
   `post_like` int(11) DEFAULT '0' COMMENT 'post赞数',
   `istop` tinyint(1) NOT NULL DEFAULT '0' COMMENT '置顶 1置顶； 0不置顶',
   `recommended` tinyint(1) NOT NULL DEFAULT '0' COMMENT '推荐 1推荐 0不推荐',
+  `day` smallint(6) unsigned DEFAULT '0' COMMENT '天数',
+  `people_num` tinyint(3) unsigned DEFAULT '1' COMMENT '游玩人数',
   PRIMARY KEY (`id`),
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`id`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`),
   KEY `post_date` (`post_date`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_posts
 -- ----------------------------
+INSERT INTO `y_posts` VALUES ('1', '1', '芬兰', '27350', '2015-10-29 20:18:15', '<p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\">我们终偿所愿，亲手接过圣诞老人的礼物，并依偎在他的身边；</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\">我们体验着雪地摩托的超快感，一览萨利瑟尔地区特色地貌；</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\">我们驾驭着西伯利亚雪橇犬，肆意驰骋在茫茫林海雪原上，圣诞老人的铃声，还一直回荡在耳畔；</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\">我们为了追寻欧若拉的裙摆，在北欧亲眼见到醉美极光，一同见证那醉美的梦幻。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/0f088f1f-4547-4ce4-9846-7fb3d6d1163f.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>初到芬兰，我们在赫尔辛基市内参观，这座白色的教堂参观以俯视的姿态屹立在亚历山大二世的广场上，尽显庄重。 小伙伴们出镜啦，我的同事圆圆和她的爱人沙桐、还有我的爱人申方剑。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/2f5a8d4e-cf12-4442-bc5e-a9b0ffb5dc78.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>这是白色教堂内部虽没有金碧辉煌的精美装饰，却简单圣洁。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/77a35dc3-c3e5-4b11-935c-694c31133032.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>我们一行人继续参观赫尔辛基又一特色的岩石教堂，其建造在掏空的岩石中，芬兰人的奇思妙想可见一斑。步入其中，自然光芒下的岩石教堂与光芒的相互辉映，尽显神圣。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/f6796b6f-32e3-43bc-845f-2295b0de1514.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>在孩童时代，有谁不想亲自接过圣诞老人的礼物呢？这一刻我等了十几年。圣诞邮局里满是童话色彩的邮票、贺卡和礼品，北极圣诞老人还会盖上这里的邮戳，等待这一时刻的过程是甜蜜而幸福的，小伙伴们依偎在圣岛老人身边。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/8f43c5b6-c0a7-47c2-8473-fa5051477fac.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>木屋，圣诞树，驯鹿，满满的礼物，满满的幸福，从这里出发，童话般的现实就在眼前。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/9b30427b-0a0b-4c30-96e7-8d9444966e9d.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>我站在雪地里，看着美不胜收的雪景。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/2a9ff250-de2d-41bb-b5d8-e00a6a758615.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>北上，嘿！又一位小伙伴汇合！她就是我的同事经纬大美女！</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/bd0e815a-63cf-4eb5-85b6-242c5451e7f7.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>我们准备体验一把雪地摩托的快感，一览萨利瑟尔地区最有特色的费尔地貌－－高地、岩石、岩崖，go,go,go!出发！</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/35d10d7d-4c1d-4e36-ac25-21318c4da962.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>雪地摩托结束了！闺蜜们，让我们开启疯狂自拍模式！</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/3c30074f-1a7a-4555-8aea-635c949fe540.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>沙大哥拉着圆圆姐的场景，仿佛一下就让我们回到了小时候的快乐时光。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/f568f06a-9c5c-4a3a-b80f-fb32bb3a8029.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>夜幕降临在Kakslauttanen度假村梦幻的玻璃穹顶小屋，我们一起亲睹极光，感受的极致之美，激动不已。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/fb5b7ea0-ad5c-4123-bcd5-2d22ebb465a9.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>我特意带来拍摄的衣服，于是！女神出场！</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/183ec36d-5af9-4fee-bf46-dfd6ffb33574.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>次日，我们一路向北，夜间繁星伴月，与爱人、朋友继续追寻女神的裙摆。守候不多时，那条越来越亮的淡绿色带状极光，伴随着时而划过的几颗流星，终于如期而至。数分钟之内，极光蜿蜒跳跃着骤散分合，亮度成倍变强</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/ae5846b4-b3c9-4817-b85e-19370dd8ab0e.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>看！眼前这道如梦似幻的极光，让本就壮美的星空更多了一份神秘的妩媚。极光边缘的些许暗红也转变成如狐狸尾巴般耀眼的火红。沙桐大哥兴奋的大叫，我们大家争相恐后在极光下合影。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/ffc03baa-5f80-494b-9058-fd60d04148e0.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>我们来北极还有一件一定要做的事情，就是驾驭着西伯利亚雪橇犬拉的雪橇，感受在茫茫林海雪原上快速行进的。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/fffb5eae-136b-45e8-90f8-44609ba86a7a.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>站在狗狗们拉着的雪撬上，在雪原上肆意驰骋。</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/e645f827-d9d0-4e21-a919-2ac9b6d527ba.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>还可以参观雪村Ice Bar&amp;Hotel，当我亲自走在这样的隧道里的时候，感受着一种在异度空间的错落感</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/ce593808-7ff0-432d-8236-c61642de31dc.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>我们来到此行最后一站：凯米！</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/f10eb6db-8bd0-4333-977f-71089149ab1d.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>这里有地球上唯一的破冰船探险旅游项目，我们可以参加破冰船之旅，在冰海浮潜，亦或在冬季冰封的海面上驾着雪地摩托狂驰！</p><p style=\"box-sizing: border-box; border: 0px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/976fc5c5-2ae3-48f9-b20d-97f0e8ab655d.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/>3年的梦想终于实现，见到最奇妙最震撼的北极光。朋友们，下次继续探索世界吧！</p><p><br/></p>', '醉美芬兰极光之旅', '亲爱的，我们说好一起携男眷去旅行，说了3年了，也没见个动静。\r\n这一次，年假都给我交出来，咱们必须说走就走！\r\n不但要说走就走，还要去世界上最奇妙的地方，看最奇妙的北极光！', '1', '1', '2015-10-29 20:06:40', null, '0', null, '', '0', '{\"thumb\":\"563228d60aab5.jpg\"}', '2', '0', '1', '0', '5', '1');
+INSERT INTO `y_posts` VALUES ('2', '1', '新西兰', '28530', '2015-10-29 23:08:47', '', '新西兰', '“指环王里称这片土地为中土世界，来过的人说它是世界上最后一片净土，当我站在Eden Mountain，从山顶看着奥克兰，我就信了，多谢无二告诉我这个地方，犹如梦中”   By 安小乔', '1', '1', '2015-10-29 22:44:18', null, '0', null, '', '0', '{\"thumb\":\"563234b7c9951.jpg\",\"photo\":[{\"url\":\"56323dd724ed6.png\",\"alt\":\"icon\"},{\"url\":\"56323df58c9fb.png\",\"alt\":\"info\"}]}', '0', '0', '0', '0', '7', '2');
+INSERT INTO `y_posts` VALUES ('3', '1', '加拿大 维也纳 拉普兰德', '30000', '2015-10-30 01:43:15', '<p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">我从来都珍视亲情、友情，我永远珍惜生活与热爱我身边的人们；我充满活力、细致、开朗，永远精力充沛。一直以来，最简单而又复杂的愿望就是带着妈妈走遍世界，这也是妈妈简单而又宏远的梦想。去过很多国家，也有各样的人问我的信仰是什么，我的信仰很简单，就是旅行。</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/64cc12a9-cff1-4280-9bc3-e80c2d3699bc.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">我曾带着妈妈在布达佩斯的英雄广场上纵情跳跃</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/9817b0ee-7173-4137-ae76-ef226b360465.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">也曾带着妈妈在维也纳的美泉宫前暴走到精疲力尽</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/6b90e52b-b328-4d23-b877-cac18c7f965c.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">我曾和妈妈在南亚40℃的酷暑中热到几乎虚脱</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/30be5af1-6ce1-4365-95b9-494571a8ef54.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">也曾和妈妈在施皮茨小镇畔的山腰上冻到相拥取暖</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/75444440-1a2a-4a16-b2d9-77044c5804be.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">我曾带着妈妈在浪中岛的海滩上High到爆炸</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/2b475329-c4fa-4a5f-98d0-aa835717f01e.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">也曾带着妈妈在卢塞恩的湖畔安安静静的喂天鹅</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/8e1014dd-dfc0-427c-a609-53adf9d6a1c0.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">我曾和妈妈一起在吴哥窟前画暖暖的爱心</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/67028b18-23e5-4294-ae13-2d59db046a81.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">也曾和妈妈一起在阿姆斯特丹的郁金香前Cosplay花儿朵朵开</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/38538690-3d83-4a74-ac20-5c4ce9da4a20.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">我曾带着妈妈在最壮丽的大峡谷畔一起双人兔子跳</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/2f6c390a-86be-4030-aaa3-8c16de271704.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">也曾带着妈妈在大提顿秀美的湖畔牵着手跳天鹅舞</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/c821fe1b-72e6-4a61-99f2-85a625d41e80.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">我曾带着妈妈从赛里木湖到莱芒湖畔晒太阳，从敦煌跑去埃及的金字塔，从千户苗寨跑去毛利人的家里、从内蒙的大草原跑去普罗旺斯的薰衣草海、从吉林的雪原跑去黄石公园看北美野牛、从南京的秦淮河去塞纳河畔的那家咖啡馆、从青岛的红房子去慕尼黑十月啤酒节、从海南的椰林去看军舰岛的海龟……旅行常变，不变的，是我和妈妈，还有向着前方的路。</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/f0eae929-e75e-4bc3-91d6-264edcc75e23.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\">从18岁那年踏出国门的一刻，从带着妈妈，到带着父母，带着奶奶，再后来整个家族的成员都加入了我的旅行。从最开始的初涉亚洲，到最后的欧洲环绕，在一次次的旅程中，不断地成长，不断地认识自己。感谢旅行，让我学会感恩。</p><p style=\"box-sizing: border-box; border: 0px; font-size: 14px; vertical-align: baseline; margin-top: 20px; margin-bottom: 20px; padding: 0px; color: rgb(153, 153, 153); font-family: &#39;Hiragino Sans GB&#39;, &#39;Microsoft YaHei&#39;, &#39;WenQuanYi Micro Hei&#39;, sans-serif; line-height: 20px; white-space: normal; background-color: rgb(240, 240, 240);\"><img src=\"http://uniqueway.b0.upaiyun.com/uploads/a6d1a0a2-498b-4398-bf62-e0447c0a84a1.jpg!w700\" alt=\"\" style=\"box-sizing: border-box; border: 0px; margin: 10px 0px; padding: 0px; vertical-align: middle; width: 670px;\"/></p><p><br/></p>', '暖男的旅行箱', '每趟旅行都在帮妈妈完成一个又一个旅行心愿，\r\n她说要去加拿大看枫叶，我说跟我走吧！\r\n她说要去新西兰看星空，我说跟我走吧！\r\n他说要去维也纳听音乐会，我说跟我走吧！\r\n她说要去拉普兰德看北极光，我说，跟我走吧！', '1', '1', '2015-10-30 01:37:28', null, '0', null, '', '0', '{\"thumb\":\"563259b658b65.jpg\"}', '0', '0', '0', '0', '10', '2');
 
 -- ----------------------------
 -- Table structure for y_role
@@ -701,12 +785,13 @@ CREATE TABLE `y_role` (
   PRIMARY KEY (`id`),
   KEY `parentId` (`pid`),
   KEY `status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_role
 -- ----------------------------
 INSERT INTO `y_role` VALUES ('1', '超级管理员', '0', '1', '拥有网站最高管理员权限！', '1329633709', '1329633709', '0');
+INSERT INTO `y_role` VALUES ('2', '旅行定制师', null, '1', '旅行定制师', '1446133680', '1446135622', '0');
 
 -- ----------------------------
 -- Table structure for y_role_user
@@ -722,6 +807,9 @@ CREATE TABLE `y_role_user` (
 -- ----------------------------
 -- Records of y_role_user
 -- ----------------------------
+INSERT INTO `y_role_user` VALUES ('2', '4');
+INSERT INTO `y_role_user` VALUES ('1', '5');
+INSERT INTO `y_role_user` VALUES ('2', '5');
 
 -- ----------------------------
 -- Table structure for y_route
@@ -801,13 +889,14 @@ CREATE TABLE `y_terms` (
   `listorder` int(5) NOT NULL DEFAULT '0' COMMENT '排序',
   `status` int(2) NOT NULL DEFAULT '1' COMMENT '状态，1发布，0不发布',
   PRIMARY KEY (`term_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_terms
 -- ----------------------------
 INSERT INTO `y_terms` VALUES ('1', '案例故事', '', 'article', '', '0', '0', '0-1', '', '', '', 'list', 'article', '0', '1');
-INSERT INTO `y_terms` VALUES ('2', '非案例故事', '', 'article', '', '0', '0', '0-2', '', '', '', 'list_masonry', 'article', '0', '1');
+INSERT INTO `y_terms` VALUES ('2', '定制师的故事', '', 'article', '', '0', '0', '0-2', '', '', '', 'list_masonry', 'article', '0', '1');
+INSERT INTO `y_terms` VALUES ('3', '地点案例', '', 'article', '', '0', '0', '0-3', '', '', '', 'list', 'article', '0', '1');
 
 -- ----------------------------
 -- Table structure for y_term_relationships
@@ -821,11 +910,14 @@ CREATE TABLE `y_term_relationships` (
   `status` int(2) NOT NULL DEFAULT '1' COMMENT '状态，1发布，0不发布',
   PRIMARY KEY (`tid`),
   KEY `term_taxonomy_id` (`term_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_term_relationships
 -- ----------------------------
+INSERT INTO `y_term_relationships` VALUES ('1', '1', '1', '0', '1');
+INSERT INTO `y_term_relationships` VALUES ('2', '2', '3', '0', '1');
+INSERT INTO `y_term_relationships` VALUES ('3', '3', '2', '0', '1');
 
 -- ----------------------------
 -- Table structure for y_users
@@ -850,17 +942,26 @@ CREATE TABLE `y_users` (
   `score` int(11) NOT NULL DEFAULT '0' COMMENT '用户积分',
   `user_type` smallint(1) DEFAULT '1' COMMENT '用户类型，1:admin ;2:会员',
   `mobile` varchar(15) DEFAULT NULL COMMENT '手机号',
+  `title` varchar(50) DEFAULT NULL COMMENT '标语',
+  `word` varchar(255) DEFAULT NULL COMMENT '定制师的解说',
+  `travel_maker` tinyint(1) DEFAULT '0' COMMENT '是否定制师',
+  `story_id` int(11) DEFAULT '0' COMMENT '关联的故事ID',
+  `is_top` tinyint(1) DEFAULT '0' COMMENT '是否置顶',
+  `get_like` int(11) DEFAULT '0' COMMENT '获赞',
   PRIMARY KEY (`id`),
   KEY `user_login_key` (`user_login`),
-  KEY `user_nicename` (`user_nicename`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  KEY `user_nicename` (`user_nicename`),
+  KEY `mobile` (`mobile`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of y_users
 -- ----------------------------
-INSERT INTO `y_users` VALUES ('1', 'admin', 'ff108b961a8421232f297a57a5a743894a0e4a801fc36f8e', 'admin', '260658065@qq.com', '', null, '0', null, null, '127.0.0.1', '2015-10-27 00:34:09', '2015-09-26 06:17:41', '', '1', '0', '1', null);
-INSERT INTO `y_users` VALUES ('2', 'jason', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:42:47', '2015-10-27 23:18:34', '', '1', '0', '2', '15858177440');
-INSERT INTO `y_users` VALUES ('3', 'jason123', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason123', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:26:44', '2015-10-27 23:26:44', '', '1', '0', '2', '15858177441');
+INSERT INTO `y_users` VALUES ('1', 'admin', 'ff108b961a8421232f297a57a5a743894a0e4a801fc36f8e', 'admin', '260658065@qq.com', '', null, '0', '0000-00-00', '', '127.0.0.1', '2015-11-01 15:21:06', '2015-09-26 06:17:41', '', '1', '0', '1', null, null, null, '0', '0', '0', '0');
+INSERT INTO `y_users` VALUES ('2', 'jason', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:42:47', '2015-10-27 23:18:34', '', '1', '0', '2', '15858177440', null, null, '0', '0', '0', '0');
+INSERT INTO `y_users` VALUES ('3', 'jason123', 'ff108b961a848eaf0c1868ecfec5c792c61ca6a47ec16f8e', 'jason123', '', '', null, '0', null, null, '127.0.0.1', '2015-10-27 23:26:44', '2015-10-27 23:26:44', '', '1', '0', '2', '15858177441', null, null, '0', '0', '0', '0');
+INSERT INTO `y_users` VALUES ('4', 'Bella', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', 'Bella', '2606580651@qq.com', '', '/data/upload/56325166219a6.jpg', '2', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '15858177440', '一只迷路的Bunny', '漫长飞行岁月，穿过高山，穿过海洋，穿过世界尽头的无边幻境。是的，你没看错，在三万英尺的高空有我的办公室，日月星辰在我抬手就可触及的前方。银河漫漫，告诉我，你的星座是哪个？', '1', '0', '0', '2312');
+INSERT INTO `y_users` VALUES ('5', 'liboyuan', 'ff108b961a84e10adc3949ba59abbe56e057f20f883e6f8e', '李博渊', 'liboyuan@qq.com', '', '/data/upload/5632589f652ca.png', '1', null, null, '', '2000-01-01 00:00:00', '2000-01-01 00:00:00', '', '1', '0', '1', '13581111123', '暖男的旅行箱', '每趟旅行都在帮妈妈完成一个又一个旅行心愿，她说要去加拿大看枫叶，我说跟我走吧！\n她说要去新西兰看星空，我说跟我走吧！她说要去维也纳听音乐会，我说跟我走吧！\n她说要去拉普兰德看北极光，我说，那就跟着我走吧...', '1', '3', '1', '3412');
 
 -- ----------------------------
 -- Table structure for y_user_favorites
