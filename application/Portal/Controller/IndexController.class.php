@@ -98,6 +98,8 @@ class IndexController extends HomeBaseController {
 	 */
 	function destination()
 	{
+		$areas=M('area')->where(array('type'=>1))->select();
+		$this->assign('areas',$areas);
 		$this->display(":destination");
 	}
 
@@ -190,9 +192,42 @@ class IndexController extends HomeBaseController {
 			$this->ajaxReturn(array('status'=>1,'operation'=>$operation,'type'=>$type));
 
 		}
+	}
+
+	function area_data()
+	{
+		$id=intval(I('get.id'));
+		$data=M('area')->where(array('id'=>$id))->find();
+		if($data)
+		{
+			$this->ajaxReturn(array('status'=>1,'data'=>$data));
+		}else{
+			$this->ajaxReturn(array('status'=>0,'info'=>"无数据，请添加数据"));
+		}
+
 
 
 	}
+
+	function destination_data()
+	{
+		$id=intval(I('get.id'));
+		$data=M("destination")->where(array('status'=>1,'area_id'=>$id))->select();
+		foreach($data as $k=>$v)
+		{
+			$smeta=json_decode($v['smeta'],true);
+			$data[$k]['photo']=sp_get_asset_upload_path($smeta['photo'][0]['url'],true);
+		}
+		if($data)
+		{
+			$this->ajaxReturn(array('status'=>1,'data'=>$data));
+		}else{
+			$this->ajaxReturn(array('status'=>0,'info'=>"无数据，请添加数据"));
+		}
+	}
+
+
+
 }
 
 
