@@ -147,7 +147,7 @@ var GV = {
 			cache: true,
 			type: "POST",
 			url: '/index/like_destination',
-			data:{id:$('.control-btn.been').attr('data-id'),type:1},
+			data:{id:$(this).attr('data-id'),type:1},
 			async: false,
 			error: function(request) {
 				alert("Connection error");
@@ -187,7 +187,7 @@ var GV = {
 			cache: true,
 			type: "POST",
 			url: '/index/like_destination',
-			data:{id:$('.control-btn.like').attr('data-id'),type:0},
+			data:{id:$(this).attr('data-id'),type:0},
 			async: false,
 			error: function(request) {
 				alert("Connection error");

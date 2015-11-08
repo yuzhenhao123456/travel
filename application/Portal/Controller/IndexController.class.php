@@ -226,6 +226,69 @@ class IndexController extends HomeBaseController {
 		}
 	}
 
+	function poi_item()
+	{
+		$id=intval(I('get.id'));
+		$data=M("destination")->where('id='.$id)->find();
+		$nation=M('area')->where(array('id'=>$data['area_id']))->getField('name');
+		$smeta=json_decode($data['smeta'],true);
+		$image=array();
+		foreach($smeta['photo'] as $photo)
+		{
+			$image[]=sp_get_asset_upload_path($photo['url'],true);
+		}
+		$return=array(
+			'id'=>$data['id'],
+			'name'=>$data['title'],
+			'images'=>$image,
+			'desc'=>$data['excerpt'],
+			'location'=>$nation.','.$data['city']
+		);
+		if(sp_is_user_login())
+		{
+			$user=sp_get_current_userid();
+			$info=M('destination_log')->where(array('user'=>$user,'dest_id'=>$id))->find();
+			$return['like']=$info['is_like']?true:false;
+			$return['been']=$info['is_been']?true:false;
+		}else{
+			$return['like']=false;
+			$return['been']=false;
+		}
+		$this->ajaxReturn($return);
+	}
+
+	function arbitraria()
+	{
+		$ids=M("destination")->where(array('status'=>1))->getField('id',true);
+		$key=array_rand($ids);
+		$id=$ids[$key];
+		$data=M("destination")->where('id='.$id)->find();
+		$nation=M('area')->where(array('id'=>$data['area_id']))->getField('name');
+		$smeta=json_decode($data['smeta'],true);
+		$image=array();
+		foreach($smeta['photo'] as $photo)
+		{
+			$image[]=sp_get_asset_upload_path($photo['url'],true);
+		}
+		$return=array(
+			'id'=>$data['id'],
+			'name'=>$data['title'],
+			'images'=>$image,
+			'desc'=>$data['excerpt'],
+			'location'=>$nation.','.$data['city']
+		);
+		if(sp_is_user_login())
+		{
+			$user=sp_get_current_userid();
+			$info=M('destination_log')->where(array('user'=>$user,'dest_id'=>$id))->find();
+			$return['like']=$info['is_like']?true:false;
+			$return['been']=$info['is_been']?true:false;
+		}else{
+			$return['like']=false;
+			$return['been']=false;
+		}
+		$this->ajaxReturn($return);
+	}
 
 
 }

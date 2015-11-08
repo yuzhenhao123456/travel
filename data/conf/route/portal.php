@@ -9,4 +9,6 @@
     'destination' => 'portal/index/destination',
     'destination_explore' => 'portal/index/destination_explore',
     'wish_map' => 'portal/index/wish_map',
+    'poi_item' => 'portal/index/poi_item',
+    'arbitraria'=>'portal/index/arbitraria'
 );
