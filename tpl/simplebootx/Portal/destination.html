@@ -28,19 +28,7 @@
                 </div>
             </div>
             <div class="pois-container clearfix" style="padding: 0px 10px;display: none;">
-
-                <div class="poi-row clearfix">
-                    <div class="poi-item" data-poi-id="653" style=" margin: 10px;">
-                        <div class="poi-img"><img
-                                src="http://uniqueway.b0.upaiyun.com/uploads/2014/12/7bfcb4e2-4949-41a2-9dd2-35da6691d6a1.jpg!h300"
-                                style="width: 326px; height: 244px;"></div>
-                        <div class="poi-name">游览卡特迈国家公园，7月看棕熊捕鱼的盛况，绝对令人难忘</div>
-                        <div class="poi-control-btn"><a href="javascript:;" data-id="653" class="control-btn like"><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_like.png"></a><a href="javascript:;"
-                                                                                                  data-id="653"
-                                                                                                  class="control-btn been "><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_been.png"></a></div>
-                    </div>
+                <div class="poi-row clearfix" id="poi-row" style="position: relative">
                 </div>
             </div>
             <div class="more-pois-btn" data-skip="11" data-destination-id="3" style="display: none;">加载更多</div>
@@ -119,6 +107,7 @@
 </block>
 <block name="scripts">
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+    <script type="text/javascript" src="__TMPL__Public/js/blocksit.min.js"></script>
     <script>
          var map = new BMap.Map("mapdiv");          // 创建地图实例
          var point = new BMap.Point(0, 52.915);  // 创建点坐标
@@ -183,13 +172,14 @@
                         var html='';
                         $.each(data.data, function(i,obj){
                             html+='<div class="poi-item" data-poi-id="'+obj.id+'" style=" margin: 10px;">'+
-                                    '<div class="poi-img"><img src="'+obj.photo+'"  style=""></div>'+
+                                    '<div class="poi-img"><img src="'+obj.photo+'"  style="width:100%;"></div>'+
                                     '<div class="poi-name">'+obj.title+'</div>'+
                                     '<div class="poi-control-btn"><a href="javascript:;" data-id="'+obj.id+'" class="control-btn like">' +
                                     '<img src="__TMPL__Public/images/icon_like.png"></a><a href="javascript:;" data-id="'+obj.id+'" class="control-btn been ">' +
                                     '<img src="__TMPL__Public/images/icon_been.png"></a></div></div>';
                         });
                         $('.pois-container .poi-row').html(html);
+                        $('.pois-container .poi-row').BlocksIt({numOfCol: 3});
                     }else{
                         alert(data.info);
                     }
