@@ -7,93 +7,181 @@
 </block>
 <block name="content">
     <div class="row">
-        <div class="main-banner destination-banner">
-            <div class="map-container hidden-xs">
-                <div id="mapdiv" style="height: 199px; overflow: hidden; text-align: left;">
-
+        <div id="map-container">
+            <div class="container">
+                <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);"></div>
+            </div>
+        </div>
+        <div class="map-bottom">
+            <div class="wish-bottom-header">
+                <div class="been-like-btn">
+                    <a class="like-item on" href="javascript:;">
+                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_little_like-eb89e126f799d9bf2d91dda2d1ab73c3.png" alt="Icon little like">我想去({$like})
+                    </a>      <a class="been-item" href="javascript:;">
+                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_little_been-8e6cb03fabf5dc006841a58df005b4c4.png" alt="Icon little been">我去过({$been})
+                </a>      <a class="add-fav-btn" href="javascript:;">
+                    <i class="plus-icon">+</i> 添加心愿
+                </a>    </div>
+            </div>
+            <div class="bottom-wish-items">
+                <div class="like-item item-list clearfix" style="width: {:$like*140}px;" >
+                    <div class="item-container" style="width: {:$like*140}px;" >
+                        <volist name="areas_like" id="vo" >
+                        <div class="item" data-mark="1">
+                            <img src="{:sp_get_asset_upload_path($vo['icon'])}">
+                            <span class="number">{$vo.like}</span>
+                            <h5>{$vo.name}</h5>
+                            <p>{$vo.full_name}</p>
+                        </div>
+                        </volist>
+                    </div>
+                    <a class="left arrow" href="javascript:;">
+                        <img class="glyphicon-chevron-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png" alt="Icon light box left">
+                    </a>
+                    <a class="right arrow" href="javascript:;">
+                        <img class="glyphicon-chevron-right" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png" alt="Icon light box right">
+                    </a>
+                </div>
+                <div class="been-item item-list clearfix" style="display: none;width: {:$been*140}px;">
+                    <div class="item-container" style="width: {:$been*140}px;">
+                        <volist name="areas_been" id="vo" >
+                            <div class="item" data-mark="1">
+                                <img src="{:sp_get_asset_upload_path($vo['icon'])}">
+                                <span class="number">{$vo.been}</span>
+                                <h5>{$vo.name}</h5>
+                                <p>{$vo.full_name}</p>
+                            </div>
+                        </volist>
+                    </div>
+                    <a class="left arrow" href="javascript:;">
+                        <img class="glyphicon-chevron-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png" alt="Icon light box left">
+                    </a>
+                    <a class="right arrow" href="javascript:;">
+                        <img class="glyphicon-chevron-right" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png" alt="Icon light box right">
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="info-container" style="display: block;">
-                <div class="place-title">
-                    <h1 class="place-zh">阿拉斯加</h1>
+        <div class="poi-light-box" id="main-light-box">
+            <div class="bg"></div>
+            <div class="light-box-content">
+                <div class="desc-block">
 
-                    <h2 class="place-en">Alaska</h2>
-                </div>
-                <div class="place-info">
-                    <p>推荐天数：<span class="advice-date">7-15天</span><span class="divide">|</span>适宜季节：<span
-                            class="best-season">5月底-9月初</span><span class="divide">|</span>去这里的客户平均花费：<span
-                            class="estimated-cost">31620</span></p>
-                </div>
-            </div>
-            <div class="pois-container clearfix" style="padding: 0px 10px;">
+                    <div class="more-info">
+                        <h5>
+                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_pic-4c73e267e71714bd94c6fa9d91dd2716.png" alt="Icon pic">
+                            相关图片
+                        </h5>
+                        <div class="photo-album-list clearfix">
+                        </div>
 
-                <div class="poi-row clearfix" style="width: 1120px;">
-                    <div class="poi-item" data-poi-id="653" style="width: 326px; height: 244px; margin: 10px;">
-                        <div class="poi-img"><img
-                                src="http://uniqueway.b0.upaiyun.com/uploads/2014/12/7bfcb4e2-4949-41a2-9dd2-35da6691d6a1.jpg!h300"
-                                style="width: 326px; height: 244px;"></div>
-                        <div class="poi-name">游览卡特迈国家公园，7月看棕熊捕鱼的盛况，绝对令人难忘</div>
-                        <div class="poi-control-btn"><a href="javascript:;" data-id="653" class="control-btn like"><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_like.png"></a><a href="javascript:;"
-                                                                                                  data-id="653"
-                                                                                                  class="control-btn been "><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_been.png"></a></div>
                     </div>
-                    <div class="poi-item" data-poi-id="674" style="width: 366px; height: 244px; margin: 10px;">
-                        <div class="poi-img"><img
-                                src="http://uniqueway.b0.upaiyun.com/uploads/2014/12/c1b41d7c-8c98-4511-94eb-cf5574e5a6b6.jpg!h300"
-                                style="width: 366px; height: 244px;"></div>
-                        <div class="poi-name">游览迪纳利国家公园，可以看到壮观的北美最高峰麦金利山</div>
-                        <div class="poi-control-btn"><a href="javascript:;" data-id="674" class="control-btn like"><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_like.png"></a><a href="javascript:;"
-                                                                                                  data-id="674"
-                                                                                                  class="control-btn been "><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_been.png"></a></div>
-                    </div>
-                    <div class="poi-item" data-poi-id="726" style="width: 368px; height: 244px; margin: 10px;">
-                        <div class="poi-img"><img
-                                src="http://uniqueway.b0.upaiyun.com/uploads/2014/12/c76b05c9-b2e7-4204-8128-c2346758fde1.jpg!h300"
-                                style="width: 368px; height: 244px;"></div>
-                        <div class="poi-name">在费尔班克斯看极光，亲眼见证终生难忘的景色</div>
-                        <div class="poi-control-btn"><a href="javascript:;" data-id="726" class="control-btn like"><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_like.png"></a><a href="javascript:;"
-                                                                                                  data-id="726"
-                                                                                                  class="control-btn been "><img
-                                src="http://uniqueway.b0.upaiyun.com/assets/icon_been.png"></a></div>
+                    <div class="control-block clearfix">
+
+                        <a href="javascript:;" data-id="1" class="control-btn been"><img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_been-dda774d07a315b416d45a73b6d62d142.png" alt="Icon been"><span>去过</span></a>
+                        <a href="javascript:;" data-id="1" class="control-btn like"><img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_like-3892e630b15365ef50a9a6be95fabdd9.png" alt="Icon like"><span>想去</span></a>
+
+                        <a href="javascript:;" class="change-button hidden-xs"><img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_refresh_blue-7ff7c01d7ff547020ce32262bac8ef32.png" alt="Icon refresh blue"><span>换一个好玩的</span></a>
                     </div>
                 </div>
 
-            </div>
-            <div class="more-pois-btn" data-skip="11" data-destination-id="3" style="display: block;">加载更多</div>
-        </div>
 
+                <div id="lightbox-light-box" class="image-slider lightbox slide">
+                    <div class="lightbox-inner" role="listbox">
 
+                    </div>
+                    <a class="left lightbox-control" href="javascript:;" data-slid="prev">
+                        <img class="glyphicon-chevron-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png" alt="Icon light box left">
+                    </a>
+                    <a class="right lightbox-control" href="javascript:;" data-slid="next">
+                        <img class="glyphicon-chevron-right" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png" alt="Icon light box right">
+                    </a>
 
-        <div class="container">
-            <div class="booking-block" id="booking-block">
-                <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block">定制你的旅行 &gt;</a>
+                    <div class="lightbox-bottom">
+                        <div class="lightbox-poi-info">
+                            <div class="location-desc">
+                                <img src="http://uniqueway.b0.upaiyun.com/assets/icon_location.png">
+                                <span></span>
+                            </div>
+                            <h1 class="lightbox-poi-title">
+                            </h1>
+                            <a href="javascript:;" class="content-collapse-btn"><span class="collapse-text">显示简介</span><span class="collapse-arrow up"></span></a>
+                        </div>
+                        <div class="lightbox-poi-content">
+                            <p class="abstract"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <span class="close">×</span>
             </div>
         </div>
     </div>
 </block>
 <block name="scripts">
-    <script src="http://www.google.cn/maps/api/js?key=cnjjk&sensor=false">
-    </script>
-
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
     <script>
-        function initialize()
+        var map = new BMap.Map("map");          // 创建地图实例
+        var point = new BMap.Point(20, 20);  // 创建点坐标
+        map.centerAndZoom(point,4);                 // 初始化地图，设置中心点坐标和地图级别
+        <volist name='list' id='vo'>
+        createMarker({$vo.id},{$vo.lon},{$vo.lat},"{$vo.name}","{$vo.img}","{$vo.title}","{$vo.excerpt}");
+        </volist>
+        function createMarker(id,lon,lat,name,img,title,excerpt)
         {
-            var mapProp = {
-                center:new google.maps.LatLng(51.508742,-0.120850),
-                zoom:5,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
-            };
-            var map=new google.maps.Map(document.getElementById("mapdiv")
-                    ,mapProp);
+            var point = new BMap.Point(lon,lat);
+            var marker = new BMap.Marker(point);  // 创建标注
+            var sContent='<div class="gm-style-iw" style="top: 9px; position: absolute; left: 15px; width: 323px;">' +
+                    '<div style="display: inline-block; overflow: auto; max-height: 266px; max-width: 654px;">' +
+                    '<div style="overflow: auto;">' +
+                    '<div class="poi-gmap-item" data-poi-id="'+id+'">' +
+                    '<img src="'+img+'" id="img_'+id+'">' +
+                    '<h5>'+title+'</h5>' +
+        '<p>'+excerpt+'</p></div></div></div></div>';
+            var infoWindow = new BMap.InfoWindow(sContent); //创建信息框
+            map.addOverlay(marker);              // 将标注添加到地图中
+            var label = new BMap.Label(name,{offset:new BMap.Size(0,-15)});
+            marker.setLabel(label);
+            marker.addEventListener("click",function(){
+                    this.openInfoWindow(infoWindow);
+                    //图片加载完毕重绘infowindow
+                    document.getElementById('img_'+id).onload = function (){
+                        infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+                    }
+            });
         }
 
-        google.maps.event.addDomListener(window, 'load', initialize);
+        function destinationDataInit(id,page)
+        {
+            $.ajax({
+                cache: true,
+                type: "get",
+                url: '/index/destination_data?id='+id,
+                async: false,
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success: function(data) {
+                    if(data.status==1)
+                    {
+                        $('.pois-container').show();
+                        var html='';
+                        $.each(data.data, function(i,obj){
+                            html+='<div class="poi-item" data-poi-id="'+obj.id+'" style=" margin: 10px;">'+
+                            '<div class="poi-img"><img src="'+obj.photo+'"  style="width:100%;"></div>'+
+                            '<div class="poi-name">'+obj.title+'</div>'+
+                            '<div class="poi-control-btn"><a href="javascript:;" data-id="'+obj.id+'" class="control-btn like">' +
+                            '<img src="__TMPL__Public/images/icon_like.png"></a><a href="javascript:;" data-id="'+obj.id+'" class="control-btn been ">' +
+                            '<img src="__TMPL__Public/images/icon_been.png"></a></div></div>';
+                        });
+                        $('.pois-container .poi-row').html(html);
+                    }else{
+                        alert(data.info);
+                    }
+                }
+            });
+        }
     </script>
+    <script src="__TMPL__Public/js/fastclick.min.js"></script>
+    <script src="__TMPL__Public/js/application.js"></script>
 </block>

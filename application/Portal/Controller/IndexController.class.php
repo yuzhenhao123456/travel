@@ -105,6 +105,50 @@ class IndexController extends HomeBaseController {
 
     function wish_map()
     {
+        $user=sp_get_current_userid();
+        if(!$user)
+        {
+            $this->error("请先登录");
+        }
+        $where['a.user']=$user;
+        $where['a.user']=$user;
+        $list=M('destination_log')->alias('a')->field('a.*,b.area_id,b.city,b.lon,b.lat,b.title,b.smeta,b.excerpt,c.name,c.icon,c.full_name')
+            ->join(C('DB_PREFIX').'destination b on a.dest_id=b.id')
+            ->join(C('DB_PREFIX').'area c on b.area_id=c.id')
+            ->where($where)->select();
+        $areas_like=array();
+        $areas_been=array();
+        $like=0;
+        $been=0;
+        foreach($list as $k=>$v)
+        {
+            $smeta=json_decode($v['smeta'],true);
+            $list[$k]['img']=sp_get_asset_upload_path($smeta['phone'][0]['url']);
+            if($v['is_like'])
+            {
+                $like++;
+                $areas_like[$v['area_id']]['like']++;
+                $areas_like[$v['area_id']]['name']=$v['name'];
+                $areas_like[$v['area_id']]['icon']=$v['icon'];
+                $areas_like[$v['area_id']]['full_name']=$v['full_name'];
+            }
+
+            if($v['is_been'])
+            {
+                $been++;
+                $areas_been[$v['area_id']]['full_name']=$v['full_name'];
+                $areas_been[$v['area_id']]['name']=$v['name'];
+                $areas_been[$v['area_id']]['icon']=$v['icon'];
+                $areas_been[$v['area_id']]['been']++;
+            }
+
+
+        }
+        $this->assign('list',$list);
+        $this->assign('areas_like',$areas_like);
+        $this->assign('areas_been',$areas_been);
+        $this->assign('like',$like);
+        $this->assign('been',$been);
         $this->display(":wish_map");
     }
 
@@ -152,7 +196,6 @@ class IndexController extends HomeBaseController {
 					M('destination_log')->save($info);
 					M('users')->where('id='.$user)->setInc('like_num');
 					$_SESSION['user']['like_num']++;
-
 				}
 			}else{
 				if($info['is_been'])
@@ -190,7 +233,6 @@ class IndexController extends HomeBaseController {
 				$_SESSION['user']['been_num']++;
 			}
 			$this->ajaxReturn(array('status'=>1,'operation'=>$operation,'type'=>$type));
-
 		}
 	}
 
