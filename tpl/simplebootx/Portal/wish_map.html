@@ -184,19 +184,66 @@
         function showPoiLightBox(t) {
             var e, n, i, o, s, r, a, l, c, u, p;
             for (e = $(".poi-light-box,.mobile-poi-light-box"), $("html,body").data("not_scroll", !0).css("overflow", "hidden"), e.attr("data-id", t.id).show().find("h1").text(t.name).attr("title", t.name).end().find(".bottom-desc h1").text(t.name).end().find(".base-info p").text(m(t.desc, 45)).attr("title", t.desc).end().find(".bottom-desc p").text(m(t.desc, 150)).end().find(".lightbox-poi-content p").text(t.desc).end().find(".location-desc span").text(t.location), o = "", a = "", i = !0, r = 0, u = $(".mobile-poi-light-box .lightbox-inner"), u.length && u.css("marginTop", .5 * ($(window).height() - 200) - 44), p = t.images, l = 0, c = p.length; c > l; l++)s = p[l], n = "", i && (i = !1, n = "active"), a += '<div class="image-item ' + n + '" data-target="#main-light-box" data-slid-to="' + r + '">\n  <img src="' + s + '">\n</div>', o += '<div class="item ' + n + ' image-slide-item">\n  <img src="' + s + '">\n</div>', r++;
-            return e.find(".photo-album-list").html(a).end().find(".lightbox-inner").html(o), h(e, t), d(e, t.id)
+            e.find(".photo-album-list").html(a).end().find(".lightbox-inner").html(o);
+            btn_status(t);
+            return 1;
+        }
+
+        function btn_status(data)
+        {
+            $('.control-btn.been').attr('data-poi-id',data.id);
+            $('.control-btn.like').attr('data-poi-id',data.id);
+            if(data.been)
+            {
+                $('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_been_on.png");
+            }else{
+                $('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_been.png");
+            }
+            if(data.like)
+            {
+                $('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_like_on.png");
+            }else{
+                $('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_like_on.png");
+            }
         }
 
         function h(t, e) {
+            alert(1);
             var n, i, o, s, r, a, l, c;
             for (r = ["like", "been"], a = [], o = 0, s = r.length; s > o; o++)l = r[o], i = e[l], n = t.find("." + l), !window.current_user && window.localStorage && window.localStorage[l] && (c = JSON.parse(window.localStorage[l]), i = c["" + e.id]), a.push(p(n, l, i));
             return a
         }
         function d(t, e) {
+            alert(2);
             var n, i, o, s, r, a;
             for (s = ["like", "been"], r = [], i = 0, o = s.length; o > i; i++)a = s[i], n = t.find("." + a), r.push(n.attr("data-id", e));
             return r
         }
+
+        function m(t, e) {
+            return t.length > e ? t.substr(0, e - 3) + "..." : t
+        }
+        function r() {
+            alert(4);
+            var t, e, n, i, o, s, r;
+            if (r = 0, t = 0, window.localStorage.like) {
+                o = JSON.parse(window.localStorage.like);
+                for (n in o)s = o[n], s === !0 && r++
+            }
+            if (window.localStorage.been) {
+                i = JSON.parse(window.localStorage.been);
+                for (n in i)s = i[n], s === !0 && t++
+            }
+            return e = {like_count: r, been_count: t}
+        }
+
+        function p(t, e, n, i) {
+            alert(5);
+            var o;
+            return o = "http://uniqueway.b0.upaiyun.com/assets/", t.removeClass("on").find("img").attr("src", o + "icon_" + e + ".png"), n && t.addClass("on").find("img").attr("src", o + "icon_" + e + "_on.png"), i && $(".wish-map-btn").is(":visible") ? t.hasClass("on") ? t.hasClass("like") ? $("body").append('<img alt="Icon like" src="http://uniqueway.b0.upaiyun.com/assets/icon_like_on.png" style="position:fixed;z-index:99999999;left:' + $("img", t).offset().left + "px;top:" + ($("img", t).offset().top - $(document).scrollTop()) + 'px"class="like-ani">').animation_like("red", i) : $("body").append('<img alt="Icon like" src="http://uniqueway.b0.upaiyun.com/assets/icon_been_on.png" style="position:fixed;z-index:99999999;left:' + $("img", t).offset().left + "px;top:" + ($("img", t).offset().top - $(document).scrollTop()) + 'px"class="like-ani">').animation_like("#00c500", i) : ($(".J_wish_num").text(i.like_count + i.been_count), $(".like-num span").text(i.like_count), $(".been-num span").text(i.been_count)) : void 0
+        }
+
+
     </script>
 
 </block>
