@@ -9,55 +9,68 @@
     <div class="row">
         <div id="map-container">
             <div class="container">
-                <div id="map" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);"></div>
+                <div id="map"
+                     style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);"></div>
             </div>
         </div>
         <div class="map-bottom">
             <div class="wish-bottom-header">
                 <div class="been-like-btn">
                     <a class="like-item on" href="javascript:;">
-                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_little_like-eb89e126f799d9bf2d91dda2d1ab73c3.png" alt="Icon little like">我想去({$like})
-                    </a>      <a class="been-item" href="javascript:;">
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_little_been-8e6cb03fabf5dc006841a58df005b4c4.png" alt="Icon little been">我去过({$been})
-                </a>      <a class="add-fav-btn" href="javascript:;">
+                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_little_like-eb89e126f799d9bf2d91dda2d1ab73c3.png"
+                             alt="Icon little like">我想去({$like})
+                    </a> <a class="been-item" href="javascript:;">
+                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_little_been-8e6cb03fabf5dc006841a58df005b4c4.png"
+                         alt="Icon little been">我去过({$been})
+                </a> <a class="add-fav-btn" href="javascript:;">
                     <i class="plus-icon">+</i> 添加心愿
-                </a>    </div>
+                </a></div>
             </div>
             <div class="bottom-wish-items">
-                <div class="like-item item-list clearfix" style="width: {:$like*140}px;" >
-                    <div class="item-container" style="width: {:$like*140}px;" >
-                        <volist name="areas_like" id="vo" >
-                        <div class="item" data-mark="1">
-                            <img src="{:sp_get_asset_upload_path($vo['icon'])}">
-                            <span class="number">{$vo.like}</span>
-                            <h5>{$vo.name}</h5>
-                            <p>{$vo.full_name}</p>
-                        </div>
-                        </volist>
-                    </div>
-                    <a class="left arrow" href="javascript:;">
-                        <img class="glyphicon-chevron-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png" alt="Icon light box left">
-                    </a>
-                    <a class="right arrow" href="javascript:;">
-                        <img class="glyphicon-chevron-right" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png" alt="Icon light box right">
-                    </a>
-                </div>
-                <div class="been-item item-list clearfix" style="display: none;width: {:$been*140}px;">
-                    <div class="item-container" style="width: {:$been*140}px;">
-                        <volist name="areas_been" id="vo" >
+                <div class="like-item item-list clearfix" style="width: {:$like*140}px;">
+                    <div class="item-container" style="width: {:$like*140}px;">
+                        <volist name="areas_like" id="vo">
                             <div class="item" data-mark="1">
                                 <img src="{:sp_get_asset_upload_path($vo['icon'])}">
-                                <span class="number">{$vo.been}</span>
+                                <span class="number">{$vo.like}</span>
                                 <h5>{$vo.name}</h5>
+
                                 <p>{$vo.full_name}</p>
                             </div>
                         </volist>
                     </div>
                     <a class="left arrow" href="javascript:;">
-                        <img class="glyphicon-chevron-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png" alt="Icon light box left">
+                        <img class="glyphicon-chevron-left"
+                             src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png"
+                             alt="Icon light box left">
                     </a>
                     <a class="right arrow" href="javascript:;">
-                        <img class="glyphicon-chevron-right" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png" alt="Icon light box right">
+                        <img class="glyphicon-chevron-right"
+                             src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png"
+                             alt="Icon light box right">
+                    </a>
+                </div>
+                <div class="been-item item-list clearfix" style="display: none;width: {:$been*140}px;">
+                    <div class="item-container" style="width: {:$been*140}px;">
+                        <volist name="areas_been" id="vo">
+                            <div class="item" data-mark="1">
+                                <img src="{:sp_get_asset_upload_path($vo['icon'])}">
+                                <span class="number">{$vo.been}</span>
+                                <h5>{$vo.name}</h5>
+
+                                <p>{$vo.full_name}</p>
+                            </div>
+                        </volist>
+                    </div>
+                    <a class="left arrow" href="javascript:;">
+                        <img class="glyphicon-chevron-left"
+                             src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png"
+                             alt="Icon light box left">
+                    </a>
+                    <a class="right arrow" href="javascript:;">
+                        <img class="glyphicon-chevron-right"
+                             src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png"
+                             alt="Icon light box right">
                     </a>
                 </div>
             </div>
@@ -69,19 +82,27 @@
 
                     <div class="more-info">
                         <h5>
-                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_pic-4c73e267e71714bd94c6fa9d91dd2716.png" alt="Icon pic">
+                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_pic-4c73e267e71714bd94c6fa9d91dd2716.png"
+                                 alt="Icon pic">
                             相关图片
                         </h5>
+
                         <div class="photo-album-list clearfix">
                         </div>
 
                     </div>
                     <div class="control-block clearfix">
 
-                        <a href="javascript:;" data-id="1" class="control-btn been"><img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_been-dda774d07a315b416d45a73b6d62d142.png" alt="Icon been"><span>去过</span></a>
-                        <a href="javascript:;" data-id="1" class="control-btn like"><img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_like-3892e630b15365ef50a9a6be95fabdd9.png" alt="Icon like"><span>想去</span></a>
+                        <a href="javascript:;" data-id="1" class="control-btn been"><img
+                                src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_been-dda774d07a315b416d45a73b6d62d142.png"
+                                alt="Icon been"><span>去过</span></a>
+                        <a href="javascript:;" data-id="1" class="control-btn like"><img
+                                src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_like-3892e630b15365ef50a9a6be95fabdd9.png"
+                                alt="Icon like"><span>想去</span></a>
 
-                        <a href="javascript:;" class="change-button hidden-xs"><img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_refresh_blue-7ff7c01d7ff547020ce32262bac8ef32.png" alt="Icon refresh blue"><span>换一个好玩的</span></a>
+                        <a href="javascript:;" class="change-button hidden-xs"><img
+                                src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_refresh_blue-7ff7c01d7ff547020ce32262bac8ef32.png"
+                                alt="Icon refresh blue"><span>换一个好玩的</span></a>
                     </div>
                 </div>
 
@@ -91,10 +112,14 @@
 
                     </div>
                     <a class="left lightbox-control" href="javascript:;" data-slid="prev">
-                        <img class="glyphicon-chevron-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png" alt="Icon light box left">
+                        <img class="glyphicon-chevron-left"
+                             src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_left-3d3ffc238b9194b479b1093c407c9558.png"
+                             alt="Icon light box left">
                     </a>
                     <a class="right lightbox-control" href="javascript:;" data-slid="next">
-                        <img class="glyphicon-chevron-right" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png" alt="Icon light box right">
+                        <img class="glyphicon-chevron-right"
+                             src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_light_box_right-4ac2c901b5ce14a51eb4bd90d45528ac.png"
+                             alt="Icon light box right">
                     </a>
 
                     <div class="lightbox-bottom">
@@ -105,7 +130,8 @@
                             </div>
                             <h1 class="lightbox-poi-title">
                             </h1>
-                            <a href="javascript:;" class="content-collapse-btn"><span class="collapse-text">显示简介</span><span class="collapse-arrow up"></span></a>
+                            <a href="javascript:;" class="content-collapse-btn"><span
+                                    class="collapse-text">显示简介</span><span class="collapse-arrow up"></span></a>
                         </div>
                         <div class="lightbox-poi-content">
                             <p class="abstract"></p>
@@ -120,68 +146,57 @@
 </block>
 <block name="scripts">
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+    <script src="__TMPL__Public/js/fastclick.min.js"></script>
+    <script src="__TMPL__Public/js/application.js"></script>
     <script>
         var map = new BMap.Map("map");          // 创建地图实例
         var point = new BMap.Point(20, 20);  // 创建点坐标
-        map.centerAndZoom(point,4);                 // 初始化地图，设置中心点坐标和地图级别
-        <volist name='list' id='vo'>
-        createMarker({$vo.id},{$vo.lon},{$vo.lat},"{$vo.name}","{$vo.img}","{$vo.title}","{$vo.excerpt}");
-        </volist>
-        function createMarker(id,lon,lat,name,img,title,excerpt)
-        {
-            var point = new BMap.Point(lon,lat);
+        map.centerAndZoom(point, 4);                 // 初始化地图，设置中心点坐标和地图级别
+        <volist name = 'list' id = 'vo' >
+        createMarker({$vo.dest_id},{$vo.lon},{$vo.lat},"{$vo.name}","{$vo.img}","{$vo.title}","{$vo.excerpt}");
+        </volist >
+        function createMarker(id, lon, lat, name, img, title, excerpt) {
+            var point = new BMap.Point(lon, lat);
             var marker = new BMap.Marker(point);  // 创建标注
-            var sContent='<div class="gm-style-iw" style="top: 9px; position: absolute; left: 15px; width: 323px;">' +
-                    '<div style="display: inline-block; overflow: auto; max-height: 266px; max-width: 654px;">' +
-                    '<div style="overflow: auto;">' +
-                    '<div class="poi-gmap-item" data-poi-id="'+id+'">' +
-                    '<img src="'+img+'" id="img_'+id+'">' +
-                    '<h5>'+title+'</h5>' +
-        '<p>'+excerpt+'</p></div></div></div></div>';
+            var sContent = '<div class="poi-gmap-item" data-poi-id="' + id + '" style="margin-top:8px;cursor:pointer;" onclick="showPoiItem(' + id + ')">' +
+                    '<img src="' + img + '" id="img_' + id + '">' +
+                    '<h5>' + title + '</h5>' +
+                    '<p>' + excerpt + '</p></div>';
             var infoWindow = new BMap.InfoWindow(sContent); //创建信息框
             map.addOverlay(marker);              // 将标注添加到地图中
-            var label = new BMap.Label(name,{offset:new BMap.Size(0,-15)});
+            var label = new BMap.Label(name, {offset: new BMap.Size(0, -15)});
             marker.setLabel(label);
-            marker.addEventListener("click",function(){
-                    this.openInfoWindow(infoWindow);
-                    //图片加载完毕重绘infowindow
-                    document.getElementById('img_'+id).onload = function (){
-                        infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
-                    }
-            });
-        }
-
-        function destinationDataInit(id,page)
-        {
-            $.ajax({
-                cache: true,
-                type: "get",
-                url: '/index/destination_data?id='+id,
-                async: false,
-                error: function(request) {
-                    alert("Connection error");
-                },
-                success: function(data) {
-                    if(data.status==1)
-                    {
-                        $('.pois-container').show();
-                        var html='';
-                        $.each(data.data, function(i,obj){
-                            html+='<div class="poi-item" data-poi-id="'+obj.id+'" style=" margin: 10px;">'+
-                            '<div class="poi-img"><img src="'+obj.photo+'"  style="width:100%;"></div>'+
-                            '<div class="poi-name">'+obj.title+'</div>'+
-                            '<div class="poi-control-btn"><a href="javascript:;" data-id="'+obj.id+'" class="control-btn like">' +
-                            '<img src="__TMPL__Public/images/icon_like.png"></a><a href="javascript:;" data-id="'+obj.id+'" class="control-btn been ">' +
-                            '<img src="__TMPL__Public/images/icon_been.png"></a></div></div>';
-                        });
-                        $('.pois-container .poi-row').html(html);
-                    }else{
-                        alert(data.info);
-                    }
+            marker.addEventListener("click", function () {
+                this.openInfoWindow(infoWindow);
+                //图片加载完毕重绘infowindow
+                document.getElementById('img_' + id).onload = function () {
+                    infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
                 }
             });
         }
+
+        function showPoiItem(id) {
+            $.getJSON("/poi_item", {id: id}, function (t) {
+                return showPoiLightBox(t)
+            });
+        }
+
+        function showPoiLightBox(t) {
+            var e, n, i, o, s, r, a, l, c, u, p;
+            for (e = $(".poi-light-box,.mobile-poi-light-box"), $("html,body").data("not_scroll", !0).css("overflow", "hidden"), e.attr("data-id", t.id).show().find("h1").text(t.name).attr("title", t.name).end().find(".bottom-desc h1").text(t.name).end().find(".base-info p").text(m(t.desc, 45)).attr("title", t.desc).end().find(".bottom-desc p").text(m(t.desc, 150)).end().find(".lightbox-poi-content p").text(t.desc).end().find(".location-desc span").text(t.location), o = "", a = "", i = !0, r = 0, u = $(".mobile-poi-light-box .lightbox-inner"), u.length && u.css("marginTop", .5 * ($(window).height() - 200) - 44), p = t.images, l = 0, c = p.length; c > l; l++)s = p[l], n = "", i && (i = !1, n = "active"), a += '<div class="image-item ' + n + '" data-target="#main-light-box" data-slid-to="' + r + '">\n  <img src="' + s + '">\n</div>', o += '<div class="item ' + n + ' image-slide-item">\n  <img src="' + s + '">\n</div>', r++;
+            return e.find(".photo-album-list").html(a).end().find(".lightbox-inner").html(o), h(e, t), d(e, t.id)
+        }
+
+        function h(t, e) {
+            var n, i, o, s, r, a, l, c;
+            for (r = ["like", "been"], a = [], o = 0, s = r.length; s > o; o++)l = r[o], i = e[l], n = t.find("." + l), !window.current_user && window.localStorage && window.localStorage[l] && (c = JSON.parse(window.localStorage[l]), i = c["" + e.id]), a.push(p(n, l, i));
+            return a
+        }
+        function d(t, e) {
+            var n, i, o, s, r, a;
+            for (s = ["like", "been"], r = [], i = 0, o = s.length; o > i; i++)a = s[i], n = t.find("." + a), r.push(n.attr("data-id", e));
+            return r
+        }
     </script>
-    <script src="__TMPL__Public/js/fastclick.min.js"></script>
-    <script src="__TMPL__Public/js/application.js"></script>
+
 </block>

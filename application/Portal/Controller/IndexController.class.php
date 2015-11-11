@@ -123,7 +123,8 @@ class IndexController extends HomeBaseController {
         foreach($list as $k=>$v)
         {
             $smeta=json_decode($v['smeta'],true);
-            $list[$k]['img']=sp_get_asset_upload_path($smeta['phone'][0]['url'],true);
+            $list[$k]['img']=sp_get_asset_upload_path($smeta['photo'][0]['url'],true);
+            $list[$k]['excerpt']=msubstr($v['excerpt'],0,100);
             if($v['is_like'])
             {
                 $like++;
