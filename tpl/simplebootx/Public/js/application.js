@@ -6529,7 +6529,7 @@ if (function (t, e) {
             return e = {like_count: r, been_count: t}
         }, (l = function () {
             var t;
-            return t = window.current_user ? window.current_user : r(), $(".J_wish_num").text(+t.like_count + +t.been_count), $(".like-num span").text(t.like_count), $(".been-num span").text(t.been_count)
+            return t = window.current_user ? window.current_user : r()/*, $(".J_wish_num").text(+t.like_count + +t.been_count), $(".like-num span").text(t.like_count), $(".been-num span").text(t.been_count)*/
         })()
     }), t = function () {
         var t, e, n, i, o, s, r, a, l;

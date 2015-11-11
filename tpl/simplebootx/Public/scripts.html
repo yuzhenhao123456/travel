@@ -222,6 +222,13 @@ var GV = {
 		});
 	});
 
+	$(Document).on('mouseover','.nav-lists .destination.dropdown',function(e){
+		$('.nav-lists .destination .dropdown-menu').show();
+	});
+	$(Document).on('mouseout','.nav-lists .destination.dropdown',function(e){
+		$('.nav-lists .destination .dropdown-menu').hide();
+	});
+
 
 </script>
 

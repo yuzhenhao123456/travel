@@ -144,6 +144,96 @@
         </div>
     </div>
 </block>
+<block name="footer">
+    <div id="login-dialog" class="dialog" style="display: none;">
+        <div class="bg"></div>
+        <div class="content">
+            <span class="close">×</span>
+            <div class="body">
+                <ul class="error-list"></ul>
+                <div class="title">
+                    <span>使用手机登录</span>
+                </div>
+                <div class="form login clearfix">
+                    <form class="login" action="/user/login/dologin" accept-charset="UTF-8" method="post" id="login_form">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input class="input-control phone" placeholder="用户名或者手机号" type="text" name="username" id="session_phone">
+                        <input class="input-control password" placeholder="密码" type="password" name="password" id="session_password">
+                        <input type="hidden" name="session[user_beens]" id="session_user_beens">
+                        <input type="hidden" name="session[user_likes]" id="session_user_likes">
+                        <div class="form-controls">
+                            <a class="login-btn" href="javascript:void(0)">登录</a>
+                            <a target="reg-dialog" class="reg-btn" href="javascript:void(0)">注册</a>
+                            <!--<a class="pull-left" href="/users/begin_password_reset">忘记密码?</a>-->
+                        </div>
+                    </form>      </div>
+                <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+        </div>
+    </div>
+    <!--<div id="init-reg-dialog" class="dialog" style="display: none;">
+        <div class="bg"></div>
+        <div class="content">
+            <span class="close">×</span>
+            <ul class="error-list"></ul>
+            <div class="body">
+                <div class="title">
+                    <span>使用手机注册</span>
+                </div>
+                <div class="form reg">
+                    <input type="text" name="phone" value="" class="input-control phone" placeholder="手机号">
+                    <div class="phone-captcha clearfix ">
+                        <input type="text" name="captcha" value="" class="input-control verify-code" placeholder="验证码">
+                        <a class="send_sms_code" href="javascript:void(0)">发送验证码</a>
+                    </div>
+
+                    <div class="form-controls">
+                        <a class="login-btn" href="javascript:;">立即注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div id="middle-reg-dialog" class="dialog" style="display: none;">
+        <div class="bg"></div>
+        <div class="content">
+            <span class="close">×</span>
+            <ul class="error-list"></ul>
+            <div class="body">
+                <div class="title">
+                    <span>账号注册</span>
+                </div>
+                <div class="form reg">
+                    <form class="reg" action="/user/register/doregister" accept-charset="UTF-8" method="post" id="reg_form">
+                        <input name="utf8" type="hidden" value="✓">
+                        <input class="input-control name" placeholder="手机号" type="text" name="mobile" id="registrations_name">
+                        <input class="input-control name" placeholder="昵称" type="text" name="username" id="registrations_name">
+                        <input class="input-control password" placeholder="密码" type="password" name="password" id="registrations_password">
+                        <input class="input-control password_confirmation" placeholder="重复密码" type="password" name="repassword" id="registrations_password_confirmation">
+                        <div class="form-controls">
+                            <a class="login-btn finish-btn" href="javascript:;">完成</a>
+                        </div>
+                    </form>      </div>
+            </div>
+        </div>
+    </div>
+    <div id="finish-all-dialog" class="dialog" style="display: none;">
+        <div class="bg"></div>
+        <div class="content">
+            <span class="close">×</span>
+            <span class="error-list"></span>
+            <div class="body">
+                <div class="title">
+                    <span>注册成功</span>
+                </div>
+                <div class="form reg">
+                    <img class="success-icon" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/icon_success-7c28974ac8d630ec9312fb108991f691.png" alt="Icon success">
+                    <p class="tips">恭喜你注册成功!</p>
+                    <!-- <a target="login-dialog" class="link" href="/users/sign_in">登录</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
 <block name="scripts">
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
     <script src="__TMPL__Public/js/fastclick.min.js"></script>
@@ -201,47 +291,30 @@
             }
             if(data.like)
             {
-                $('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_like_on.png");
+                $('.control-btn.like').find('img').attr('src',"__TMPL__Public/images/icon_like_on.png");
             }else{
-                $('.control-btn.been').find('img').attr('src',"__TMPL__Public/images/icon_like.png");
+                $('.control-btn.like').find('img').attr('src',"__TMPL__Public/images/icon_like.png");
             }
         }
 
-        function h(t, e) {
-            alert(1);
-            var n, i, o, s, r, a, l, c;
-            for (r = ["like", "been"], a = [], o = 0, s = r.length; s > o; o++)l = r[o], i = e[l], n = t.find("." + l), !window.current_user && window.localStorage && window.localStorage[l] && (c = JSON.parse(window.localStorage[l]), i = c["" + e.id]), a.push(p(n, l, i));
-            return a
-        }
-        function d(t, e) {
-            alert(2);
-            var n, i, o, s, r, a;
-            for (s = ["like", "been"], r = [], i = 0, o = s.length; o > i; i++)a = s[i], n = t.find("." + a), r.push(n.attr("data-id", e));
-            return r
-        }
 
         function m(t, e) {
             return t.length > e ? t.substr(0, e - 3) + "..." : t
         }
-        function r() {
-            alert(4);
-            var t, e, n, i, o, s, r;
-            if (r = 0, t = 0, window.localStorage.like) {
-                o = JSON.parse(window.localStorage.like);
-                for (n in o)s = o[n], s === !0 && r++
-            }
-            if (window.localStorage.been) {
-                i = JSON.parse(window.localStorage.been);
-                for (n in i)s = i[n], s === !0 && t++
-            }
-            return e = {like_count: r, been_count: t}
-        }
 
-        function p(t, e, n, i) {
-            alert(5);
-            var o;
-            return o = "http://uniqueway.b0.upaiyun.com/assets/", t.removeClass("on").find("img").attr("src", o + "icon_" + e + ".png"), n && t.addClass("on").find("img").attr("src", o + "icon_" + e + "_on.png"), i && $(".wish-map-btn").is(":visible") ? t.hasClass("on") ? t.hasClass("like") ? $("body").append('<img alt="Icon like" src="http://uniqueway.b0.upaiyun.com/assets/icon_like_on.png" style="position:fixed;z-index:99999999;left:' + $("img", t).offset().left + "px;top:" + ($("img", t).offset().top - $(document).scrollTop()) + 'px"class="like-ani">').animation_like("red", i) : $("body").append('<img alt="Icon like" src="http://uniqueway.b0.upaiyun.com/assets/icon_been_on.png" style="position:fixed;z-index:99999999;left:' + $("img", t).offset().left + "px;top:" + ($("img", t).offset().top - $(document).scrollTop()) + 'px"class="like-ani">').animation_like("#00c500", i) : ($(".J_wish_num").text(i.like_count + i.been_count), $(".like-num span").text(i.like_count), $(".been-num span").text(i.been_count)) : void 0
-        }
+        $(Document).on('click','.been-like-btn .like-item',function(e){
+            $('.been-like-btn .like-item').addClass('on');
+            $('.been-like-btn .been-item').removeClass('on');
+            $('.bottom-wish-items .like-item').show();
+            $('.bottom-wish-items .been-item').hide();
+        });
+        $(Document).on('click','.been-like-btn .been-item',function(e){
+            $('.been-like-btn .been-item').addClass('on');
+            $('.been-like-btn .like-item').removeClass('on');
+            $('.bottom-wish-items .been-item').show();
+            $('.bottom-wish-items .like-item').hide();
+        });
+
 
 
     </script>
