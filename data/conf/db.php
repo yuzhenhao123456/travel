@@ -7,8 +7,8 @@ return array(
     'DB_TYPE' => 'mysql',
     'DB_HOST' => '127.0.0.1',
     'DB_NAME' => 'travel',
-    'DB_USER' => 'root',
-    'DB_PWD' => 'root',
+    'DB_USER' => 'weiweily',
+    'DB_PWD' => 'weiweily@123',
     'DB_PORT' => '3306',
     'DB_PREFIX' => 'y_',
     //密钥
