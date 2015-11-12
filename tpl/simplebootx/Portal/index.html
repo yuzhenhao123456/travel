@@ -161,21 +161,20 @@
                 <h3 class="welcome-item-title"><span class="title">旅行定制师</span>这是最酷，也是最辛苦的职业</h3>
                 <div id="travel-tailor-slide" class="carousel slide travel-tailor-slide hidden-xs">
                     <ol class="carousel-indicators">
-                        <li data-target="#travel-tailor-slide" data-slide-to="0" class="active"></li>
-                        <li data-target="#travel-tailor-slide" data-slide-to="1"></li>
-                        <li data-target="#travel-tailor-slide" data-slide-to="2"></li>
+                        <volist name="top_makers" key="k" id="vo">
+                        <li data-target="#travel-tailor-slide" data-slide-to="{:$k-1}" class="{:$k==1?'active':''}"></li>
+                        </volist>
                     </ol>
 
                     <div class="carousel-inner">
-                        <a href="/stories/2" class="item iris active">
-                            <div class="travel-tailor-banner">“让行走，丰盛你的生命和灵魂”</div>
-                        </a>
-                        <a href="/stories/3" class="item leitao">
-                            <div class="travel-tailor-banner">“不和当地人用当地话聊几句可怎么行”</div>
-                        </a>
-                        <a href="/stories/4" class="item sida">
-                            <div class="travel-tailor-banner">“带她上路吧，答案就在旅途中”</div>
-                        </a>
+                        <volist name="top_makers" key="k" id="vo">
+                            <php>
+                                $smeta=json_decode($vo['smeta'], true);
+                            </php>
+                            <a href="/stories/{$vo.id}" class="item{:$k==1?'active':''}" style="background-image: url({:sp_get_asset_upload_path($smeta['thumb'])})">
+                                <div class="travel-tailor-banner">“{$vo.title}”</div>
+                            </a>
+                        </volist>
                     </div>
 
                     <a class="slide-control left" href="#travel-tailor-slide" role="button" data-slide="prev">
@@ -185,9 +184,6 @@
                         <img src="http://uniqueway-assets.b0.upaiyun.com/assets/right-arrow-thin-e13fadfa7dc12535fc35cc7a0fc53c49.png" alt="Right arrow thin">
                     </a>
 
-                </div>
-                <div class="visible-xs iris-block">
-                    <div class="bottom-banner">“让行走，丰盛你的生命和灵魂”</div>
                 </div>
                 <a class="more-link" href="/our_story">更多定制师的故事 &gt;&gt;</a>
             </div>
