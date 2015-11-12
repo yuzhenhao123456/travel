@@ -171,7 +171,7 @@
                             <php>
                                 $smeta=json_decode($vo['smeta'], true);
                             </php>
-                            <a href="/stories/{$vo.id}" class="item{:$k==1?'active':''}" style="background-image: url({:sp_get_asset_upload_path($smeta['thumb'],true)})">
+                            <a href="/stories/{$vo.id}" class="item {:$k==1?'active':''}" style="background-image: url({:sp_get_asset_upload_path($smeta['thumb'],true)});">
                                 <div class="travel-tailor-banner">“{$vo.title}”</div>
                             </a>
                         </volist>
