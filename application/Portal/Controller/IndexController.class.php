@@ -18,6 +18,14 @@ class IndexController extends HomeBaseController {
 	 * Author: Jason
 	 */
 	public function index() {
+        $where=array(
+            "a.is_top"=>1,
+            'a.user_type'=>1,
+            'a.user_status'=>1,
+            'a.travel_maker'=>1
+        );
+        $top_makers=M('users')->field('a.*,b.smeta')->alias('a')->join(C('DB_PREFIX').'posts b on a.story_id=b.id','left')->where($where)->order('a.get_like DESC')->select();
+        $this->assign('top_makers',$top_makers);
     	$this->display(":index");
     }
 	/**

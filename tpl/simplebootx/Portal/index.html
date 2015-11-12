@@ -195,62 +195,45 @@
         <ul class="their-story-container their-story-item-list container clearfix">
             <h3 class="welcome-item-title"><span class="title">他们的定制旅行</span>一次美好的旅行，应该是有温度的</h3>
             <div class="row">
-                <li class="first col-xs-12 col-sm-6 col-md-4">
-                    <div class="cover">
-                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/newzealand-a1911cedfac5b07deed016e2141d26d0.jpg" alt="Newzealand">
-                        <div class="dest_icon">
-                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/nz_icon-3fcbd43830c9f66669b1e5b143479b3a.svg" alt="Nz icon">
-                            <p>新西兰</p>
+                <php>
+                    $lists = sp_sql_posts_paged("cid:3;order:post_date DESC;",3);
+                </php>
+                <volist name="lists['posts']" id="vo">
+                    <php>
+                        $smeta=json_decode($vo['smeta'], true);
+                        $photos=$smeta['photo'];
+                        $icon='';
+                        foreach($photos as $photo)
+                        {
+                        if($photo['alt']=='icon')
+                        {
+                        $icon = $photo;
+                        }
+                        }
+                        if($icon=='')
+                        {
+                        $icon=$photos[0];
+                        }
+                    </php>
+                    <li class="first col-xs-12 col-sm-6 col-md-4">
+                        <div class="cover">
+                            <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="Newzealand">
+                            <div class="dest_icon">
+                                <img src="{:sp_get_asset_upload_path($icon['url'])}" alt="{$icon['alt']}">
+                                <p>{$vo.post_title}</p>
+                            </div>
+                            <div class="story_info">
+                                <img src="__TMPL__Public/images/days.png" alt="Days"> <span>{$vo.day}天</span>
+                                <img class="p_num" src="__TMPL__Public/images/p_num.png" alt="P num"> <span>{$vo.people_num}人</span>
+                            </div>
+                            <img class="cover-bg" src="{:sp_get_asset_upload_path($photo['url'])}" alt="{$photo['alt']}">
+                            <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+                        <div class="desc">
+                            <h5>定制旅行总花费：{$vo.post_source}元/人</h5>
+                            <p>{$vo['post_excerpt']}</p>
                         </div>
-                        <div class="story_info">
-                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/days-df6f4a740e2e5a7f72f9ec11207cc9bd.png" alt="Days"> <span>16天</span>
-                            <img class="p_num" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/p_num-99cb5c126ccb1ecc39d8a9bef10b080f.png" alt="P num"> <span>2人</span>
-                        </div>
-                        <img class="cover-bg" src="http://uniqueway-assets.b0.upaiyun.com/assets/their_story/bg1-f3bbf3d32e00c4370747625e5dbc76f5.png" alt="Bg1">
-                    </div>
-                    <div class="desc">
-                        <h5>定制旅行总花费：28550元/人</h5>
-                        <p>“指环王里称这片土地为中土世界，来过的人说它是世界上最后一片净土，当我站在Eden Mountain，从山顶看着奥克兰，我就信了，多谢无二告诉我这个地方，犹如梦中” &nbsp; By 安小乔</p>
-                    </div>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="cover">
-                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/australia-35ed252f285f6c2fa50fd1d731dab5cb.jpg" alt="Australia">
-                        <div class="dest_icon">
-                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/aus_icon-54c08cec130f6a96413a6614b630ffaf.svg" alt="Aus icon">
-                            <p>澳大利亚</p>
-                        </div>
-                        <div class="story_info">
-                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/days-df6f4a740e2e5a7f72f9ec11207cc9bd.png" alt="Days"> <span>16天</span>
-                            <img class="p_num" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/p_num-99cb5c126ccb1ecc39d8a9bef10b080f.png" alt="P num"> <span>2人</span>
-                        </div>
-                        <img class="cover-bg" src="http://uniqueway-assets.b0.upaiyun.com/assets/their_story/bg2-d5602da1f34daa0b9153e3b4e9f812fd.png" alt="Bg2">
-                    </div>
-                    <div class="desc">
-                        <h5>定制旅行总花费：23620元/人</h5>
-                        <p>“我们的船长能在嘈杂的音乐声中听到海龟海豹的呼吸声，能呼唤老鹰，知道哪片海最美最大的是哪条鱼，知道星星的名字。他就像海上的人猿泰山。感谢爸爸妈妈让我出现在这么美的世界上” &nbsp;By 铁铁
-                        </p>
-                    </div>
-                </li>
-                <li class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="cover">
-                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/nordic-21d5bc5e5d582412bc501f43942626f1.jpg" alt="Nordic">
-                        <div class="dest_icon">
-                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/nordic_icon-6ec60aa56641de7c63f8b3254a52fcb3.svg" alt="Nordic icon">
-                            <p>北欧</p>
-                        </div>
-                        <div class="story_info">
-                            <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/days-df6f4a740e2e5a7f72f9ec11207cc9bd.png" alt="Days"> <span>11天</span>
-                            <img class="p_num" src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/their_story_block/p_num-99cb5c126ccb1ecc39d8a9bef10b080f.png" alt="P num"> <span>3人</span>
-                        </div>
-                        <img class="cover-bg" src="http://uniqueway-assets.b0.upaiyun.com/assets/their_story/bg3-d3584757820ac3e7d6115e1422060f99.png" alt="Bg3">
-                    </div>
-                    <div class="desc">
-                        <h5>定制旅行总花费：31330元/人  </h5>
-                        <p>“带着一岁多的娃去看极光的旅行：坐飞机从北京到赫尔辛基，然后乘夜火车进入北极圈，玩转罗瓦涅米圣诞老人村，再自驾到希尔克内斯，最后坐邮轮到特罗姆瑟，回顾一下行程也是醉了~幸运的是我们运气超好，看到极光大爆发，被震撼到了！”by 景婷
-                        </p>
-                    </div>
-                </li>
+                    </li>
+                </volist>
             </div>
             <a class="more-link" style="margin-top:0;" href="/their_story">更多他们的故事 &gt;&gt;</a>
         </ul>
