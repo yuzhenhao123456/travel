@@ -84,7 +84,7 @@ $configs= array(
 			'__UPLOAD__' => __ROOT__.'/data/upload/',
 			'__STATICS__' => __ROOT__.'/statics/',
 		),
-	    'PHONE'=>'400 890 3040'
+	    'PHONE'=>'15951815184'
 );
 
 /* if(!APP_DEBUG){
