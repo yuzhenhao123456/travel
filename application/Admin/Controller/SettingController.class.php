@@ -41,6 +41,7 @@ class SettingController extends AdminbaseController{
 			$configs["SP_DEFAULT_THEME"]=$_POST['options']['site_tpl'];
 			$configs["DEFAULT_THEME"]=$_POST['options']['site_tpl'];
 			$configs["SP_ADMIN_STYLE"]=$_POST['options']['site_adminstyle'];
+			$configs["SITE_PHONE"]=$_POST['options']['site_phone'];
 			$configs["URL_MODEL"]=$_POST['options']['urlmode'];
 			$configs["URL_HTML_SUFFIX"]=$_POST['options']['html_suffix'];
 			$configs["UCENTER_ENABLED"]=empty($_POST['options']['ucenter_enabled'])?0:1;
