@@ -208,8 +208,9 @@ a img {
     width: 227px
 }
 
-.nav-bar .nav-logo img {
-    width: 100%
+.nav-bar .nav-logo img{
+    float:right;
+    width: auto;
 }
 
 .nav-bar .nav-lists {
