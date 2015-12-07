@@ -2,32 +2,74 @@
 <block name="css">
     <link href="__TMPL__Portal/css/travel.css" rel="stylesheet">
 <style>
+  .trip-slide .item{
+        min-height: 700px;
+    }
+  .trip-slide .slide-control{
+      top: 50%;
+  }
+  .trip-slide .slide-three{
+      background: #0055aa;
+  }
+  .trip-slide .slide-four{
+      background: darkcyan;
+  }
 
 </style>
 </block>
 <block name="content">
     <div class="row">
         <div id="trip-page-slide" class="carousel slide trip-slide">
-
             <ol class="carousel-indicators">
-                <li data-target="#trip-page-slide" data-slide-to="0" class=""></li>
-                <li data-target="#trip-page-slide" data-slide-to="1" class="active"></li>
+                <li data-target="#trip-page-slide" data-slide-to="0" class="active"></li>
+                <li data-target="#trip-page-slide" data-slide-to="1" class=""></li>
+                <li data-target="#trip-page-slide" data-slide-to="2" class=""></li>
+                <li data-target="#trip-page-slide" data-slide-to="3" class=""></li>
             </ol>
 
             <div class="carousel-inner">
-                <div class="item slide-one active left">
+                <div class="item slide-one active">
                     <div class="container">
-                        <h3 class="slide-title">定制旅行，新的旅行</h3>
+                        <h3 class="slide-title">品牌故事</h3>
                         <p class="slide-desc">你的旅行，我来定制</p>
                         <p class="slide-desc">这是属于全新一代的，全新的旅行方式</p>
                         <a href="/contact_us" class="tailor-for-me ga-hook" data-ga-title="trip-slide-1">定制你的旅行</a>
                         <img class="slide-img" src="http://uniqueway-assets.b0.upaiyun.com/assets/trip/slide-1-img-780ee01f4a0f23094a3b6631fb33a785.png" alt="Slide 1 img">
                     </div>
-                    <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
-                <div class="item slide-two next left">
+                </div>
+                <div class="item slide-two">
                     <div class="container">
 
-                        <h3 class="slide-title">路书，只属于你的旅行家</h3>
+                        <h3 class="slide-title">我们的优势</h3>
+                        <p class="slide-desc">该去哪里？怎么走？要做些什么？该怎么办？</p>
+                        <p class="slide-desc">旅行中的所有问题，你都能得到解答</p>
+                        <p class="slide-desc">他是贴身的路书，更是你贴心的专属旅行家</p>
+                        <a href="/contact_us" class="tailor-for-me ga-hook" data-ga-title="trip-slide-2">定制你的旅行</a>
+                        <div class="slider-images-box">
+                            <img class="slide-book book-one" src="http://uniqueway-assets.b0.upaiyun.com/assets/trip/book_one-69b67a106194f63d02ad5bd44683ce66.png" alt="Book one">
+                            <img class="slide-book book-two" src="http://uniqueway-assets.b0.upaiyun.com/assets/trip/book_two-47e1e794e73c6c236903cd0aeb9aa5f5.png" alt="Book two">
+                            <img class="slide-book book-three" src="http://uniqueway-assets.b0.upaiyun.com/assets/trip/book_three-d1941c65eb266f2ee2d985da86e7c0f0.png" alt="Book three">
+                        </div>
+                    </div>
+                </div>
+                <div class="item slide-three">
+                    <div class="container">
+
+                        <h3 class="slide-title">案例故事</h3>
+                        <p class="slide-desc">该去哪里？怎么走？要做些什么？该怎么办？</p>
+                        <p class="slide-desc">旅行中的所有问题，只要翻开路书，你都能得到解答</p>
+                        <p class="slide-desc">他是贴身的路书，更是你贴心的专属旅行家</p>
+                        <a href="/their_story" class="tailor-for-me ga-hook" data-ga-title="trip-slide-2">案例故事</a>
+                        <div class="slider-images-box">
+                            <img class="slide-book book-one" src="http://uniqueway-assets.b0.upaiyun.com/assets/trip/book_one-69b67a106194f63d02ad5bd44683ce66.png" alt="Book one">
+                            <img class="slide-book book-two" src="http://uniqueway-assets.b0.upaiyun.com/assets/trip/book_two-47e1e794e73c6c236903cd0aeb9aa5f5.png" alt="Book two">
+                            <img class="slide-book book-three" src="http://uniqueway-assets.b0.upaiyun.com/assets/trip/book_three-d1941c65eb266f2ee2d985da86e7c0f0.png" alt="Book three">
+                        </div>
+                    </div>
+                </div>
+                <div class="item slide-four">
+                    <div class="container">
+                        <h3 class="slide-title">我要定制</h3>
                         <p class="slide-desc">该去哪里？怎么走？要做些什么？该怎么办？</p>
                         <p class="slide-desc">旅行中的所有问题，只要翻开路书，你都能得到解答</p>
                         <p class="slide-desc">他是贴身的路书，更是你贴心的专属旅行家</p>
@@ -49,7 +91,7 @@
             </a>
 
         </div>
-        <div class="container trip-introduction">
+        <!--<div class="container trip-introduction">
             <div role="tabpanel">
 
                 <ul class="introduction-tabs clearfix" role="tablist">
@@ -382,7 +424,7 @@
                 </div>
 
             </div>
-        </div>
+        </div>-->
     </div>
     <script src="__TMPL__Public/js/fastclick.min.js"></script>
     <script src="__TMPL__Public/js/application.js"></script>

@@ -4,7 +4,7 @@
 <style>
     .welcome-banner{
         height: 600px;
-        background-image: url(__TMPL__Public/images/welcome_banner.jpg);
+        background-image: none;
         background-size: cover;
         background-repeat: no-repeat;
         padding-top: 260px;
@@ -63,12 +63,55 @@
         margin: 3px;
     }
 
+    .enter_box{
+        width:100%;
+        top: 0px;
+        left: 0px;
+        background: #ffffff;
+        position: absolute;
+        z-index: 999;
+    }
+    .enter_box img{
+        opacity: 0;
+        z-index: 1000;
+        position: absolute;
+    }
+    .enter_box .rqq{
+        left: 250px;
+        position: absolute;
+        bottom: 0px;
+        height: 200px;
+    }
+
+    .enter_box .text1{
+        left: 450px;
+        position: absolute;
+        width: 100px;
+    }
+    .enter_box a{
+        opacity: 0;
+        z-index: 1000;
+        position: absolute;
+        display: inline-block;
+        width: 158px;
+        height: 46px;
+        color: #ffffff;
+        font-size: 18px;
+        background-color: darkgreen;
+        line-height: 46px;
+        text-align: center;
+        border-radius: 6px;
+        text-decoration: none;
+        left: 650px;
+        bottom: 150px;
+    }
+
 </style>
 </block>
 <block name="content">
     <div class="row">
         <div class="welcome-banner" data-stellar-background-ratio="0.5" style="background-position: 0px 0px;">
-            <div class="slogan-block center-block">
+            <div class="slogan-block center-block hide">
                 <h1 class="text-center">薇薇黎之旅，让你的旅行有温度</h1>
                 <div class="faq-block center-block">
                     <a href="/trip" class="faq-btn ga-hook" data-ga-title="index-faq-trip">什么是定制旅行？</a>
@@ -76,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <div class="welcome-introduction container">
+        <div class="welcome-introduction container hide">
             <div class="row intro-row">
                 <div class="col-md-4 col-xs-12 intro-block">
                     <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/chair-278b038ff3e3a69db8da73437e27166e.png" alt="Chair">
@@ -107,7 +150,7 @@
             <div class="our-pride center-block"><span class="plan-count" data-start="0" data-from="0" data-to="37868" data-speed="1000" data-refresh-interval="10" data-done="true">37868</span>人已在薇薇黎之旅体验定制旅行</div>
             <a href="/contact_us" class="booking-btn center-block ga-hook" data-ga-title="index-contact-us">定制我的旅行</a>
         </div>
-        <div class="destination-item-container container">
+        <div class="destination-item-container container hide">
             <h3 class="welcome-item-title"><span class="title">定制旅行目的地</span>没错，生活总是很忙，但有些地方，你不能错过</h3>
             <div class="destination-row row">
                 <div class="col-md-4 col-xs-12">
@@ -156,7 +199,7 @@
             </div>
             <a class="more-link" href="/destination">更多定制旅行目的地 &gt;&gt;</a>
         </div>
-        <div class="travel-tailor-index-block">
+        <div class="travel-tailor-index-block hide">
             <div class="container">
                 <h3 class="welcome-item-title"><span class="title">旅行定制师</span>这是最酷，也是最辛苦的职业</h3>
                 <div id="travel-tailor-slide" class="carousel slide travel-tailor-slide hidden-xs">
@@ -188,11 +231,11 @@
                 <a class="more-link" href="/our_story">更多定制师的故事 &gt;&gt;</a>
             </div>
         </div>
-        <ul class="their-story-container their-story-item-list container clearfix">
+        <ul class="their-story-container their-story-item-list container clearfix hide">
             <h3 class="welcome-item-title"><span class="title">他们的定制旅行</span>一次美好的旅行，应该是有温度的</h3>
             <div class="row">
                 <php>
-                    $lists = sp_sql_posts_paged("cid:3;order:post_date DESC;",3);
+                    //$lists = sp_sql_posts_paged("cid:3;order:post_date DESC;",3);
                 </php>
                 <volist name="lists['posts']" id="vo">
                     <php>
@@ -233,10 +276,117 @@
             </div>
             <a class="more-link" style="margin-top:0;" href="/their_story">更多他们的故事 &gt;&gt;</a>
         </ul>
-        <div class="container">
+        <div class="container hide">
             <div class="booking-block" id="booking-block">
-                <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block">定制你的旅行 &gt;</a>
+                <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block" >定制你的旅行 &gt;</a>
             </div>
         </div>
     </div>
+    <div class="enter_box">
+        <img src="__TMPL__Public/images/rqq.png" class="rqq" />
+        <img src="__TMPL__Public/images/text1.png" class="text1" />
+        <img src="__TMPL__Public/images/text2.png" class="text2" />
+        <img src="__TMPL__Public/images/text3.png" class="text3" />
+        <img src="__TMPL__Public/images/text4.png" class="text4" />
+        <img src="__TMPL__Public/images/text5.png" class="text5" />
+        <img src="__TMPL__Public/images/text6.png" class="text6" />
+        <a href="javascript:enter()" class="tailor-for-me ga-hook" >进入首页</a>
+    </div>
+</block>
+<block name="scripts">
+    <script>
+        var height=window.innerHeight;
+        $('.enter_box').css('height',height);
+        $(".rqq").animate({
+            bottom:'250px',
+            opacity:'0.8',
+            height:'200px',
+        },1000).animate({
+            bottom:'260px',
+            opacity:'1',
+            height:'424px',
+        },1000);
+        $(".text1").animate({
+            left:'750px',
+            bottom:'550px',
+            opacity:'0',
+            width:'360px',
+        },1000).animate({
+            left:'650px',
+            bottom:'600px',
+            opacity:'1',
+            width:'314px',
+        },1000);
+
+        $(".text2").animate({
+            left:'750px',
+            bottom:'400px',
+            opacity:'0',
+            width:'200px',
+        },2000).animate({
+            left:'660px',
+            bottom:'510px',
+            opacity:'1',
+            width:'294px',
+        },1000);
+
+        $(".text3").animate({
+            left:'650px',
+            bottom:'150px',
+            opacity:'0',
+            width:'360px',
+        },3000).animate({
+            left:'560px',
+            bottom:'380px',
+            opacity:'1',
+            width:'233px',
+        },1000);
+
+        $(".text4").animate({
+            left:'650px',
+            bottom:'150px',
+            opacity:'0',
+            width:'300px',
+        },4000).animate({
+            left:'500px',
+            bottom:'290px',
+            opacity:'1',
+            width:'407px',
+        },1000);
+
+        $(".text5").animate({
+            left:'1020px',
+            bottom:'150px',
+            opacity:'0',
+            width:'134px',
+        },4500).animate({
+            left:'950px',
+            bottom:'380px',
+            opacity:'1',
+            width:'234px',
+        },1000);
+
+        $(".text6").animate({
+            left:'1000',
+            bottom:'150px',
+            opacity:'0',
+            width:'200px',
+        },5500).animate({
+            left:'920px',
+            bottom:'290px',
+            opacity:'1',
+            width:'384px',
+        },1000);
+        $(".enter_box a").animate({
+            opacity:'0'
+        },6500).animate({
+            bottom:'160px',
+            opacity:'1',
+        },500);
+
+        function enter()
+        {
+            $('.enter_box').hide();
+        }
+    </script>
 </block>
