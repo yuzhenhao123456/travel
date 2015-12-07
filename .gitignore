@@ -2,3 +2,4 @@ data/runtime/*
 .*
 !.gitignore
 !.htaccess
+data/conf/config.php
