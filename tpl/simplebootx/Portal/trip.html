@@ -105,10 +105,14 @@
         left: 650px;
         bottom: 150px;
     }
-
+    .title_box{
+        height: 40px;
+        width: 100%;
+        text-align: center;
+    }
     .content_box{
         /*background: url('/tpl/simplebootx/Public/images/content_bg.png') center no-repeat;*/
-        height:674px;
+        height:539px;
         position: relative;
         text-align: center;
     }
@@ -227,18 +231,19 @@
 </block>
 <block name="content">
     <div class="row">
+        <div class="title_box"><h2>定制旅行，玩你最想玩的</h2></div>
         <div class="content_box">
-            <img src="__TMPL__Public/images/content_bg.png" class="city_map" usemap="#citymap" style="height: 674px;width: 1227px;" />
+            <img src="__TMPL__Public/images/content_bg_new.png" class="city_map" usemap="#citymap" style="height: 539px;width: 1140px;" />
             <map name="citymap" id="citymap">
-                <area shape="circle" coords="290,190,100" href ="javascript:fly(0)" style="cursor: pointer;" alt="纽约" title="纽约"/>
-                <area shape="circle" coords="530,270,60" href ="javascript:fly(1)" style="cursor: pointer" alt="伦敦"  title="伦敦" />
-                <area shape="circle" coords="660,270,55" href ="javascript:fly(2)" style="cursor: pointer" alt="希腊"  title="希腊"  />
-                <area shape="circle" coords="860,360,60" href ="javascript:fly(3)" style="cursor: pointer" alt="泰国"  title="泰国"  />
-                <area shape="circle" coords="980,496,55" href ="javascript:fly(4)" style="cursor: pointer" alt="悉尼"  title="悉尼"  />
-                <area shape="circle" coords="1110,540,60" href ="javascript:fly(5)" style="cursor: pointer" alt="新西兰"  title="新西兰"  />
-                <area shape="circle" coords="1058,306,60" href ="javascript:fly(6)" style="cursor: pointer" alt="日本"  title="日本"  />
-                <area shape="circle" coords="685,150,60" href ="javascript:fly(7)" style="cursor: pointer" alt="芬兰"  title="芬兰"  />
-                <area shape="circle" coords="540,140,60" href ="javascript:fly(8)" style="cursor: pointer" alt="冰岛"  title="冰岛"  />
+                <area shape="circle" coords="850,140,100" href ="javascript:fly(0)" style="cursor: pointer;" alt="纽约" title="纽约"/>
+                <area shape="circle" coords="91,206,60" href ="javascript:fly(1)" style="cursor: pointer" alt="伦敦"  title="伦敦" />
+                <area shape="circle" coords="210,202,55" href ="javascript:fly(2)" style="cursor: pointer" alt="希腊"  title="希腊"  />
+                <area shape="circle" coords="380,286,60" href ="javascript:fly(3)" style="cursor: pointer" alt="泰国"  title="泰国"  />
+                <area shape="circle" coords="490,413,55" href ="javascript:fly(4)" style="cursor: pointer" alt="悉尼"  title="悉尼"  />
+                <area shape="circle" coords="645,465,60" href ="javascript:fly(5)" style="cursor: pointer" alt="新西兰"  title="新西兰"  />
+                <area shape="circle" coords="564,241,60" href ="javascript:fly(6)" style="cursor: pointer" alt="日本"  title="日本"  />
+                <area shape="circle" coords="220,104,60" href ="javascript:fly(7)" style="cursor: pointer" alt="芬兰"  title="芬兰"  />
+                <area shape="circle" coords="98,86,60" href ="javascript:fly(8)" style="cursor: pointer" alt="冰岛"  title="冰岛"  />
             </map>
             <div class="btn_ball_box">
                 <img src="__TMPL__Public/images/btn_ball.png" >
@@ -375,23 +380,23 @@
         if(body_height<height)
         {
             $('body').css('height',height);
-           $('.footer').css({'position':'absolute','bottom':0,'margin':0,'width':'100%'});
+           $('.footer').css({'position':'relative','margin=top':20,'width':'100%'});
         }
         var width=$('.content_box').width();
         var img_map_left=$('.city_map').offset().left;
         var ball_positions=[
-            {left:img_map_left+90,top:120},
-            {left:img_map_left+360,top:200},
-            {left:img_map_left+550,top:280},
-            {left:img_map_left+690,top:290},
-            {left:img_map_left+815,top:426},
-            {left:img_map_left+1110,top:470},
-            {left:img_map_left+1000,top:106},
-            {left:img_map_left+710,top:80},
-            {left:img_map_left+355,top:60}];
+            {left:img_map_left+860,top:70},
+            {left:img_map_left,top:240},
+            {left:img_map_left+120,top:240},
+            {left:img_map_left+240,top:320},
+            {left:img_map_left+360,top:426},
+            {left:img_map_left+620,top:380},
+            {left:img_map_left+570,top:100},
+            {left:img_map_left+220,top:0},
+            {left:img_map_left-70,top:-20}];
         var ball_init=ball_positions[0];
         $('.btn_ball_box').css(ball_init);
-
+        fly(0);
         //初始化各城市位置点
         function fly(i)
         {
@@ -454,6 +459,7 @@
                         });
 
                     }else{
+                        $('.pois-container .poi-row').html('');
                         alert(data.info);
                     }
                 }
