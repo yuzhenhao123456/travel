@@ -159,7 +159,6 @@
         }
     }
     .info-container {
-        display: none;
         color: #534641;
         border-bottom: 1px solid #d8d8d8;
         padding-left: 20px;
@@ -250,20 +249,26 @@
             </div>
         </div>
         <div class="container">
-            <div class="info-container" style="display: none;" id="info-container">
+            <div class="info-container" id="info-container">
                 <div class="place-title">
-                    <h1 class="place-zh"></h1>
+                    <h1 class="place-zh">{$area.name}</h1>
 
-                    <h2 class="place-en"></h2>
+                    <h2 class="place-en">{$area.full_name}</h2>
                 </div>
                 <div class="place-info">
-                    <p>推荐天数：<span class="advice-date"></span><span class="divide">|</span>适宜季节：<span
-                            class="best-season"></span>
+                    <p>推荐天数：<span class="advice-date">{$area.day}</span><span class="divide">|</span>适宜季节：<span
+                            class="best-season">{$area.season}</span>
                     </p>
                 </div>
             </div>
-            <div class="pois-container clearfix" style="padding: 0px 10px;display: none;">
+            <div class="pois-container clearfix" style="padding: 0px 10px;">
                 <div class="poi-row clearfix" id="poi-row" style="position: relative">
+                    <volist name="data" id="vo">
+                    <div class="poi-item" data-poi-id="{$vo['id']}" style=" margin: 10px;" onclick="gostory({$vo.id})">
+                        <div class="poi-img"><img src="{$vo['photo']}"  style="width:100%;"></div>
+                        <div class="poi-name">{$vo.post_title}</div>
+                    </div>
+                    </volist>
                 </div>
             </div>
             <div class="more-pois-btn" data-skip="11" data-destination-id="3" style="display: none;">加载更多</div>
@@ -396,7 +401,7 @@
             {left:img_map_left-70,top:-20}];
         var ball_init=ball_positions[0];
         $('.btn_ball_box').css(ball_init);
-        fly(0);
+
         //初始化各城市位置点
         function fly(i)
         {
@@ -429,6 +434,10 @@
                 $(window).scrollTop(360);
             });
         }
+        isImgLoad('.poi-img img',function(){
+            // 加载完成
+            $('.pois-container .poi-row').BlocksIt({numOfCol: 3});
+        });
 
         function destinationDataInit(id)
         {

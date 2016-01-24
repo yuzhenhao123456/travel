@@ -33,6 +33,16 @@ class IndexController extends HomeBaseController {
 	 * 定制旅行页
 	 */
 	public function trip() {
+		$id=1;//美国
+		$area=M('area')->where(array('id'=>$id))->find();
+		$data=M("posts")->alias('a')->join(C('DB_PREFIX').'term_relationships b on a.id=b.object_id','left')->where(array('b.status'=>1,'a.area_id'=>$id,'b.term_id'=>3))->order('b.listorder asc')->select();
+		foreach($data as $k=>$v)
+		{
+			$smeta=json_decode($v['smeta'],true);
+			$data[$k]['photo']=sp_get_asset_upload_path($smeta['photo'][0]['url'],true);
+		}
+		$this->assign('area',$area);
+		$this->assign('data',$data);
 		$this->assign('nav_class','trip');
 		$this->display(":trip");
 	}
@@ -266,7 +276,7 @@ class IndexController extends HomeBaseController {
 	function destination_data()
 	{
 		$id=intval(I('get.id'));
-		$data=M("posts")->where(array('status'=>1,'area_id'=>$id))->select();
+		$data=M("posts")->alias('a')->join(C('DB_PREFIX').'term_relationships b on a.id=b.object_id','left')->where(array('b.status'=>1,'a.area_id'=>$id,'b.term_id'=>3))->order('b.listorder asc')->select();
 		foreach($data as $k=>$v)
 		{
 			$smeta=json_decode($v['smeta'],true);
