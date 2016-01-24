@@ -7,13 +7,22 @@
             font-family: "Microsoft YaHei", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size:16px;
         }
+        .contact_title_box{
+            margin: 15px 0;
+            text-align: center;
+            font-family: "Microsoft YaHei", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size:16px;
+        }
+        .contact_title_box .title{
+            font-weight: bold;
+        }
         .main-banner {
             position: relative;
-            height: 770px;
+            height: 370px;
             margin-bottom: 30px;
         }
         .main-banner.contact-banner {
-            height: 600px;
+            height: 370px;
         }
         .main-banner .banner-image {
             position: absolute;
@@ -21,7 +30,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-position: 50% 50%;
+            background-position: 50% 20%;
             background-size: cover;
         }
         .contact-body {
@@ -98,15 +107,15 @@
             box-sizing: border-box;
         }
         .main-banner.contact-banner .contact-form {
-            width: 780px;
-            height: 360px;
-            margin: 165px auto 0;
-            background: rgba(0, 0, 0, 0.3) no-repeat 50% 10%;
+            width: 1000px;
+            height: 160px;
+            margin: 120px auto 0;
+            background: rgba(0,0,0, 0.3) no-repeat 50% 10%;
         }
         .main-banner.contact-banner .contact-form form {
-            width: 635px;
+            width: 900px;
             margin: 0 auto;
-            padding: 60px 0 0;
+            padding: 20px 0 0;
             position: relative;
         }
         .main-banner.contact-banner .contact-form .row h1{
@@ -115,6 +124,7 @@
         }
         .main-banner.contact-banner .contact-form .row h4{
             text-align: center;
+            font-size: 20px;
             color: white;
         }
 
@@ -124,7 +134,7 @@
             border-bottom-left-radius: 3px;
         }
         .main-banner.contact-banner .contact-form .row {
-            padding: 3px 120px;
+            padding: 3px 60px;
         }
         .main-banner.contact-banner .contact-form form input {
             color: black;
@@ -133,6 +143,7 @@
             border: none;
             background: white;
             margin: 0;
+            margin-right: 5px;
             height: 40px;
             line-height: 20px;
             padding: 18px 11px;
@@ -147,7 +158,7 @@
             border-bottom-right-radius: 3px;
         }
         .main-banner.contact-banner .contact-form form #phone {
-            width: 424px;
+            width: 242px;
             border-radius: 3px;
         }
         .main-banner.contact-banner .contact-form .row.submit {
@@ -159,14 +170,20 @@
         .main-banner.contact-banner .contact-form form button {
             color: white;
             font-size: 14px;
-            width: 130px;
-            height: 36px;
+            width: 100px;
+            height: 40px;
             line-height: 34px;
             border: 0;
             border-radius: 3px;
             text-align: left;
             text-indent: 15px;
-            background: #52afb3 url(__TMPL__Public/images/right_arrow.png) no-repeat 94% 50%;
+            background: #008800 url(__TMPL__Public/images/right_arrow.png) no-repeat 94% 50%;
+        }
+        .ewm_img{
+            position: fixed;
+            top: 400px;
+            right: 20px;
+            display: block;
         }
     </style>
 </block>
@@ -177,21 +194,22 @@
             <div class="container">
                 <div class="contact-form">
                     <form action="/api/guestbook/addmsg" method="POST" id="planForm" data-remote="true">
-                        <div class="row"><h1>你只需决定出发</h1></div>
-                        <div class="row"><h4>剩下所有的一切，交给微观之旅就好</h4></div>
+                        <div class="row"><h4>你只需决定出发,剩下的交给我们就好</h4></div>
                         <div class="row">
                             <input id="name" type="text" name="full_name" placeholder="姓名">
                             <input id="old_destination" type="text" name="title" placeholder="海外目的地">
                             <input id="travel_days" type="text" name="day" placeholder="天数">
-                        </div>
-                        <div class="row">
                             <input id="phone" type="tel" name="mobile" placeholder="手机" autocomplete="off">
-                            <!--<input type="text" id="verify_code" name="verify_code" placeholder="验证码">
-                            <button id="send_verify_code" class="disabled" disabled="disabled">获取验证码</button>-->
+                            <button type="submit" id="submit" class="ga-hook" data-ga-title="contact-us-submit">我要定制</button>
                         </div>
-                        <div class="row submit">
-                            <button type="submit" id="submit" class="ga-hook" data-ga-title="contact-us-submit">开始我的定制</button>
-                        </div>
+                        <!--<div class="row">-->
+
+                            <!--&lt;!&ndash;<input type="text" id="verify_code" name="verify_code" placeholder="验证码">-->
+                            <!--<button id="send_verify_code" class="disabled" disabled="disabled">获取验证码</button>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="row submit">-->
+
+                        <!--</div>-->
                     </form>
                 </div>
             </div>
@@ -203,6 +221,9 @@
                 <p>为想要出国旅行的朋友提供咨询服务。</p>
                 <p>专业的推荐、精彩的设计、严谨的安排、24小时电话和网络协助，</p>
                 <p>一切都只为，让你的旅行有温度。</p>
+            </div>
+            <div class="clearfix contact_title_box">
+                <p><span class="title">联系我们</span>&nbsp;&nbsp;&nbsp;&nbsp; <img src="__TMPL__Public/images/ic_tel.png" /> {$site_phone} &nbsp;&nbsp;&nbsp;&nbsp;<img src="__TMPL__Public/images/ic_add.png" /> 南京市玄武区中山东路532号金蝶产业园E幢3楼</p>
             </div>
             <div class="clearfix contact-body">
                 <!--<div class="row self-desc hide">
@@ -285,7 +306,7 @@
                 /*var content = '<div style="margin:0;line-height:20px;padding:2px;">' +'<img src="http://uniqueway-assets.b0.upaiyun.com/assets/contact_us/foreground-51912f55001c4db060050b5ec3f7e704.jpg" alt="微观之旅" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
                         '地址：南京市玄武区中山东路532号金蝶产业园E幢3楼 <br/>电话：{$site_phone} <br/>' +'</div>';*/
                 var content="<h3 style='margin:0 0 5px 0;padding:0.2em 0'>微观之旅</h3>" +
-                        "<img style='float:right;margin:4px;margin-top:-15px;' id='imgDemo' src='__TMPL__Public/images/logo.png' width='100' height='100' title='微观之旅'/>" +
+                        "<img style='float:right;margin:4px;margin-top:-15px;width:100px;height:100px;' id='imgDemo' src='__TMPL__Public/images/logo.png' title='微观之旅'/>" +
                         "<p style='margin:0;line-height:1.5;font-size:14px;'>地址：南京市玄武区中山东路532号金蝶产业园E幢3楼</p>" +
                         "<p style='margin:0;line-height:1.5;font-size:14px;'>电话：{$site_phone}</p>" +
                         "</div>";
@@ -312,9 +333,10 @@
                         '<img src="__TMPL__Public/images/ewm.jpg" />'+
                 '</div>';
                 map.addEventListener("tilesloaded",function(){
-                    $('#allmap').append(map_box_info);
+                    //$('#allmap').append(map_box_info);
                 });
             </script>
         </div>
     </div>
+    <img src="__TMPL__Public/images/ewm.jpg" class="ewm_img" />
 </block>
