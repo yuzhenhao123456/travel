@@ -134,7 +134,7 @@ a img {
 
 .nav-bar .contact-area a {
     text-decoration: none;
-    color: #969696;
+    color: green;
     font-size: 20px;
     text-align: center;
     line-height: 30px;
@@ -144,7 +144,7 @@ a img {
 .nav-bar .contact-area .tel-icon {
     width: 30px;
     height: 30px;
-    background: #969696;
+    background: green;
     float: left
 }
 
@@ -13330,7 +13330,7 @@ body.white {
 }
 
 .footer .footer-content {
-    background: #669797
+    background: url("/tpl/simplebootx/Public/images/bg_bottom-bar.png") center no-repeat;
 }
 
 .footer .footer-content .footer-container {

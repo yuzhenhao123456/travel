@@ -106,183 +106,32 @@
         bottom: 150px;
     }
 
+    .content_box{
+        background: url('/tpl/simplebootx/Public/images/content_bg.png') center no-repeat;
+        height:674px;
+        position: relative;
+    }
+    .content_box .btn_ball_box{
+        position: absolute;
+        width: 110px;
+        height: 138px;
+    }
+    .btn_ball_box img{
+        position: absolute;
+        top:0px;
+    }
+
 </style>
 </block>
 <block name="content">
     <div class="row">
-        <div class="welcome-banner" data-stellar-background-ratio="0.5" style="background-position: 0px 0px;">
-            <div class="slogan-block center-block hide">
-                <h1 class="text-center">薇薇黎之旅，让你的旅行有温度</h1>
-                <div class="faq-block center-block">
-                    <a href="/trip" class="faq-btn ga-hook" data-ga-title="index-faq-trip">什么是定制旅行？</a>
-                    <a href="/our_story" class="faq-btn ga-hook" data-ga-title="index-faq-our-stroy">谁定制我的旅行？</a>
-                </div>
-            </div>
-        </div>
-        <div class="welcome-introduction container hide">
-            <div class="row intro-row">
-                <div class="col-md-4 col-xs-12 intro-block">
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/chair-278b038ff3e3a69db8da73437e27166e.png" alt="Chair">
-                    <h2 class="title">解决自由行的麻烦</h2>
-                    <p>人的天性：自由自在的旅行</p>
-                    <p>反人类：繁琐的行前准备</p>
-                    <p>可不可以有一次不麻烦的自由行？</p>
-                    <p>这正是我们能为你做的。</p>
-                </div>
-                <div class="col-md-4 col-xs-12 intro-block">
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/guidebook-4e779aa37057804d055ae541843c7785.png" alt="Guidebook">
-                    <h2 class="title">帮你设计独一无二的行程</h2>
-                    <p>你的旅行，应该独一无二。</p>
-                    <p>我们为你定制旅行的唯一原则是，</p>
-                    <p>旅行中的每一个画面，</p>
-                    <p>都是你自己想要的。</p>
-                </div>
-                <div class="col-md-4 col-xs-12 intro-block">
-                    <img src="http://uniqueway-assets.b0.upaiyun.com/assets/welcome/expense-da87175902d3873e5e56bf079d72e325.png" alt="Expense">
-                    <h2 class="title">帮你节省每一分的花费</h2>
-                    <p>谁说非要花很多钱，才能有难忘的旅行？</p>
-                    <p>我们永远、永远、永远坚决反对！</p>
-                    <p>因为我们希望能够给你</p>
-                    <p>最有性价比，同时也最为难忘的旅行。</p>
-                </div>
-
-            </div>
-            <div class="our-pride center-block"><span class="plan-count" data-start="0" data-from="0" data-to="37868" data-speed="1000" data-refresh-interval="10" data-done="true">37868</span>人已在薇薇黎之旅体验定制旅行</div>
-            <a href="/contact_us" class="booking-btn center-block ga-hook" data-ga-title="index-contact-us">定制我的旅行</a>
-        </div>
-        <div class="destination-item-container container hide">
-            <h3 class="welcome-item-title"><span class="title">定制旅行目的地</span>没错，生活总是很忙，但有些地方，你不能错过</h3>
-            <div class="destination-row row">
-                <div class="col-md-4 col-xs-12">
-                    <a href="/destination#europe" class="destination-item center-block ga-hook" data-ga-title="index-destination-Europe" style="background-image: url(http://uniqueway-assets.b0.upaiyun.com/assets/welcome/Europe-a59c18aee62edc38a6832d301393724b.jpg)">
-                        <div class="bottom-banner">
-                            <h4>欧洲 | Europe</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <a href="/destination#newzealand" class="destination-item center-block ga-hook" data-ga-title="index-destination-New Zealand" style="background-image: url(http://uniqueway-assets.b0.upaiyun.com/assets/welcome/Newzealand-81239392b672615074ff10f66c17217d.jpg)">
-                        <div class="bottom-banner">
-                            <h4>新西兰 | Newzealand</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <a href="/destination#nationalparkofwest" class="destination-item center-block ga-hook" data-ga-title="index-destination-America" style="background-image: url(http://uniqueway-assets.b0.upaiyun.com/assets/welcome/America-1ab0aae8d2ebc49a9798e1c58c4eac51.jpg)">
-                        <div class="bottom-banner">
-                            <h4>美国 | America</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <a href="/destination#coralsea" class="destination-item center-block ga-hook" data-ga-title="index-destination-Australia" style="background-image: url(http://uniqueway-assets.b0.upaiyun.com/assets/welcome/Australia-592b365d014a50a793988b321c16db25.jpg)">
-                        <div class="bottom-banner">
-                            <h4>澳大利亚 | Australia</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <a href="/destination#tahiti" class="destination-item center-block ga-hook" data-ga-title="index-destination-Tahiti" style="background-image: url(http://uniqueway-assets.b0.upaiyun.com/assets/welcome/Tahiti-bc36fd4ac6cd80e9c9bc5a570e048afc.jpg)">
-                        <div class="bottom-banner">
-                            <h4>大溪地 | Tahiti</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 col-xs-12">
-                    <a href="/destination#lapland" class="destination-item center-block ga-hook" data-ga-title="index-destination-Lapland" style="background-image: url(http://uniqueway-assets.b0.upaiyun.com/assets/welcome/Lapland-b711dfe5d9da4d027c3320ae4c6d02dd.jpg)">
-                        <div class="bottom-banner">
-                            <h4>拉普兰 | Lapland</h4>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-            <a class="more-link" href="/destination">更多定制旅行目的地 &gt;&gt;</a>
-        </div>
-        <div class="travel-tailor-index-block hide">
-            <div class="container">
-                <h3 class="welcome-item-title"><span class="title">旅行定制师</span>这是最酷，也是最辛苦的职业</h3>
-                <div id="travel-tailor-slide" class="carousel slide travel-tailor-slide hidden-xs">
-                    <ol class="carousel-indicators">
-                        <volist name="top_makers" key="k" id="vo">
-                        <li data-target="#travel-tailor-slide" data-slide-to="{:$k-1}" class="{:$k==1?'active':''}"></li>
-                        </volist>
-                    </ol>
-
-                    <div class="carousel-inner">
-                        <volist name="top_makers" key="k" id="vo">
-                            <php>
-                                $smeta=json_decode($vo['smeta'], true);
-                            </php>
-                            <a href="/stories/{$vo.id}" class="item {:$k==1?'active':''}" style="background-image: url({:sp_get_asset_upload_path($smeta['thumb'],true)});">
-                                <div class="travel-tailor-banner">“{$vo.title}”</div>
-                            </a>
-                        </volist>
-                    </div>
-
-                    <a class="slide-control left" href="#travel-tailor-slide" role="button" data-slide="prev">
-                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/left-arrow-thin-517798dac3e8f65fa25fae07aab979cf.png" alt="Left arrow thin">
-                    </a>
-                    <a class="slide-control right" href="#travel-tailor-slide" role="button" data-slide="next">
-                        <img src="http://uniqueway-assets.b0.upaiyun.com/assets/right-arrow-thin-e13fadfa7dc12535fc35cc7a0fc53c49.png" alt="Right arrow thin">
-                    </a>
-
-                </div>
-                <a class="more-link" href="/our_story">更多定制师的故事 &gt;&gt;</a>
-            </div>
-        </div>
-        <ul class="their-story-container their-story-item-list container clearfix hide">
-            <h3 class="welcome-item-title"><span class="title">他们的定制旅行</span>一次美好的旅行，应该是有温度的</h3>
-            <div class="row">
-                <php>
-                    //$lists = sp_sql_posts_paged("cid:3;order:post_date DESC;",3);
-                </php>
-                <volist name="lists['posts']" id="vo">
-                    <php>
-                        $smeta=json_decode($vo['smeta'], true);
-                        $photos=$smeta['photo'];
-                        $icon='';
-                        foreach($photos as $photo)
-                        {
-                        if($photo['alt']=='icon')
-                        {
-                        $icon = $photo;
-                        }
-                        }
-                        if($icon=='')
-                        {
-                        $icon=$photos[0];
-                        }
-                    </php>
-                    <li class="first col-xs-12 col-sm-6 col-md-4">
-                        <div class="cover">
-                            <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="Newzealand">
-                            <div class="dest_icon">
-                                <img src="{:sp_get_asset_upload_path($icon['url'])}" alt="{$icon['alt']}">
-                                <p>{$vo.post_title}</p>
-                            </div>
-                            <div class="story_info">
-                                <img src="__TMPL__Public/images/days.png" alt="Days"> <span>{$vo.day}天</span>
-                                <img class="p_num" src="__TMPL__Public/images/p_num.png" alt="P num"> <span>{$vo.people_num}人</span>
-                            </div>
-                            <img class="cover-bg" src="{:sp_get_asset_upload_path($photo['url'])}" alt="{$photo['alt']}">
-                            <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
-                        <div class="desc">
-                            <h5>定制旅行总花费：{$vo.post_source}元/人</h5>
-                            <p>{$vo['post_excerpt']}</p>
-                        </div>
-                    </li>
-                </volist>
-            </div>
-            <a class="more-link" style="margin-top:0;" href="/their_story">更多他们的故事 &gt;&gt;</a>
-        </ul>
-        <div class="container hide">
-            <div class="booking-block" id="booking-block">
-                <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block" >定制你的旅行 &gt;</a>
+        <div class="content_box">
+            <div class="btn_ball_box">
+                <img src="__TMPL__Public/images/btn_ball.png">
             </div>
         </div>
     </div>
-    <div class="enter_box">
+    <!--<div class="enter_box">
         <img src="__TMPL__Public/images/rqq.png" class="rqq" />
         <img src="__TMPL__Public/images/text1.png" class="text1" />
         <img src="__TMPL__Public/images/text2.png" class="text2" />
@@ -291,12 +140,12 @@
         <img src="__TMPL__Public/images/text5.png" class="text5" />
         <img src="__TMPL__Public/images/text6.png" class="text6" />
         <a href="javascript:enter()" class="tailor-for-me ga-hook" >进入首页</a>
-    </div>
+    </div>-->
 </block>
 <block name="scripts">
     <script>
         var height=window.innerHeight;
-        $('.enter_box').css('height',height);
+        /*$('.enter_box').css('height',height);
         $(".rqq").animate({
             bottom:'250px',
             opacity:'0.8',
@@ -387,6 +236,26 @@
         function enter()
         {
             $('.enter_box').hide();
+        }*/
+        var body_height=$('body').height();
+        if(body_height<height)
+        {
+            $('body').css('height',height);
+           $('.footer').css({'position':'fixed','bottom':0,'margin':0,'width':'100%'});
         }
+        var width=$('.content_box').width();
+        var ball_init={
+                left:width/2-460,
+                top:'120px'
+                };
+        $('.btn_ball_box').css(ball_init);
+
+        setInterval(function(){
+            $('.btn_ball_box img').animate({
+                top:'-20px'
+            },1000).animate({
+                top:'0px'
+            },1000);
+        },2000);
     </script>
 </block>
