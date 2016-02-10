@@ -436,7 +436,7 @@
                         $.each(data.data, function(i,obj){
                             html+='<div class="poi-item" data-poi-id="'+obj.id+'" style=" margin: 10px;" onclick="gostory('+obj.id+')">'+
                                     '<div class="poi-img"><img src="'+obj.photo+'"  style="width:100%;"></div>'+
-                                    '<div class="poi-name">'+obj.title+'</div>'+
+                                    '<div class="poi-name">'+obj.post_title+'</div>'+
                                     '</div>';
                         });
                         $('.pois-container .poi-row').html(html);
