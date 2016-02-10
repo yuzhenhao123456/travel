@@ -266,7 +266,7 @@ class IndexController extends HomeBaseController {
 	function destination_data()
 	{
 		$id=intval(I('get.id'));
-		$data=M("destination")->where(array('status'=>1,'area_id'=>$id))->select();
+		$data=M("posts")->where(array('status'=>1,'area_id'=>$id))->select();
 		foreach($data as $k=>$v)
 		{
 			$smeta=json_decode($v['smeta'],true);

@@ -18,6 +18,7 @@ class AdminPostController extends AdminbaseController {
 		$this->posts_model = D("Common/Posts");
 		$this->terms_model = D("Common/Terms");
 		$this->term_relationships_model = D("Common/TermRelationships");
+		$this->area_model = D("Common/Area");
 	}
 	function index(){
 		$this->_lists();
@@ -31,6 +32,10 @@ class AdminPostController extends AdminbaseController {
 		$this->_getTermTree();
 		$term=$this->terms_model->where("term_id=$term_id")->find();
 		$this->assign("author","1");
+		$area_id = intval(I("get.area_id"));
+		$this->_getAreaTree();
+		$area=$this->area_model->where("id=$area_id")->find();
+		$this->assign("area",$area);
 		$this->assign("term",$term);
 		$this->assign("terms",$terms);
 		$this->display();
@@ -78,6 +83,8 @@ class AdminPostController extends AdminbaseController {
 		$post=$this->posts_model->where("id=$id")->find();
 		$this->assign("post",$post);
 		$this->assign("smeta",json_decode($post['smeta'],true));
+
+		$this->_getAreaTree($post['area_id']);
 		$this->assign("terms",$terms);
 		$this->assign("term",$term_relationship);
 		$this->display();
@@ -229,6 +236,26 @@ class AdminPostController extends AdminbaseController {
 		$str="<option value='\$id' \$selected>\$spacer\$name</option>";
 		$taxonomys = $tree->get_tree(0, $str);
 		$this->assign("taxonomys", $taxonomys);
+	}
+
+	private function _getAreaTree($area_id){
+		$area_id=empty($_REQUEST['area_id'])?intval($area_id):intval($_REQUEST['area_id']);
+		$result = $this->area_model->order(array("listorder"=>"asc"))->select();
+
+		$tree = new \Tree();
+		$tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
+		$tree->nbsp = '&nbsp;&nbsp;&nbsp;';
+		foreach ($result as $r) {
+			$r['id']=$r['id'];
+			$r['parentid']=$r['pid'];
+			$r['selected']=$area_id==$r['id']?"selected":"";
+			$array[] = $r;
+		}
+
+		$tree->init($array);
+		$str="<option value='\$id' \$selected>\$spacer\$name</option>";
+		$taxonomys = $tree->get_tree(0, $str);
+		$this->assign("areas", $taxonomys);
 	}
 	
 	private function _getTermTree($term=array()){

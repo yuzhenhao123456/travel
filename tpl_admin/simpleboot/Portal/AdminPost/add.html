@@ -86,9 +86,17 @@
               	<span class="must_red">*</span>
               </td>
             </tr>
+		  <tr>
+			  <th width="80">区域</th>
+			  <td>
+				  <select style="max-height: 100px;" name="post[area_id]">
+					  {$areas}
+				  </select>
+			  </td>
+		  </tr>
             <tr>
-              <th width="80">目的地</th>
-              <td><input type='text' name='post[post_keywords]' id='keywords' value='' style='width:400px'   class='input' placeholder='请输入目的地'> 多目的地之间用空格或者英文逗号隔开</td>
+              <th width="80">关键字</th>
+              <td><input type='text' name='post[post_keywords]' id='keywords' value='' style='width:400px'   class='input' placeholder='请输入关键字'> 多关键字之间用空格或者英文逗号隔开</td>
             </tr>
             <tr>
               <th width="80">人均花费</th>
