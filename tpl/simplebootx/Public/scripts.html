@@ -9,9 +9,11 @@ var GV = {
 <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="__ROOT__/statics/js/jquery.js"></script>
+    <!--<script src="__ROOT__/statics/js/jquery.js"></script>-->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="__ROOT__/statics/js/wind.js"></script>
-    <script src="__TMPL__Public/simpleboot/bootstrap/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!--<script src="__TMPL__Public/simpleboot/bootstrap/js/bootstrap.min.js"></script>-->
     <script src="__ROOT__/statics/js/frontend.js"></script>
 	<script>
 	$(function(){
@@ -73,24 +75,24 @@ var GV = {
 	});
 	</script>
 <script>
-	$(Document).on('click','#login-btn',function(){
+	$('body').on('click','#login-btn',function(){
 		$('#middle-reg-dialog').hide();
 		$('#login-dialog').show();
 	});
-	$(Document).on('click','a.reg-btn',function(){
+	$('body').on('click','a.reg-btn',function(){
 		$('#login-dialog').hide();
 		$('#middle-reg-dialog').show();
 	});
-	$(Document).on('click','#reg-btn',function(){
+	$('body').on('click','#reg-btn',function(){
 		$('#login-dialog').hide();
 		$('#middle-reg-dialog').show();
 	});
 
-	$(Document).on('click','.close',function(e){
+	$('body').on('click','.close',function(e){
 		$(e.target).parents('.dialog').hide();
 	});
 
-	$(Document).on('click','#login_form .login-btn',function(e){
+	$('body').on('click','#login_form .login-btn',function(e){
 		$.ajax({
 			cache: true,
 			type: "POST",
@@ -113,7 +115,7 @@ var GV = {
 		});
 	});
 
-	$(Document).on('click','#reg_form .login-btn',function(e){
+	$('body').on('click','#reg_form .login-btn',function(e){
 		$.ajax({
 			cache: true,
 			type: "POST",
@@ -135,14 +137,14 @@ var GV = {
 		});
 	});
 
-	$(Document).on('mouseover','.wish-container .wish-map-btn',function(e){
+	$('body').on('mouseover','.wish-container .wish-map-btn',function(e){
 		$('.wish-container .wish-map-num').show('fast');
 	});
-	$(Document).on('mouseout','.wish-container .wish-map-btn',function(e){
+	$('body').on('mouseout','.wish-container .wish-map-btn',function(e){
 		$('.wish-container .wish-map-num').hide('fast');
 	});
 
-	$(Document).on('click','.control-btn.been',function(e){
+	$('body').on('click','.control-btn.been',function(e){
 		$.ajax({
 			cache: true,
 			type: "POST",
@@ -182,7 +184,7 @@ var GV = {
 		});
 	});
 
-	$(Document).on('click','.control-btn.like',function(e){
+	$('body').on('click','.control-btn.like',function(e){
 		$.ajax({
 			cache: true,
 			type: "POST",
@@ -222,10 +224,10 @@ var GV = {
 		});
 	});
 
-	$(Document).on('mouseover','.nav-lists .destination.dropdown',function(e){
+	$('body').on('mouseover','.nav-lists .destination.dropdown',function(e){
 		$('.nav-lists .destination .dropdown-menu').show();
 	});
-	$(Document).on('mouseout','.nav-lists .destination.dropdown',function(e){
+	$('body').on('mouseout','.nav-lists .destination.dropdown',function(e){
 		$('.nav-lists .destination .dropdown-menu').hide();
 	});
 

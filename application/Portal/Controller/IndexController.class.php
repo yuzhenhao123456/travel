@@ -18,20 +18,22 @@ class IndexController extends HomeBaseController {
 	 * Author: Jason
 	 */
 	public function index() {
-        $where=array(
+        /*$where=array(
             "a.is_top"=>1,
             'a.user_type'=>1,
             'a.user_status'=>1,
             'a.travel_maker'=>1
-        );
-        $top_makers=M('users')->field('a.*,b.smeta')->alias('a')->join(C('DB_PREFIX').'posts b on a.story_id=b.id','left')->where($where)->order('a.get_like DESC')->limit('0,3')->select();
-        $this->assign('top_makers',$top_makers);
+        );*/
+        //$top_makers=M('users')->field('a.*,b.smeta')->alias('a')->join(C('DB_PREFIX').'posts b on a.story_id=b.id','left')->where($where)->order('a.get_like DESC')->limit('0,3')->select();
+        //$this->assign('top_makers',$top_makers);
+		$this->assign('nav_class','index');
     	$this->display(":index");
     }
 	/**
 	 * 定制旅行页
 	 */
 	public function trip() {
+		$this->assign('nav_class','trip');
 		$this->display(":trip");
 	}
     //旅行定制师
@@ -58,13 +60,14 @@ class IndexController extends HomeBaseController {
     //案例故事
 	function their_story()
 	{
-
+		$this->assign('nav_class','their_story');
 		$this->display(":their_story");
 	}
 
 	//联系我们
 	function contact_us()
 	{
+		$this->assign('nav_class','contact_us');
 		$this->display(":contact_us");
 	}
 

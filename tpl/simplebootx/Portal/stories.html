@@ -1,14 +1,88 @@
 <tc_extend name="Public/layout"/>
 <block name="css">
-    <link href="__TMPL__Portal/css/travel.css" rel="stylesheet">
+    <!--<link href="__TMPL__Portal/css/travel.css" rel="stylesheet">-->
     <style>
+        .main-banner {
+            position: relative;
+            height: 500px;
+            margin-bottom: 30px;
+        }
+        .main-banner .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: 50% 50%;
+            background-size: cover;
+        }
+        .banner-bottom.story-bottom {
+            text-align: center;
+        }
+        .banner-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            color: #fff;
+            background: #000;
+            background: rgba(0, 0, 0, 0.6);
+            font-size: 14px;
+        }
+        .banner-bottom h1{
+            font-weight: 100;
+            font-size: 20px;
+            margin-bottom: 15px;
+            margin-top: 20px;
+            font-size: normal;
+        }
+        .banner-bottom h1 a{
+            color: white;
+        }
+        .banner-bottom p, .story-bottom p {
+            font-size: 12px;
+        }
+        .container {
+            position: relative;
+            box-sizing: border-box;
+        }
+        @media screen and (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+        }
 
+        @media screen and (min-width: 992px) {
+            .container {
+                width: 970px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        .story-container.container {
+            width: 700px;
+        }
     </style>
 </block>
 <block name="content">
     <div class="row">
-        <div class="main-banner" style="height: auto;margin-top: 74px;">
-            <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$post_title}" style="z-index: -1;"  />
+        <div class="main-banner" style="height: 360px;">
+            <div class="banner-image" style="background-image: url({:sp_get_asset_upload_path($smeta['thumb'])});"></div>
             <div class="banner-bottom story-bottom">
                 <h1>
                     {$post_title}
@@ -28,10 +102,10 @@
         <div class="story-container container">
             {$post_content}
         </div>
-        <div class="container">
-            <div class="booking-block" id="booking-block">
-                <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block">定制你的旅行 &gt;</a>
-            </div>
-        </div>
+        <!--<div class="container">-->
+            <!--<div class="booking-block" id="booking-block">-->
+                <!--<a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block">定制你的旅行 &gt;</a>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </block>

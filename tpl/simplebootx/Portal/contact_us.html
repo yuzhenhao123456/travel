@@ -1,15 +1,106 @@
 <tc_extend name="Public/layout"/>
 <block name="css">
-    <link href="__TMPL__Portal/css/travel.css" rel="stylesheet">
+    <!--<link href="__TMPL__Portal/css/travel.css" rel="stylesheet">-->
     <style>
+        .contact_intro_box{
+            text-align: center;
+            font-family: "Microsoft YaHei", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size:16px;
+        }
+        .main-banner {
+            position: relative;
+            height: 770px;
+            margin-bottom: 30px;
+        }
+        .main-banner.contact-banner {
+            height: 600px;
+        }
+        .main-banner .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: 50% 50%;
+            background-size: cover;
+        }
+        .contact-body {
+            width: 810px;
+            margin: 0 auto;
+            color: #3e3a39;
+            font-size: 14px;
+            margin-top: -50px;
+        }
+        .map-area {
+            margin: 25px 0;
+        }
+        #allmap {
+            margin-top: 25px;
+            width: 900px;
+            height: 300px;
+        }
+        img {
+            width: none;
+            height: none;
+            max-width:none;
+            vertical-align: middle;
+            border: 0;
+            -ms-interpolation-mode: bicubic;
+        }
+        .map_box_info_bg{
+            position: absolute;
+            right: 20px;
+            top:0px;
+            width: 260px;
+            height: 300px;
+            border: none;
+            z-index: 998;
+            background: white;
+            opacity: 0.5;
+        }
+        .map_box_info{
+            position: absolute;
+            right: 20px;
+            top:0px;
+            width: 260px;
+            height: 300px;
+            border: none;
+            z-index: 999;
+        }
+        .map_box_info{
+            text-align: center;
+        }
+        .map_box_info p{
+            font-family: "Microsoft YaHei";
+            padding-left: 10px;
+            font-size: 16px;
+            text-align:left;
+            color:black;
+            opacity: 1;
+        }
+        .map_box_info p img{
+            margin-right:5px ;
+            height: 16px;
+            width: 16px;
+        }
+        .map_box_info img{
+            opacity: 1;
+        }
+        .map_box_info p.title{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            margin-top: 5px;
+            letter-spacing:2px;
+        }
 
     </style>
 </block>
 <block name="content">
     <div class="row">
         <div class="main-banner contact-banner">
-            <div class="banner-image" style="background-image: url('http://uniqueway.b0.upaiyun.com/contact_us_banner.jpg!w1500');"></div>
-            <div class="container">
+            <div class="banner-image" style="background-image: url('__TMPL__Public/images/contact.jpg');"></div>
+            <!--<div class="container">
                 <div class="contact-form">
                     <form action="/api/guestbook/addmsg" method="POST" id="planForm" data-remote="true">
                         <div class="row">
@@ -20,8 +111,8 @@
 
                         <div class="row">
                             <input id="phone" type="tel" name="mobile" placeholder="手机" autocomplete="off">
-                            <!--<input type="text" id="verify_code" name="verify_code" placeholder="验证码">
-                            <button id="send_verify_code" class="disabled" disabled="disabled">获取验证码</button>-->
+                            &lt;!&ndash;<input type="text" id="verify_code" name="verify_code" placeholder="验证码">
+                            <button id="send_verify_code" class="disabled" disabled="disabled">获取验证码</button>&ndash;&gt;
                         </div>
                         <div class="row submit">
                             <button type="submit" id="submit" class="ga-hook" data-ga-title="contact-us-submit">开始我的定制</button>
@@ -29,10 +120,18 @@
                     </form>
                 </div>
             </div>
-            <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+            <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe>-->
+        </div>
         <div>
+            <div class="clearfix contact_intro_box">
+                <p>微观之旅（全称：南京薇薇黎旅游信息咨询有限公司），自信是国内最专业的旅游定制公司。</p>
+                <p>我们拥有优秀的旅行定制师团队，凭借多年深度旅行和海外旅居经历，</p>
+                <p>为想要出国旅行的朋友提供咨询服务。</p>
+                <p>专业的推荐、精彩的设计、严谨的安排、24小时电话和网络协助，</p>
+                <p>一切都只为，让你的旅行有温度。</p>
+            </div>
             <div class="clearfix contact-body">
-                <div class="row self-desc hide">
+                <!--<div class="row self-desc hide">
                     <div class="col-md-6 col-xs-12">
                         <div class="best">
                             <img src="__TMPL__Public/images/navlogo.png" alt="Logo">
@@ -73,8 +172,8 @@
                             <p class="highlight">最有性价比，同时也最为难忘的旅行。</p>
                         </div>
                     </div>
-                </div>
-                <div class="we-hope hide">
+                </div>-->
+                <!--<div class="we-hope hide">
                     <h2>我们希望给你有温度的旅行</h2>
                     <p>2012年，薇薇黎之旅在北京诞生了。</p>
                     <p>最初，我们只是为小圈子里的朋友们，提供个性化的定制旅行服务。</p>
@@ -85,47 +184,62 @@
                     <p>这既是信任，也是责任，我们知道，将自己的旅行交给别人，真的是一件很大的决定，我们能不能不辜负这种信任？我们能不能做到比预期的更好？这是永远激励我们向前的动力。</p>
                     <p>我们永远相信，旅行是有温度的。</p>
                     <p>我们希望能在这个总是冰冷冷的世界里，用我们的专业与热情，带给你一抹属于旅行的温度。</p>
-                </div>
-                <div class="contact-us-map " style="margin-top: 40px">
+                </div>-->
+                <div class="contact-us-map " style="margin-top: 60px">
                     <div class="map-area">
-                        <img class="pin-icon pull-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/contact_us/pin-c037d5b2e0ddb30417eb7fd29d0e81bf.png" alt="Pin">
-                        <p>微观之旅（全称：南京薇薇黎旅游信息咨询有限公司）</p>
-                        <p>南京市玄武区中山东路532号金蝶产业园E幢3楼</p>
-                        <div id="allmap" style="overflow: hidden; position: relative; z-index: 0; color: rgb(0, 0, 0); text-align: left; background-color: rgb(243, 241, 236);"></div>
-                        <p class="abstract">微观之旅（全称：南京薇薇黎旅游信息咨询有限公司），自信是国内最专业的<a href="/trip">旅游定制</a>公司。我们拥有优秀的旅行定制师团队，凭借多年深度旅行和海外旅居经历，为想要出国旅行的朋友提供咨询服务。专业的推荐、精彩的设计、严谨的安排、24小时电话和网络协助，一切都只为，让你的旅行有温度。</p>
+                        <!--<img class="pin-icon pull-left" src="http://uniqueway-assets.b0.upaiyun.com/assets/contact_us/pin-c037d5b2e0ddb30417eb7fd29d0e81bf.png" alt="Pin">-->
+                        <!--<p>微观之旅（全称：南京薇薇黎旅游信息咨询有限公司）</p>-->
+                        <!--<p>南京市玄武区中山东路532号金蝶产业园E幢3楼</p>-->
+                        <div id="allmap" style="overflow: hidden; position: relative; z-index: 0; color: rgb(0, 0, 0); text-align: left; background-color: rgb(243, 241, 236);">
+                        </div>
+                        <!--<p class="abstract">微观之旅（全称：南京薇薇黎旅游信息咨询有限公司），自信是国内最专业的<a href="/trip">旅游定制</a>公司。我们拥有优秀的旅行定制师团队，凭借多年深度旅行和海外旅居经历，为想要出国旅行的朋友提供咨询服务。专业的推荐、精彩的设计、严谨的安排、24小时电话和网络协助，一切都只为，让你的旅行有温度。</p>-->
                     </div>
                 </div>
             </div>
-            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=6f643b72cb7bff6d9e141ed546a0f547"></script><script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=6f643b72cb7bff6d9e141ed546a0f547&amp;services=&amp;t=20151020152414"></script>
+            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=6f643b72cb7bff6d9e141ed546a0f547"></script>
+            <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&amp;ak=6f643b72cb7bff6d9e141ed546a0f547&amp;services=&amp;t=20151020152414"></script>
             <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
             <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css">
             <script type="text/javascript">
                 // 百度地图API功能
                 var map = new BMap.Map('allmap');
                 var poi = new BMap.Point(118.829943,32.043436);
-                map.centerAndZoom(poi, 16);
+                var center = new BMap.Point(118.835563,32.043436);
+                map.centerAndZoom(center, 16);
                 map.enableScrollWheelZoom();
 
-                var content = '<div style="margin:0;line-height:20px;padding:2px;">' +'<img src="http://uniqueway-assets.b0.upaiyun.com/assets/contact_us/foreground-51912f55001c4db060050b5ec3f7e704.jpg" alt="微观之旅" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
-                        '地址：南京市玄武区中山东路532号金蝶产业园E幢3楼 <br/>电话：15951815184 <br/>' +'</div>';
+                /*var content = '<div style="margin:0;line-height:20px;padding:2px;">' +'<img src="http://uniqueway-assets.b0.upaiyun.com/assets/contact_us/foreground-51912f55001c4db060050b5ec3f7e704.jpg" alt="微观之旅" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                        '地址：南京市玄武区中山东路532号金蝶产业园E幢3楼 <br/>电话：{$site_phone} <br/>' +'</div>';*/
+                var content="<h3 style='margin:0 0 5px 0;padding:0.2em 0'>微观之旅</h3>" +
+                        "<img style='float:right;margin:4px;margin-top:-15px;' id='imgDemo' src='__TMPL__Public/images/logo.png' width='100' height='100' title='微观之旅'/>" +
+                        "<p style='margin:0;line-height:1.5;font-size:14px;'>地址：南京市玄武区中山东路532号金蝶产业园E幢3楼</p>" +
+                        "<p style='margin:0;line-height:1.5;font-size:14px;'>电话：{$site_phone}</p>" +
+                        "</div>";
 
                 //创建检索信息窗口对象
-                var searchInfoWindow = null;
-                searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
-                    title  : "微观之旅",
-                    width  : 290,
-                    height : 120,
-                    panel  : "panel",
-                    enableAutoPan : true,
-                    searchTypes   :[
-                        BMAPLIB_TAB_SEARCH,
-                        BMAPLIB_TAB_TO_HERE,
-                        BMAPLIB_TAB_FROM_HERE
-                    ]
-                });
+                var infoWindow = null;
+                infoWindow = new BMap.InfoWindow(content);
                 var marker = new BMap.Marker(poi);
-                searchInfoWindow.open(marker);
                 map.addOverlay(marker); //在地图中添加marker
+                marker.openInfoWindow(infoWindow);
+                marker.addEventListener('click',function(){
+                    //searchInfoWindow.open(marker);
+                    this.openInfoWindow(infoWindow);
+                    //图片加载完毕重绘infowindow
+                    document.getElementById('imgDemo').onload = function (){
+                        infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+                    }
+                });
+                var map_box_info='<div class="map_box_info_bg"></div>' +
+                        '<div class="map_box_info">'+
+                        '<p class="title">联系我们</p>'+
+                        '<p><img src="__TMPL__Public/images/ic_tel.png" />{$site_phone}</p>'+
+                        '<p><img src="__TMPL__Public/images/ic_add.png" />南京市玄武区中山东路532号金蝶产业园E幢3楼</p>'+
+                        '<img src="__TMPL__Public/images/ewm.jpg" />'+
+                '</div>';
+                map.addEventListener("tilesloaded",function(){
+                    $('#allmap').append(map_box_info);
+                });
             </script>
         </div>
     </div>

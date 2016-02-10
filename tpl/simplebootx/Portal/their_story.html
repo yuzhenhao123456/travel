@@ -1,13 +1,138 @@
 <tc_extend name="Public/layout"/>
 <block name="css">
-    <link href="__TMPL__Portal/css/travel.css" rel="stylesheet">
+    <!--<link href="__TMPL__Portal/css/travel.css" rel="stylesheet">-->
     <style>
+        .main-banner {
+            position: relative;
+            height: 500px;
+            margin-bottom: 30px;
+        }
+        .main-banner .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: 50% 50%;
+            background-size: cover;
+        }
+        .banner-bottom.story-bottom {
+            text-align: center;
+        }
+        .banner-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            color: #fff;
+            background: #000;
+            background: rgba(0, 0, 0, 0.6);
+            font-size: 14px;
+        }
+        .banner-bottom h1{
+            font-weight: 100;
+            font-size: 20px;
+            margin-bottom: 15px;
+            margin-top: 20px;
+            font-size: normal;
+        }
+        .banner-bottom h1 a{
+            color: white;
+        }
+        .banner-bottom p, .story-bottom p {
+            font-size: 12px;
+        }
+        .container {
+            position: relative;
+            box-sizing: border-box;
+        }
+        @media screen and (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+        }
 
+        @media screen and (min-width: 992px) {
+            .container {
+                width: 970px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .their-story-item-list li.first {
+            margin-left: 0;
+        }
+        .their-story-item-list li {
+            opacity: 0.95;
+            filter: alpha(opacity=95);
+            list-style: none;
+            float: left;
+            margin-top: 50px;
+        }
+        .their-story-item-list li .cover {
+            position: relative;
+        }
+        .their-story-item-list li .cover img {
+            width: 100%;
+            border-radius: 2px;
+        }
+        .their-story-item-list li .cover-bg {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+        .their-story-item-list li:hover .cover-bg{
+            opacity: 1;
+        }
+
+        .their-story-item-list li .desc {
+            text-align: center;
+            color: #533e3b;
+        }
+
+        .their-story-item-list li .desc h5 {
+            color: #8fb2ab;
+            display: block;
+            width: 200px;
+            margin: 25px auto 0;
+            font-size: 16px;
+        }
+        .their-story-item-list li .desc p {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            height: 100px;
+        }
+        .their-story-item-list li p {
+            margin-top: 10px;
+            text-align: left;
+            font-size: 12px;
+        }
     </style>
 </block>
 <block name="content">
     <div class="row">
-        <div class="main-banner story-banner" style="height: 361px;">
+        <!--<div class="main-banner story-banner" style="height: 360px;">
             <div class="banner-image"></div>
             <div class="banner-bottom">
                 <div class="container">
@@ -17,69 +142,55 @@
                     <p>当然，也来自我们薇薇黎之旅为你悉心安排的每一个细节中。</p>
                 </div>
             </div>
-        </div>
-
+        </div>-->
         <php>
-            $lists = sp_sql_posts_paged("cid:1;order:post_date DESC;",10);
+            $top_data = sp_sql_posts_paged("cid:1;where:istop=1;order:post_date DESC;",1);
+            $post=$top_data['posts'][0];
+            $smeta=json_decode($post['smeta'],true)
         </php>
-            <volist name="lists['posts']" id="vo">
-            <php>
-                $smeta=json_decode($vo['smeta'], true);
-            </php>
-            <div class="story-sub-banner">
-                <div class="container banner">
-                    <a href="/stories/{$vo.tid}" style="max-height:500px;overflow: hidden;vertical-align: middle;display: block;">
-                        <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" width="1000" alt="{$vo.post_title}"  ></a>
-                </div>
-                <div class="content-text">
-                    <php>
-                        $excerpts = explode("\n",$vo['post_excerpt']);
-                    </php>
-                    <volist name="excerpts" id="excerpt">
-                        <p>{$excerpt}</p>
-                    </volist>
-                    <p>旅行总花费：{$vo.post_source}RMB/人</p>
-                    <a class="default-btn" href="/stories/{$vo.tid}">感受他的温度</a>
-                </div>
+        <div class="main-banner" style="height: 360px;">
+            <div class="banner-image" style='background-image: url({:sp_get_asset_upload_path($smeta["thumb"])});'></div>
+            <!--<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$post.post_title}" style="z-index: -1;">-->
+            <div class="banner-bottom story-bottom">
+                <h1><a href="/stories/{$post.tid}">{$post.post_title}</a></h1>
+                <php>
+                    $excerpts = explode("\n",$post['post_excerpt']);
+                </php>
+                <volist name="excerpts" id="excerpt">
+                    <p>{$excerpt}</p>
+                </volist>
+                <p>
+                </p>
             </div>
-        </volist>
+        </div>
         <ul class="their-story-item-list container clearfix">
             <div class="row">
                 <php>
-                    $lists = sp_sql_posts_paged("cid:3;order:post_date DESC;",9);
+                    $lists = sp_sql_posts_paged("cid:1;where:istop=0;order:post_date DESC;",9);
                 </php>
                 <volist name="lists['posts']" id="vo">
                     <php>
                         $smeta=json_decode($vo['smeta'], true);
                         $photos=$smeta['photo'];
                         $icon='';
-                        foreach($photos as $photo)
-                        {
-                        if($photo['alt']=='icon')
-                        {
-                        $icon = $photo;
-                        }
-                        }
-                        if($icon=='')
-                        {
-                        $icon=$photos[0];
-                        }
                     </php>
                 <li class="first col-xs-12 col-sm-6 col-md-4">
                     <div class="cover">
-                        <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="Newzealand">
-                        <div class="dest_icon">
+                        <img src="{:sp_get_asset_upload_path($photos[0]['url'])}" alt="Newzealand">
+                        <!--<div class="dest_icon">
                             <img src="{:sp_get_asset_upload_path($icon['url'])}" alt="{$icon['alt']}">
                             <p>{$vo.post_title}</p>
                         </div>
                         <div class="story_info">
                             <img src="__TMPL__Public/images/days.png" alt="Days"> <span>{$vo.day}天</span>
                             <img class="p_num" src="__TMPL__Public/images/p_num.png" alt="P num"> <span>{$vo.people_num}人</span>
-                        </div>
-                        <img class="cover-bg" src="{:sp_get_asset_upload_path($photo['url'])}" alt="{$photo['alt']}">
-                        <iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></div>
+                        </div>-->
+                        <if condition="$photos[1]">
+                        <img class="cover-bg" src="{:sp_get_asset_upload_path($photos[1]['url'])}" alt="{$photo['alt']}">
+                        </if>
+                    </div>
                     <div class="desc">
-                        <h5>定制旅行总花费：{$vo.post_source}元/人</h5>
+                        <h5><a href="/stories/{$vo.tid}">{$vo.post_title}</a></h5>
                         <p>{$vo['post_excerpt']}</p>
                     </div>
                 </li>
@@ -87,10 +198,10 @@
 
             </div>
         </ul>
-        <div class="container">
+        <!--<div class="container">
             <div class="booking-block" id="booking-block">
                 <a href="/contact_us" class="let-us-travel ga-hook" data-ga-title="bottom_block">定制你的旅行 &gt;</a>
             </div>
-        </div>
+        </div>-->
     </div>
 </block>

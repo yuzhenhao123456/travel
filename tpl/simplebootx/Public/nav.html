@@ -1,5 +1,5 @@
 <div class="header">
-    <!--<div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -7,23 +7,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                <a class="brand" href="__ROOT__/"><img src="__TMPL__Public/images/logo.png"/></a>
-                <div class="nav-collapse collapse" id="main-menu">
+                <a class="brand" href="__ROOT__/"><img src="__TMPL__Public/images/navlogo.png" class="nav-logo" /></a>
+                <div class="nav-collapse" id="main-menu">
                     <ul class="nav" id="main-menu-left">
-                        <li><a href="/trip" title="定制旅行">定制旅行</a></li>
-                        <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="目的地">目的地<b class="caret"></b></a>
+                        <li class="{:$nav_class=='index'?'active':''}" ><a href="/" title="精选目的地">精选目的地</a></li>
+                        <!--<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="目的地">目的地<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/destination_explore" title="随便看看" >随便看看</a></li>
                                 <li><a href="/destination" title="精选目的地" >精选目的地</a></li>
                             </ul>
+                        </li>-->
+                        <li class="{:$nav_class=='trip'?'active':''}">
+                            <a href="/trip">定制旅行</a>
                         </li>
-                        <li>
-                            <a href="/our_story">旅行定制师</a>
+                        <li class="{:$nav_class=='their_story'?'active':''}">
+                            <a href="/their_story">旅游手札</a>
                         </li>
-                        <li class="">
-                            <a href="/their_story">案例故事</a>
-                        </li>
-                        <li class="">
+                        <li class="{:$nav_class=='contact_us'?'active':''}">
                             <a href="/contact_us">联系我们</a>
                         </li>
                     </ul>
@@ -33,26 +33,26 @@
                                 <img src="__TMPL__Public/images/icon_tel.png" alt="Icon tel">
                             </div>
                             <p>
-                                400 890 3040
+                                {$site_phone}
                             </p>
                         </a>
                     </div>
-                    <div class="login-control">
-                        <a id="login-btn" href="javascript:void(0)">登录</a>|<a id="reg-btn" href="javascript:void(0)">注册</a>
-                    </div>
-                    <div class="wish-container">
-                        <div class="wish-map-num hidden-sm" style="display: block;">
-                            <span class="like-num"><img src="__TMPL__Public/images/icon_like_on.png" alt=""><span>0</span></span>
-                            <span class="been-num"><img src="__TMPL__Public/images/icon_been_on.png" alt=""><span>0</span></span>
-                        </div>
-                        <a class="wish-map-btn" href="http://www.uniqueway.com/wish_map?">
-                            我的心愿地图(<span class="J_wish_num">0</span>)
-                        </a></div>
+                    <!--<div class="login-control">-->
+                        <!--<a id="login-btn" href="javascript:void(0)">登录</a>|<a id="reg-btn" href="javascript:void(0)">注册</a>-->
+                    <!--</div>-->
+                    <!--<div class="wish-container">-->
+                        <!--<div class="wish-map-num hidden-sm" style="display: block;">-->
+                            <!--<span class="like-num"><img src="__TMPL__Public/images/icon_like_on.png" alt=""><span>0</span></span>-->
+                            <!--<span class="been-num"><img src="__TMPL__Public/images/icon_been_on.png" alt=""><span>0</span></span>-->
+                        <!--</div>-->
+                        <!--<a class="wish-map-btn" href="http://www.uniqueway.com/wish_map?">-->
+                            <!--我的心愿地图(<span class="J_wish_num">0</span>)-->
+                        <!--</a></div>-->
                 </div>
             </div>
         </div>
-    </div>-->
-    <div class="nav-bar on-scroll">
+    </div>
+    <!--<div class="nav-bar on-scroll">
         <div class="container">
             <div class="navbar-header">
                 <button class="navbar-toggle collapsed" data-target=".navbar-collapse" data-toggle="collapse">
@@ -65,32 +65,36 @@
                 </a></div>
             <div class="navbar-collapse collapse" role="navigation">
                 <ul class="nav-lists clearfix">
-                    <li class="">
-                        <a href="/trip">定制旅行</a>
-                    </li>
-                    <li class="destination parent-item hidden-xs dropdown">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">目的地</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/destination_explore" title="随便看看">随便看看</a></li>
-                            <li><a href="/destination" title="精选目的地">精选目的地</a></li>
-                        </ul>
-                    </li>
-                    <!--<li class="">
-                        <a href="/our_story">旅行定制师</a>
-                    </li>-->
 
                     <li class="">
-                        <a href="/their_story">旅游故事</a>
+                        <a href="/">定制旅行</a>
                     </li>
                     <li class="">
-                        <a href="#">品牌文化</a>
+                        <a href="/trip">精选目的地</a>
                     </li>
+                    &lt;!&ndash;<li class="destination parent-item hidden-xs dropdown">&ndash;&gt;
+                        &lt;!&ndash;<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">目的地</a>&ndash;&gt;
+                        &lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;
+                            &lt;!&ndash;<li><a href="/destination_explore" title="随便看看">随便看看</a></li>&ndash;&gt;
+                            &lt;!&ndash;<li><a href="/destination" title="精选目的地">精选目的地</a></li>&ndash;&gt;
+                        &lt;!&ndash;</ul>&ndash;&gt;
+                    &lt;!&ndash;</li>&ndash;&gt;
+                    &lt;!&ndash;<li class="">
+                        <a href="/our_story">旅行定制师</a>
+                    </li>&ndash;&gt;
+
+                    <li class="">
+                        <a href="/their_story">旅游手札</a>
+                    </li>
+                    &lt;!&ndash;<li class="">&ndash;&gt;
+                        &lt;!&ndash;<a href="#">品牌文化</a>&ndash;&gt;
+                    &lt;!&ndash;</li>&ndash;&gt;
                     <li class="">
                         <a href="/contact_us">联系我们</a>
                     </li>
-                    <!-- <li class="hide-li">
+                    &lt;!&ndash; <li class="hide-li">
                       <a href="/wish_map">我的心愿地图</a>
-                    </li> -->
+                    </li> &ndash;&gt;
 
                 </ul>
                 <div class="contact-area hidden-sm">
@@ -121,17 +125,17 @@
                     </div>
                 </if>
 
-                <!--<div class="wish-container">-->
-                    <!--<div class="wish-map-num hidden-sm" style="display: none;">-->
-                        <!--<span class="like-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_like_on.png"-->
-                                                    <!--alt=""><span>{$user['like_num']}</span></span>-->
-                        <!--<span class="been-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_been_on.png"-->
-                                                    <!--alt=""><span>{$user['been_num']}</span></span>-->
-                    <!--</div>-->
-                    <!--<a class="wish-map-btn" href="/wish_map?">-->
-                        <!--我的心愿地图(<span class="J_wish_num">{:$user['like_num']+$user['been_num']}</span>)-->
-                    <!--</a></div>-->
+                &lt;!&ndash;<div class="wish-container">&ndash;&gt;
+                    &lt;!&ndash;<div class="wish-map-num hidden-sm" style="display: none;">&ndash;&gt;
+                        &lt;!&ndash;<span class="like-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_like_on.png"&ndash;&gt;
+                                                    &lt;!&ndash;alt=""><span>{$user['like_num']}</span></span>&ndash;&gt;
+                        &lt;!&ndash;<span class="been-num"><img src="http://uniqueway.b0.upaiyun.com/assets/icon_been_on.png"&ndash;&gt;
+                                                    &lt;!&ndash;alt=""><span>{$user['been_num']}</span></span>&ndash;&gt;
+                    &lt;!&ndash;</div>&ndash;&gt;
+                    &lt;!&ndash;<a class="wish-map-btn" href="/wish_map?">&ndash;&gt;
+                        &lt;!&ndash;我的心愿地图(<span class="J_wish_num">{:$user['like_num']+$user['been_num']}</span>)&ndash;&gt;
+                    &lt;!&ndash;</a></div>&ndash;&gt;
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
