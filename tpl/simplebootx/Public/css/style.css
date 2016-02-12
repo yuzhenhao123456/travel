@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 body{padding-top: 70px;}
+body{
+	overflow-x: hidden;
+}
 body.body-white{ background: #fff;}
 .navbar-fixed-top, .navbar-fixed-bottom {
 position: fixed;
