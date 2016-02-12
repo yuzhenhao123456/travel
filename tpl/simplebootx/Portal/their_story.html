@@ -149,7 +149,7 @@
             $smeta=json_decode($post['smeta'],true)
         </php>
         <div class="main-banner" style="height: 360px;">
-            <div class="banner-image" style='background-image: url({:sp_get_asset_upload_path($smeta["thumb"])});'  onclick="gostory({$post.tid})"></div>
+            <div class="banner-image" style='background-image: url({:sp_get_asset_upload_path($smeta["thumb"])});'  onclick="gostory({$post.tid})" style="cursor: pointer"></div>
             <!--<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$post.post_title}" style="z-index: -1;">-->
             <div class="banner-bottom story-bottom">
                 <h1><a href="/stories/{$post.tid}">{$post.post_title}</a></h1>
@@ -175,7 +175,7 @@
                         $icon='';
                     </php>
                 <li class="first col-xs-12 col-sm-6 col-md-4">
-                    <div class="cover" onclick="gostory({$vo.tid})">
+                    <div class="cover" onclick="gostory({$vo.tid})" style="cursor: pointer">
                         <img src="{:sp_get_asset_upload_path($photos[0]['url'])}" alt="Newzealand">
                         <!--<div class="dest_icon">
                             <img src="{:sp_get_asset_upload_path($icon['url'])}" alt="{$icon['alt']}">
